@@ -15,6 +15,7 @@ partiesTxt.split('\n').forEach(partyTxt => {
     parties[party[0]] = {
         number: parseInt(party[0]),
         name: party[1].trim(),
+        color: party[2],
     };
 });
 
@@ -82,6 +83,7 @@ const globalObject = {
     parties: Object.keys(parties).map(key => { return {
         number: parties[key].number,
         name: parties[key].name,
+        color: parties[key].color,
         validVotes: 0,
         invalidVotes: 0,
     }}),
@@ -99,6 +101,7 @@ Object.keys(sections).forEach(key => {
             parties: Object.keys(parties).map(key => { return {
                     number: parties[key].number,
                     name: parties[key].name,
+                    color: parties[key].color,
                     validVotes: 0,
                     invalidVotes: 0,
             }}),
@@ -180,5 +183,5 @@ sectionsToWrite.forEach(section => {
 fs.writeFileSync('../public/data/global-results.json', JSON.stringify(globalObject));
 
 console.log("Region JSON files created");
-console.log(globalObject);
+//console.log(parties);
 

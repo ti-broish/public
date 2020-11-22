@@ -1,7 +1,19 @@
 html
-    font-family 'Arial', 'sans-serif'
+    //font-family 'Arial', 'sans-serif'
+    //font-family 'Roboto', sans-serif
+    font-family: 'Montserrat', sans-serif;
+
     //background-color #ededed
     background-color white
+
+#bulgaria-map
+    path
+        fill #ccc
+        stroke white
+        stroke-width 50px
+    path:hover
+        cursor pointer
+        fill #666
 
 .wrapper
     width 1100px
@@ -40,18 +52,54 @@ footer
 
     table
         width 100%
-        font-weight bold
+        //font-weight bold
         color #666
         font-size 28px
 
         td
             padding 5px 20px
+            box-sizing border-box
+
+        .vote-percent-bar
+            height 10px
+            //display inline-block
+            background-color #eee
+            transition width 0.5s ease
+            width 0
+
+        .vote-percent-remaining
+            display inline-block
+            border-top none
+            box-sizing border-box
+            margin 5px 0
+            border-color #ccc
+
+        //row1size = 72px
+        //row3size = 180px
+        //row4size = 110px
 
         td:nth-child(1)
             text-align right
+            width 72px
 
-        td:nth-child(3)
-            text-align right
+        td:nth-child(2)
+            width calc(100% - 72px)
+
+        //td:nth-child(3)
+        //    text-align right
+        //    width row3size
+
+        //td:nth-child(4)
+        //    text-align right
+        //    width row4size
+
+        .threshold-row
+            font-size 12px
+            color #777
+
+            hr
+                border-color #aaa
+                border-top none
 
 #regional-data
     table
