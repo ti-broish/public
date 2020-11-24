@@ -7,7 +7,7 @@ const votesTxt = fs.readFileSync('./parliament2017/votes_26.03.2017.txt', 'utf-8
 
 const parties = {};
 const protocols = {};
-const sections = {};
+const sectionList = {};
 const votes = {};
 
 partiesTxt.split('\n').forEach(partyTxt => {
@@ -46,7 +46,7 @@ protocolsTxt.split('\n').forEach(protocolTxt => {
 
 sectionsTxt.split('\n').forEach(sectionTxt => {
     const section = sectionTxt.split(';');
-    sections[section[0]] = {
+    sectionList[section[0]] = {
         number: section[0],   // 1) Пълен код на секция(код на район(2), община(2), адм. район(2), секция(3))
         region: parseInt(section[1]),             // 2) Идентификатор на административна единица, за която се гласува в секцията
                                         
@@ -68,96 +68,248 @@ votesTxt.split('\n').forEach(voteTxt => {
     for(var i = 2; i < vote.length; i += 3) {
         voteObj.parties[parseInt(vote[i])] = { valid: parseInt(vote[i + 1]), invalid: parseInt(vote[i + 2])};
     }
-    //console.log(vote);
-    //console.log(voteObj);
 
     votes[vote[0]] = voteObj;
 });
 
+var xlsx = require('node-xlsx');
 
-const regions = {};
+const xlsSections = {};
 
-const sectionsToWrite = [];
+var obj = xlsx.parse('./parliament2017/sekcii.xlsx');
 
-const globalObject = {
-    parties: Object.keys(parties).map(key => { return {
-        number: parties[key].number,
-        name: parties[key].name,
-        color: parties[key].color,
-        validVotes: 0,
-        invalidVotes: 0,
-    }}),
-    regions: [],
-    validVotes: 0,
-    invalidVotes: 0,
+for(const row of obj[0].data) {
+    const regionNum = row[0];
+    const regionName = row[1];
+    const admunitNum = row[2];
+    const admunitName = row[3];
+    const districtNum = row[4]? row[4] : '00';
+    const districtName = row[5]? row[5] : 'Без район';
+    const sectionNum = row[6];
+    const townNum = row[7];
+    const townName = row[8];
+    const sectionAddress = row[9];
+
+    if(!xlsSections[regionNum]) {
+        xlsSections[regionNum] = {
+            name: regionName,
+            admunits: {},
+        };
+    }
+
+    const region = xlsSections[regionNum];
+
+    if(!region.admunits[admunitNum]) {
+        region.admunits[admunitNum] = {
+            name: admunitName,
+            districts: {},
+        };
+    }
+
+    const admunit = region.admunits[admunitNum];
+
+    if(!admunit.districts[districtNum]) {
+        admunit.districts[districtNum] = {
+            name: districtName,
+            sections: {},
+        }
+    }
+
+    /*const municipality = region.municipalities[municipalNum];
+
+    if(!municipality.towns[townNum]) {
+        municipality.towns[townNum] = {
+            name: townName,
+            districts: {},
+        }
+    }
+
+    const town = municipality.towns[townNum];
+
+    if(!municipality.districts[districtNum]) {
+        municipality.districts[districtNum] = {
+            name: districtName,
+            //addresses: {},
+            sections: [],
+        };
+    }*/
+
+    
+
+    //const district = municipality.districts[districtNum];
+
+    //district.sections.push(sectionNum);
+
+    //if(!district.addresses[sectionAddress]) {
+    //    district.addresses[sectionAddress] = [];
+    //}
+
+    //district.addresses[sectionAddress].push(sectionNum);
 }
 
-Object.keys(sections).forEach(key => {
-    const section = sections[key];
-    if(!regions[section.region])
-        regions[section.region] = {
-            number: parseInt(section.region),
-            name: section.name,
-            parties: Object.keys(parties).map(key => { return {
-                    number: parties[key].number,
-                    name: parties[key].name,
-                    color: parties[key].color,
-                    validVotes: 0,
-                    invalidVotes: 0,
-            }}),
-            sections: [],
+const global = {
+    results: {},
+    parties: parties,
+    regions: {},
+    validVotes: 0,
+    invalidVotes: 0,
+};
+
+for(const key of Object.keys(sectionList)) {
+    const region = key.slice(0, 2);
+    const admunit = key.slice(2, 4);
+    const district = key.slice(4, 6);
+    const section = key.slice(6, 9);
+
+    const regions = global.regions;
+
+    if(!regions[region]) {
+        let regionName = sectionList[key]
+        regionName = regionName.name.slice(4, regionName.length).toLowerCase();
+        regionName = regionName.split(' ').map(word => word[0].toUpperCase() + word.slice(1));
+
+        regions[region] = {
+            name: regionName.reduce((word, acc) => word + ' ' + acc, ''),
+            results: {},
+            admunits: {},
             validVotes: 0,
             invalidVotes: 0,
         };
-    
-    regions[section.region].sections.push({
-        number: key,
-        place: section.place,
-    });
+    }
 
-    const vote = votes[key];
-    const protocol = protocols[key];
+    const admunits = regions[region].admunits;
 
-    const sectionToWrite = {...section, ...protocol, parties: []};
+    if(!admunits[admunit]) {
+        if(parseInt(region) === 32) {
+            admunits[admunit] = {
+                name: sectionList[key].place.split(',')[0].trim(),
+                results: {},
+                districts: {},
+                validVotes: 0,
+                invalidVotes: 0,
+            };
+        } else  {
+            let xlsRegion = region;
+            if(parseInt(xlsRegion) > 16) xlsRegion --;
+            if(parseInt(xlsRegion) > 22) xlsRegion --;
+            if(parseInt(xlsRegion) > 22) xlsRegion --;
 
-    Object.keys(vote.parties).forEach(key => {
-        const partyVote = vote.parties[key];
-        regions[section.region].validVotes += partyVote.valid;
-        regions[section.region].invalidVotes += partyVote.invalid;
+            const xlsRegionObj = xlsSections[xlsRegion];
+            const xlsAdmunit = !xlsRegionObj? null : xlsRegionObj.admunits[admunit];
 
-        if(parseInt(key) <= 21) {
-            regions[section.region].parties[key-1].validVotes += partyVote.valid;
-            regions[section.region].parties[key-1].invalidVotes += partyVote.invalid;
+            let admunitName = xlsAdmunit? xlsAdmunit.name : 'Непозната община';
+            admunitName = admunitName.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
+
+            admunits[admunit] = {
+                name: admunitName.reduce((word, acc) => word + ' ' + acc, ''),
+                results: {},
+                districts: {},
+                validVotes: 0,
+                invalidVotes: 0,
+            };
+        }
+    }
+
+    const districts = admunits[admunit].districts;
+
+    if(!districts[district]) {
+        let xlsRegion = region;
+        if(parseInt(xlsRegion) > 16) xlsRegion --;
+        if(parseInt(xlsRegion) > 22) xlsRegion --;
+        if(parseInt(xlsRegion) > 22) xlsRegion --;
+
+        const xlsRegionObj = xlsSections[xlsRegion];
+        const xlsAdmunit = !xlsRegionObj? null : xlsRegionObj.admunits[admunit];
+        const xlsDistrict = !xlsAdmunit? null : xlsAdmunit.districts[district];
+
+        let districtName = xlsDistrict? xlsDistrict.name : 'Непознат район';
+        districtName = districtName.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
         
-            sectionToWrite.parties.push({
-                number: regions[section.region].parties[key-1].number,
-                name: regions[section.region].parties[key-1].name,
-                validVotes: partyVote.valid,
-                invalidVotes: partyVote.invalid,
-            });
+        districts[district] = {
+            name: districtName.reduce((word, acc) => word + ' ' + acc, ''),
+            results: {},
+            sections: {},
+            validVotes: 0,
+            invalidVotes: 0,
+        };
+    }
+
+    const sections = districts[district].sections;
+
+    districts[district].sections[section] = { results: {},  ...sectionList[key], ...protocols[key]};
+    
+    const vote = votes[key];
+
+    for(const partyKey of Object.keys(vote.parties)) {
+        if(!             global.results[partyKey])              global.results[partyKey] = {valid: 0, invalid: 0};
+        if(!    regions[region].results[partyKey])     regions[region].results[partyKey] = {valid: 0, invalid: 0};
+        if(!  admunits[admunit].results[partyKey])   admunits[admunit].results[partyKey] = {valid: 0, invalid: 0};
+        if(!districts[district].results[partyKey]) districts[district].results[partyKey] = {valid: 0, invalid: 0};
+        if(!  sections[section].results[partyKey])   sections[section].results[partyKey] = {valid: 0, invalid: 0};
+
+        global.validVotes += vote.parties[partyKey].valid;
+        global.invalidVotes += vote.parties[partyKey].invalid;
+
+        regions[region].validVotes += vote.parties[partyKey].valid;
+        regions[region].invalidVotes += vote.parties[partyKey].invalid;
+        
+        admunits[admunit].validVotes += vote.parties[partyKey].valid;
+        admunits[admunit].invalidVotes += vote.parties[partyKey].invalid;
+
+        districts[district].validVotes += vote.parties[partyKey].valid;
+        districts[district].invalidVotes += vote.parties[partyKey].invalid;
+
+        global.results[partyKey].valid += vote.parties[partyKey].valid;
+        global.results[partyKey].invalid += vote.parties[partyKey].invalid;
+
+        regions[region].results[partyKey].valid += vote.parties[partyKey].valid;
+        regions[region].results[partyKey].invalid += vote.parties[partyKey].invalid;
+
+        admunits[admunit].results[partyKey].valid += vote.parties[partyKey].valid;
+        admunits[admunit].results[partyKey].invalid += vote.parties[partyKey].invalid;
+
+        districts[district].results[partyKey].valid += vote.parties[partyKey].valid;
+        districts[district].results[partyKey].invalid += vote.parties[partyKey].invalid;
+
+        sections[section].results[partyKey].valid += vote.parties[partyKey].valid;
+        sections[section].results[partyKey].invalid += vote.parties[partyKey].invalid;
+    }
+}
+
+const optimizeResults = results => {
+    const output = [];
+    for(const key of Object.keys(results)) {
+        if(results[key].valid != 0 || results[key].invalid != 0) {
+            output.push(parseInt(key));
+            output.push(results[key].valid);
+            output.push(results[key].invalid);
         }
-    });
+    }
+    return output;
+};
 
-    sectionsToWrite.push(sectionToWrite);
-});
+// optimize filesize of results
+global.results = optimizeResults(global.results);
 
-Object.keys(regions).forEach(key => {
-    const region = regions[key];
-    globalObject.regions.push({
-        number: region.number,
-        name: region.name,
-    });
+for(const regionKey of Object.keys(global.regions)) {
+    const region = global.regions[regionKey];
+    region.results = optimizeResults(region.results);
 
-    region.parties.forEach((party, i) => {
-        if(i <= 21) {
-            globalObject.parties[i].validVotes += party.validVotes;
-            globalObject.parties[i].invalidVotes += party.invalidVotes;
+    for(const admunitKey of Object.keys(region.admunits)) {
+        const admunit = region.admunits[admunitKey];
+        admunit.results = optimizeResults(admunit.results);
+
+        for(const districtKey of Object.keys(admunit.districts)) {
+            const district = admunit.districts[districtKey];
+            district.results = optimizeResults(district.results);
+
+            for(const sectionKey of Object.keys(district.sections)) {
+                const section = district.sections[sectionKey];
+                section.results = optimizeResults(section.results);
+            }
         }
-    });
-
-    globalObject.validVotes += region.validVotes;
-    globalObject.invalidVotes += region.invalidVotes;
-});
+    }
+}
 
 if (!fs.existsSync('../public/data')) {
     fs.mkdirSync('../public/data');
@@ -167,21 +319,80 @@ if (!fs.existsSync('../public/data/regions')) {
     fs.mkdirSync('../public/data/regions');
 }
 
+if (!fs.existsSync('../public/data/admunits')) {
+    fs.mkdirSync('../public/data/admunits');
+}
+
+if (!fs.existsSync('../public/data/districts')) {
+    fs.mkdirSync('../public/data/districts');
+}
+
 if (!fs.existsSync('../public/data/sections')) {
     fs.mkdirSync('../public/data/sections');
 }
 
-Object.keys(regions).forEach(key => {
-    const region = regions[key];
-    fs.writeFileSync(`../public/data/regions/region-${region.number}.json`, JSON.stringify(region));
-});
+for(const region of Object.keys(global.regions)) {
+    for(const admunit of Object.keys(global.regions[region].admunits)) {
+        for(const district of Object.keys(global.regions[region].admunits[admunit].districts)) {
+            for(const sectionKey of Object.keys(global.regions[region].admunits[admunit].districts[district].sections)) {
+                const section = global.regions[region].admunits[admunit].districts[district].sections[sectionKey];
+                fs.writeFileSync(`../public/data/sections/section-${section.number}.json`, JSON.stringify(section));
+            }
+        }
+    }
+}
 
-sectionsToWrite.forEach(section => {
-    fs.writeFileSync(`../public/data/sections/section-${section.number}.json`, JSON.stringify(section));
-});
+for(const region of Object.keys(global.regions)) {
+    for(const admunit of Object.keys(global.regions[region].admunits)) {
+        for(const districtKey of Object.keys(global.regions[region].admunits[admunit].districts)) {
+            const district = global.regions[region].admunits[admunit].districts[districtKey];
+            if(districtKey != '00') {
+                for(const sectionKey of Object.keys(district.sections)) {
+                    const section = district.sections[sectionKey];
+                    district.sections[sectionKey] = {results: section.results, validVotes: section.validVotes, invalidVotes: section.invalidVotes};
+                }
+                fs.writeFileSync(`../public/data/districts/district-${region}-${admunit}-${districtKey}.json`, JSON.stringify(district));
+            }
+        }
+    }
+}
 
-fs.writeFileSync('../public/data/global-results.json', JSON.stringify(globalObject));
+for(const region of Object.keys(global.regions)) {
+    for(const admunitKey of Object.keys(global.regions[region].admunits)) {
+        const admunit = global.regions[region].admunits[admunitKey];
+        for(const districtKey of Object.keys(admunit.districts)) {
+            const district = admunit.districts[districtKey];
+            if(districtKey == '00') {
+                for(const sectionKey of Object.keys(district.sections)) {
+                    const section = district.sections[sectionKey];
+                    district.sections[sectionKey] = {results: section.results, validVotes: section.validVotes, invalidVotes: section.invalidVotes};
+                }
+            } else {
+                delete admunit.districts[districtKey].sections;
+            }
+        }
+        fs.writeFileSync(`../public/data/admunits/admunit-${region}-${admunitKey}.json`, JSON.stringify(admunit));
+    }
+}
+
+for(const regionKey of Object.keys(global.regions)) {
+    const region = global.regions[regionKey];
+    if(Object.keys(region.admunits).length === 1) {
+
+    } else {
+        for(const admunitKey of Object.keys(region.admunits)) {
+            const admunit = region.admunits[admunitKey];
+            delete admunit.districts;
+        }
+    }
+    fs.writeFileSync(`../public/data/regions/region-${regionKey}.json`, JSON.stringify(region));
+}
+
+for(const regionKey of Object.keys(global.regions)) {
+    const region = global.regions[regionKey];
+    delete region.admunits;
+}
+
+fs.writeFileSync(`../public/data/global.json`, JSON.stringify(global));
 
 console.log("Region JSON files created");
-//console.log(parties);
-

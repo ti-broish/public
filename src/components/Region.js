@@ -4,7 +4,9 @@ import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import LoadingScreen from './layout/LoadingScreen';
-import { formatCount, formatPercentage } from '../Util';
+
+import ResultsTable from './ResultsTable';
+import ResultsLine from './ResultsLine';
 
 export default props => {
     const params = useParams();
@@ -23,52 +25,69 @@ export default props => {
         refreshResults();
     }, []);
 
-    let displayParties = [];
-
-    if(data) {
-        displayParties = data.parties.sort((a, b) => b.validVotes - a.validVotes).slice(0, 7);
-    }
-
-    let protocolGroups = {};
-
-    if(data) {
-        data.sections.forEach(section => {
-            if(!protocolGroups[section.place]) {
-                protocolGroups[section.place] = [];
-            }
-            protocolGroups[section.place].push(section);
-        });
-    }
-
     return(
         !data? <LoadingScreen/> :
             <div id='regional-data'>
                 <Link to='/'>Назад</Link>
                 <h1>{data.name}</h1>
-                <table>
-                    <tbody>
-                        {
-                            displayParties.map(party => 
-                                <tr>
-                                    <td>{party.number}</td>
-                                    <td>{party.name}</td>
-                                    <td>{formatCount(party.validVotes)}</td>
-                                    <td>{formatPercentage(party.validVotes/data.validVotes)}%</td>
-                                    {/*<td>{party.invalidVotes}</td>*/}
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
-                <h1>Секции</h1>
-                <div id='section-list'>
+                <ResultsTable
+                    results={data.results} 
+                    parties={props.globalData.parties} 
+                    totalValid={data.validVotes} 
+                    totalInvalid={data.invalidVotes}
+                />
+                <h1>{Object.keys(data.admunits).length === 1? 'Райони' : 'Общини'}</h1>
                 {
-                    Object.keys(protocolGroups).map(key => [
-                        <h2>{key}</h2>,
-                        protocolGroups[key].map(section => <Link to={`/section/${section.number}`}>{section.number}</Link>)
-                    ])
+                    Object.keys(data.admunits).length === 1?
+                        <table className='subdivision-table'>
+                            <tbody>
+                            {
+                                Object.keys(data.admunits[Object.keys(data.admunits)[0]].districts).map(districtKey => 
+                                    <tr>
+                                        <td>
+                                        <Link to={`/district/${params.region}-${Object.keys(data.admunits)[0]}-${districtKey}`}>
+                                            {data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].name}
+                                        </Link>
+                                        </td>
+                                        <td>
+                                        <ResultsLine
+                                            results={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].results} 
+                                            parties={props.globalData.parties}
+                                            totalValid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].validVotes} 
+                                            totalInvalid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].invalidVotes}
+                                            thin
+                                        /> 
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                            </tbody>
+                        </table> :
+                        <table className='subdivision-table'>
+                            <tbody>
+                            {
+                                Object.keys(data.admunits).map(key => 
+                                    <tr>
+                                        <td>
+                                            <Link to={`/admunit/${params.region}-${key}`}>
+                                                {data.admunits[key].name}
+                                            </Link>
+                                        </td>
+                                        <td>
+                                        <ResultsLine
+                                            results={data.admunits[key].results} 
+                                            parties={props.globalData.parties}
+                                            totalValid={data.admunits[key].validVotes} 
+                                            totalInvalid={data.admunits[key].invalidVotes}
+                                            thin
+                                        /> 
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                            </tbody>
+                        </table>
                 }
-                </div>
             </div>
     );
 };
