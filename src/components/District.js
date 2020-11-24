@@ -25,6 +25,23 @@ export default props => {
         refreshResults();
     }, []);
 
+    const sectionsWithoutAddress = [];
+
+    if(data) {
+        Object.keys(data.sections).forEach(key => {
+            let contained = false;
+            Object.keys(data.addresses).forEach(addressKey => {
+                if(data.addresses[addressKey].sections.includes(key)) {
+                    contained = true;
+                }
+            });
+
+            if(!contained) {
+                sectionsWithoutAddress.push(key);
+            }
+        });
+    }
+
     return(
         !data? <LoadingScreen/> :
             <div>
@@ -42,22 +59,42 @@ export default props => {
                 <table className='subdivision-table'>
                     <tbody>
                     {
-                        Object.keys(data.sections).map(key => 
-                            <tr>
-                                <td>
-                                    Секция {key}
-                                </td>
-                                <td>
-                                <ResultsLine
-                                    results={data.sections[key].results} 
-                                    parties={props.globalData.parties}
-                                    totalValid={data.sections[key].validVotes} 
-                                    totalInvalid={data.sections[key].invalidVotes}
-                                    thin
-                                /> 
-                                </td>
-                            </tr>
-                        )
+                        Object.keys(data.addresses).map(addressKey => [
+                            <tr><td colSpan={2} style={{textAlign: 'left'}}><b>{addressKey}</b></td></tr>,
+                            data.addresses[addressKey].sections.map(sectionKey =>
+                                <tr>
+                                    <td>Секция {sectionKey}</td>
+                                    <td>
+                                        <ResultsLine
+                                            results={data.sections[sectionKey].results} 
+                                            parties={props.globalData.parties}
+                                            totalValid={data.sections[sectionKey].validVotes} 
+                                            totalInvalid={data.sections[sectionKey].invalidVotes}
+                                            thin
+                                        /> 
+                                    </td>
+                                </tr>
+                            )
+                        ])
+                    }
+                    {
+                        sectionsWithoutAddress.length === 0? null : [
+                            <tr><td><b>Неизяснен адрес</b></td><td></td></tr>,
+                            sectionsWithoutAddress.map(sectionKey =>
+                                <tr>
+                                    <td>Секция {sectionKey}</td>
+                                    <td>
+                                        <ResultsLine
+                                            results={data.sections[sectionKey].results} 
+                                            parties={props.globalData.parties}
+                                            totalValid={data.sections[sectionKey].validVotes} 
+                                            totalInvalid={data.sections[sectionKey].invalidVotes}
+                                            thin
+                                        /> 
+                                    </td>
+                                </tr>
+                            )
+                        ]
                     }
                     </tbody>
                 </table>

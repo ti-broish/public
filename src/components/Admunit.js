@@ -40,43 +40,47 @@ export default props => {
                 <table className='subdivision-table'>
                 <tbody>
                 {
-                    Object.keys(data.districts).map(key => 
-                        key === '00'? null : 
+                    Object.keys(data.towns).map(key => [
                         <tr>
-                            <td><Link to={`/district/${params.admunit}-${key}`}>
-                                    {data.districts[key].name}
-                                </Link>
-                            </td>
-                            <td>
-                                <ResultsLine
-                                    results={data.districts[key].results} 
-                                    parties={props.globalData.parties}
-                                    totalValid={data.districts[key].validVotes} 
-                                    totalInvalid={data.districts[key].invalidVotes}
-                                    thin
-                                /> 
-                            </td>
-                        </tr>
-                    )
-                }
-                {
-                    Object.keys(data.districts).map(key => 
-                        key !== '00'? null : 
-                        Object.keys(data.districts[key].sections).map(sectionKey =>
-                        <tr>
-                            <td>Секция {sectionKey}</td>
-                            <td>
-                                <ResultsLine
-                                    results={data.districts[key].sections[sectionKey].results} 
-                                    parties={props.globalData.parties}
-                                    totalValid={data.districts[key].sections[sectionKey].validVotes} 
-                                    totalInvalid={data.districts[key].sections[sectionKey].invalidVotes}
-                                    thin
-                                /> 
-                            </td>
-                        </tr>
+                            <td style={{textAlign: 'left'}}><b>{data.towns[key].name}</b></td>
+                            <td></td>
+                        </tr>,
+                        Object.keys(data.towns[key].districts).map(districtKey =>
+                            districtKey === '00'? null :
+                                <tr>
+                                    <td><Link to={`/district/${params.admunit}-${districtKey}`}>
+                                            {data.districts[districtKey].name}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <ResultsLine
+                                            results={data.districts[districtKey].results} 
+                                            parties={props.globalData.parties}
+                                            totalValid={data.districts[districtKey].validVotes} 
+                                            totalInvalid={data.districts[districtKey].invalidVotes}
+                                            thin
+                                        /> 
+                                    </td>
+                                </tr>
+                        ),
+                        Object.keys(data.towns[key].districts).map(districtKey => 
+                            districtKey !== '00'? null : 
+                            data.towns[key].districts[districtKey].sections.map(sectionKey =>
+                            <tr>
+                                <td>Секция {sectionKey}</td>
+                                <td>
+                                    <ResultsLine
+                                        results={data.districts[districtKey].sections[sectionKey].results} 
+                                        parties={props.globalData.parties}
+                                        totalValid={data.districts[districtKey].sections[sectionKey].validVotes} 
+                                        totalInvalid={data.districts[districtKey].sections[sectionKey].invalidVotes}
+                                        thin
+                                    /> 
+                                </td>
+                            </tr>
+                            )
                         )
-                    )
+                    ])
                 }
                 </tbody>
                 </table>

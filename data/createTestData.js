@@ -51,7 +51,7 @@ sectionsTxt.split('\n').forEach(sectionTxt => {
         region: parseInt(section[1]),             // 2) Идентификатор на административна единица, за която се гласува в секцията
                                         
         name: section[2],// 3) Име на административна единица, за която се гласува в секцията
-                                    // 4) ЕКАТТЕ на населеното място
+        placeId: section[3], // 4) ЕКАТТЕ на населеното място
         place: section[4], // 5) Име на Населено място, където е регистрирана секцията (за секциите извън страната - Държава, Населено място)
         mobile: section[5] == '1',// 6) Флаг мобилна секция
         ship: section[6] == '1',// 7) Флаг корабна секция
@@ -115,36 +115,9 @@ for(const row of obj[0].data) {
         }
     }
 
-    /*const municipality = region.municipalities[municipalNum];
+    const district = admunit.districts[districtNum];
 
-    if(!municipality.towns[townNum]) {
-        municipality.towns[townNum] = {
-            name: townName,
-            districts: {},
-        }
-    }
-
-    const town = municipality.towns[townNum];
-
-    if(!municipality.districts[districtNum]) {
-        municipality.districts[districtNum] = {
-            name: districtName,
-            //addresses: {},
-            sections: [],
-        };
-    }*/
-
-    
-
-    //const district = municipality.districts[districtNum];
-
-    //district.sections.push(sectionNum);
-
-    //if(!district.addresses[sectionAddress]) {
-    //    district.addresses[sectionAddress] = [];
-    //}
-
-    //district.addresses[sectionAddress].push(sectionNum);
+    district.sections[sectionNum] = sectionAddress;
 }
 
 const global = {
@@ -185,6 +158,7 @@ for(const key of Object.keys(sectionList)) {
                 name: sectionList[key].place.split(',')[0].trim(),
                 results: {},
                 districts: {},
+                towns: {},
                 validVotes: 0,
                 invalidVotes: 0,
             };
@@ -204,6 +178,7 @@ for(const key of Object.keys(sectionList)) {
                 name: admunitName.reduce((word, acc) => word + ' ' + acc, ''),
                 results: {},
                 districts: {},
+                towns: {},
                 validVotes: 0,
                 invalidVotes: 0,
             };
@@ -211,6 +186,21 @@ for(const key of Object.keys(sectionList)) {
     }
 
     const districts = admunits[admunit].districts;
+
+    const townId = sectionList[key].placeId;
+    if(!admunits[admunit].towns[townId]) {
+        if(parseInt(region) === 32) {
+            admunits[admunit].towns[townId] = {
+                name: sectionList[key].place.split(',')[1].trim(),
+                districts: {},
+            }
+        } else {
+            admunits[admunit].towns[townId] = {
+                name: sectionList[key].place,
+                districts: {},
+            }
+        }
+    }
 
     if(!districts[district]) {
         let xlsRegion = region;
@@ -224,19 +214,65 @@ for(const key of Object.keys(sectionList)) {
 
         let districtName = xlsDistrict? xlsDistrict.name : 'Непознат район';
         districtName = districtName.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
-        
+        districtName = districtName.reduce((word, acc) => word + ' ' + acc, '');
+
         districts[district] = {
-            name: districtName.reduce((word, acc) => word + ' ' + acc, ''),
+            name: districtName,
             results: {},
             sections: {},
+            addresses: {},
             validVotes: 0,
             invalidVotes: 0,
         };
     }
 
+    if(district !== '00') {
+        let xlsRegion = region;
+        if(parseInt(xlsRegion) > 16) xlsRegion --;
+        if(parseInt(xlsRegion) > 22) xlsRegion --;
+        if(parseInt(xlsRegion) > 22) xlsRegion --;
+
+        const xlsRegionObj = xlsSections[xlsRegion];
+        const xlsAdmunit = !xlsRegionObj? null : xlsRegionObj.admunits[admunit];
+        const xlsDistrict = !xlsAdmunit? null : xlsAdmunit.districts[district];
+        const xlsAddress = !xlsDistrict? null : xlsDistrict.sections[section];
+
+        if(xlsAddress) {
+            if(!districts[district].addresses[xlsAddress]) {
+                districts[district].addresses[xlsAddress] = {
+                    sections: []
+                };
+            }
+            
+            districts[district].addresses[xlsAddress].sections.push(section);
+        }
+    }
+
+    if(!admunits[admunit].towns[townId].districts[district]) {
+        let xlsRegion = region;
+        if(parseInt(xlsRegion) > 16) xlsRegion --;
+        if(parseInt(xlsRegion) > 22) xlsRegion --;
+        if(parseInt(xlsRegion) > 22) xlsRegion --;
+
+        const xlsRegionObj = xlsSections[xlsRegion];
+        const xlsAdmunit = !xlsRegionObj? null : xlsRegionObj.admunits[admunit];
+        const xlsDistrict = !xlsAdmunit? null : xlsAdmunit.districts[district];
+
+        let districtName = xlsDistrict? xlsDistrict.name : 'Непознат район';
+        districtName = districtName.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
+        districtName = districtName.reduce((word, acc) => word + ' ' + acc, '');
+
+        admunits[admunit].towns[townId].districts[district] = {
+            name: districtName,
+            sections: [],
+        }
+    }
+
     const sections = districts[district].sections;
 
     districts[district].sections[section] = { results: {},  ...sectionList[key], ...protocols[key]};
+    if(district === '00')
+        admunits[admunit].towns[townId].districts[district].sections.push(section);
     
     const vote = votes[key];
 
