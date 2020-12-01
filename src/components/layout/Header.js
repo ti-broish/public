@@ -1,11 +1,18 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+import Logo from './Logo';
+
 export default props => {
-    return (
+    return ([
+        <div className='header-compensator'/>,
         <header>
             <div className='wrapper'>
-                <h1>Ти Броиш!</h1>
+                <Link to='/'>
+                    <Logo fill={'#fff'}/>
+                    <span className='app-title'>ти броиш</span>
+                </Link>
             </div>
         </header>
-    )
+    ])
 };

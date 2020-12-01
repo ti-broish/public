@@ -16,7 +16,7 @@ export default props => {
             /> 
             <button>България</button>
             <button>Извън страната</button>
-            <BulgariaMap/>
+            <BulgariaMap regions={props.globalData.regions} parties={props.globalData.parties}/>
             <h1>Общи резултати</h1>
             <ResultsTable 
                 results={props.globalData.results} 
@@ -34,7 +34,7 @@ export default props => {
                     <tr>
                         <td>
                             <Link to={`region/${key}`}>
-                                {props.globalData.regions[key].name}
+                                {key} {props.globalData.regions[key].name}
                             </Link>
                         </td>
                         <td>

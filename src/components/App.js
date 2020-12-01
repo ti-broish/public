@@ -25,24 +25,22 @@ export default props => {
     }, []);
 
     return(
-        <div>
+        <BrowserRouter>
             <Header/>
             <div className='wrapper' style={{minHeight: 'calc(100vh - 128px)', padding: '50px 0'}}>
             {
-                !data? <LoadingScreen/> :
-                    <BrowserRouter>
-                        <Switch>
-                            <Route path='/section/:section' render={()=><Section globalData={data}/>}/>
-                            <Route path='/district/:district' render={()=><District globalData={data}/>}/>
-                            <Route path='/admunit/:admunit' render={()=><Admunit globalData={data}/>}/>
-                            <Route path='/region/:region' render={()=><Region globalData={data}/>}/>
-                            <Route exact path='/'  render={()=><Global globalData={data}/>}/>
-                            <Redirect to='/'/>
-                        </Switch>
-                    </BrowserRouter>
+                !data? <LoadingScreen/> :          
+                    <Switch>
+                        <Route path='/section/:section' render={()=><Section globalData={data}/>}/>
+                        <Route path='/district/:district' render={()=><District globalData={data}/>}/>
+                        <Route path='/admunit/:admunit' render={()=><Admunit globalData={data}/>}/>
+                        <Route path='/region/:region' render={()=><Region globalData={data}/>}/>
+                        <Route exact path='/'  render={()=><Global globalData={data}/>}/>
+                        <Redirect to='/'/>
+                    </Switch>
             }
             </div>
             <Footer/>
-        </div>
+        </BrowserRouter>
     );
 };

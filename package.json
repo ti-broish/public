@@ -23,6 +23,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "react-tooltip": "^4.2.11",
     "static-server": "^2.2.1",
     "style-loader": "^2.0.0",
     "stylus": "^0.54.8",

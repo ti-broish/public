@@ -15,20 +15,43 @@ html
         cursor pointer
         fill #666
 
+.map-tooltip
+    background-color white !important
+    //width 100%
+    color black !important
+    border none
+    padding 0
+    margin 0
+
 .wrapper
     width 900px
     margin 0 auto
 
-header
-    background-color #24B9CD
-    color white
-    padding 10px 0
-    //border-bottom 2px solid #1d99aa;
-    height 37px
+.header-compensator
+    height 60px
 
-    h1
+header
+    background-color #00D5BD
+    color white
+    padding 8px 0
+    //border-bottom 2px solid #1d99aa;
+    height 60px
+    position fixed
+    box-sizing border-box
+    top 0
+    width 100%
+
+    a
         margin 0
-        text-shadow 0px 0px 10px #999
+
+        svg
+            height 45px
+
+        .app-title
+            vertical-align top
+            display inline-block
+            color white
+            font-size 34px
 
 footer
     background-color #ddd
