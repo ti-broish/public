@@ -126,44 +126,7 @@ const global = {
     regions: {},
     validVotes: 0,
     invalidVotes: 0,
-};
-
-const getMapRegion = regionNum => {
-    switch(regionNum) {
-        case '01': return 'blagoevgrad';
-        case '02': return 'burgas';
-        case '03': return 'varna';
-        case '04': return 'veliko-tarnovo';
-        case '05': return 'vidin';
-        case '06': return 'vratza';
-        case '07': return 'gabrovo';
-        case '08': return 'dobrich';
-        case '09': return 'kardzhali';
-        case '10': return 'kyustendil';
-        case '11': return 'lovech';
-        case '12': return 'montana';
-        case '13': return 'pazardzhik';
-        case '14': return 'pernik';
-        case '15': return 'pleven';
-        case '16': return 'plovdiv';
-        case '17': return 'plovdiv';
-        case '18': return 'razgrad';
-        case '19': return 'ruse';
-        case '20': return 'silistra';
-        case '21': return 'sliven';
-        case '22': return 'smolyan';
-        case '23': return 'sofia-grad';
-        case '24': return 'sofia-grad';
-        case '25': return 'sofia-grad';
-        case '26': return 'sofia-oblast';
-        case '27': return 'stara-zagora';
-        case '28': return 'targovishte';
-        case '29': return 'haskovo';
-        case '30': return 'shumen';
-        case '31': return 'yambol';
-        case '32': return 'abroad';
-        default: return 'none';
-    }
+    voters: 0,
 };
 
 for(const key of Object.keys(sectionList)) {
@@ -181,11 +144,11 @@ for(const key of Object.keys(sectionList)) {
 
         regions[region] = {
             name: regionName.reduce((word, acc) => word + ' ' + acc, ''),
-            mapRegion: getMapRegion(region),
             results: {},
             admunits: {},
             validVotes: 0,
             invalidVotes: 0,
+            voters: 0,
         };
     }
 
@@ -200,6 +163,7 @@ for(const key of Object.keys(sectionList)) {
                 towns: {},
                 validVotes: 0,
                 invalidVotes: 0,
+                voters: 0,
             };
         } else  {
             let xlsRegion = region;
@@ -220,6 +184,7 @@ for(const key of Object.keys(sectionList)) {
                 towns: {},
                 validVotes: 0,
                 invalidVotes: 0,
+                voters: 0,
             };
         }
     }
@@ -262,6 +227,7 @@ for(const key of Object.keys(sectionList)) {
             addresses: {},
             validVotes: 0,
             invalidVotes: 0,
+            voters: 0,
         };
     }
 
@@ -314,6 +280,12 @@ for(const key of Object.keys(sectionList)) {
         admunits[admunit].towns[townId].districts[district].sections.push(section);
     
     const vote = votes[key];
+
+    global.voters += protocols[key].voters + protocols[key].additionalVoters;
+    regions[region].voters += protocols[key].voters + protocols[key].additionalVoters;
+    admunits[admunit].voters += protocols[key].voters + protocols[key].additionalVoters;
+    districts[district].voters += protocols[key].voters + protocols[key].additionalVoters;
+    sections[section].voters = protocols[key].voters + protocols[key].additionalVoters;
 
     for(const partyKey of Object.keys(vote.parties)) {
         if(!             global.results[partyKey])              global.results[partyKey] = {valid: 0, invalid: 0};

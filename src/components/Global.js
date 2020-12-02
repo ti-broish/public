@@ -5,6 +5,8 @@ import BulgariaMap from './BulgariaMap';
 import ResultsTable from './ResultsTable';
 import ResultsLine from './ResultsLine';
 
+import { formatCount, formatPercentage } from '../Util';
+
 export default props => {
     return(
         <div id='global-props.globalData'>
@@ -13,20 +15,24 @@ export default props => {
                 parties={props.globalData.parties} 
                 totalValid={props.globalData.validVotes} 
                 totalInvalid={props.globalData.invalidVotes}
-            /> 
-            <button>България</button>
-            <button>Извън страната</button>
-            <BulgariaMap regions={props.globalData.regions} parties={props.globalData.parties}/>
-            <h1>Общи резултати</h1>
+            />
+            <BulgariaMap 
+                regions={props.globalData.regions} 
+                parties={props.globalData.parties}
+                results={props.globalData.results} 
+            />
             <ResultsTable 
                 results={props.globalData.results} 
                 parties={props.globalData.parties} 
                 totalValid={props.globalData.validVotes} 
                 totalInvalid={props.globalData.invalidVotes}
-                displayThreshold={true}
+                showThreshold={true}
             />
-            <p>Общо действителни гласове: {props.globalData.validVotes}</p>
-            <h1>Резултати по райони</h1>
+            <p>Общо действителни гласове: {formatCount(props.globalData.validVotes)}</p>
+            <p>Общо недействителни гласове: {formatCount(props.globalData.invalidVotes)}</p>
+            <p>Общо гласове: {formatCount(props.globalData.validVotes + props.globalData.invalidVotes)}</p>
+            <p>Общо избиратели: {formatCount(props.globalData.voters)}</p>
+            <h1>Избирателни райони</h1>
             <table className='subdivision-table'>
             <tbody>
             {

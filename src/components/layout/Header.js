@@ -12,6 +12,7 @@ export default props => {
                     <Logo fill={'#fff'}/>
                     <span className='app-title'>ти броиш</span>
                 </Link>
+                <h2 style={{float: 'right', margin: '8px 0'}}>Парламентарни избори 2017</h2>
             </div>
         </header>
     ])
