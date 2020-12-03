@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
+
 import BulgariaMap from './BulgariaMap';
 import ResultsTable from './ResultsTable';
 import ResultsLine from './ResultsLine';
@@ -8,13 +10,34 @@ import ResultsLine from './ResultsLine';
 import { formatCount, formatPercentage } from '../Util';
 
 export default props => {
+
+    useEffect(() => {window.scrollTo(0, 0);}, []);
+
     return(
         <div id='global-props.globalData'>
+            <ReactTooltip 
+                multiline={true} 
+                html={true}
+                className={'map-tooltip'}
+                border={true}
+                borderColor={'#aaa'}
+                arrowColor={'white'}
+                effect={'solid'}
+                place={'top'}
+                scrollHide={false}
+                backgroundColor={'#fff'}
+                type={"dark"}
+                getContent={content => {
+                    //console.log(content);
+                    return content;
+                }}
+            />
             <ResultsLine
                 results={props.globalData.results} 
                 parties={props.globalData.parties} 
                 totalValid={props.globalData.validVotes} 
                 totalInvalid={props.globalData.invalidVotes}
+                showLegend
             />
             <BulgariaMap 
                 regions={props.globalData.regions} 

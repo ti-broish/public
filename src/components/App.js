@@ -27,7 +27,7 @@ export default props => {
     return(
         <BrowserRouter>
             <Header/>
-            <div className='wrapper' style={{minHeight: 'calc(100vh - 128px)', padding: '50px 0'}}>
+            <div className='wrapper' style={{minHeight: 'calc(100vh - 128px)', padding: '30px 0'}}>
             {
                 !data? <LoadingScreen/> :          
                     <Switch>

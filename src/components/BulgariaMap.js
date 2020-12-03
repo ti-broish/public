@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import ReactTooltip from 'react-tooltip';
 import { useHistory } from 'react-router-dom';
 
 import { formatCount, formatPercentage } from '../Util';
@@ -117,84 +116,71 @@ export default props => {
 
     const { displayParties, displayPartiesTotal } = generateDisplayParties(props.results, 7);
 
+    const generateToolTipContent = regionNum => {
+        if(!regionNum) return '';
+        const region = props.regions[regionNum];
+
+        if(mode === 'dominant') {
+            const { displayParties, displayPartiesTotal } = regionPaths[regionNum].tooltipData;
+
+            return(
+                '<div>'+
+                    '<h2 style=\"margin: 5px;\">' + region.name + '</h2>' +
+                    '<hr style=\"border-color: #aaa; border-top: none;\"/>' +
+                    '<table style=\"width: 100%;\"><tbody>' +
+                        displayParties.map(party => 
+                            `<tr style=\"color: ${party.color};\">` +
+                                `<td>${party.name}</td>` +
+                                `<td style=\"text-align: right;\">${formatCount(party.validVotes)}</td>` +
+                                `<td style=\"text-align: right;\">${formatPercentage(party.validVotes / region.validVotes)}%</td>` +
+                            '</tr>'
+                        ).reduce((str, acc) => str + acc, '') +
+                        '<tr style=\"color: #666;\">' +
+                            '<td>Други</td>' +
+                            `<td style=\"text-align: right;\">${formatCount(region.validVotes - displayPartiesTotal)}</td>`+ 
+                            `<td style=\"text-align: right;\">${formatPercentage((region.validVotes - displayPartiesTotal) / region.validVotes)}%</td>` +
+                        '</tr>' +
+                    '</tbody></table>'+
+                '</div>'
+            )
+        } else if(mode === 'single-party') {
+            return('<h2 style=\"margin: 5px;\">' + region.name + '</h2>');
+        } else if(mode === 'turnout') {
+            return(
+                '<div>' +
+                    '<h2 style=\"margin: 5px;\">' + region.name + '</h2>' +
+                    '<hr style=\"border-color: #aaa; border-top: none;\"/>' +
+                    '<table style=\"width: 100%;\"><tbody>' +
+                        '<tr>' +
+                            '<td>Активност</td>' +
+                            `<td style=\"text-align: right;\">${formatPercentage(regionPaths[regionNum].tooltipData.turnout)}%</td>`+ 
+                        '</tr>' +
+                    '</tbody></table>'+
+                '</div>'
+            );
+        } else if(mode === 'votes-counted') {
+            return('<h2 style=\"margin: 5px;\">' + region.name + '</h2>');
+        }
+        
+    };
+
     return([
         <div id='map-controls'>
-            <button onClick={()=>setMode('dominant')}>Доминантна партия</button>
-            <button onClick={()=>setMode('single-party')}>Отделна партия</button>
-            <button onClick={()=>setMode('turnout')}>Избирателна активност</button>
-            <button onClick={()=>setMode('votes-counted')}>Преброени протоколи</button>
+            <button className={mode === 'dominant'? 'selected' : ''} onClick={()=>setMode('dominant')}>Водеща партия</button>
+            <button className={mode === 'single-party'? 'selected' : ''} onClick={()=>setMode('single-party')}>Отделна партия</button>
+            <button className={mode === 'turnout'? 'selected' : ''} onClick={()=>setMode('turnout')}>Избирателна активност</button>
+            <button className={mode === 'votes-counted'? 'selected' : ''} onClick={()=>setMode('votes-counted')}>Преброени протоколи</button>
         </div>,
         mode === 'single-party'? 
-        <div>
+        <div id='map-controls-single-party'>
         {
             displayParties.map(party =>
-                <button onClick={()=>setSingleParty(party.number)}>
+                <button className={singleParty === party.number? 'selected' : ''} onClick={()=>setSingleParty(party.number)}>
                     {party.name}
                 </button>
             )
         }
         </div> : null,
-        <ReactTooltip 
-            multiline={true} 
-            html={true}
-            className={'map-tooltip'}
-            border={true}
-            borderColor={'#aaa'}
-            arrowColor={'white'}
-            effect={'solid'}
-            place={'top'}
-            scrollHide={false}
-            backgroundColor={'#fff'}
-            type={"dark"}
-            getContent={(regionNum) => {
-                if(!regionNum) return '';
-                const region = props.regions[regionNum];
-
-                if(mode === 'dominant') {
-                    const { displayParties, displayPartiesTotal } = regionPaths[regionNum].tooltipData;
-
-                    return(
-                        '<div>'+
-                            '<h2 style=\"margin: 5px;\">' + region.name + '</h2>' +
-                            '<hr style=\"border-color: #aaa; border-top: none;\"/>' +
-                            '<table style=\"width: 100%;\"><tbody>' +
-                                displayParties.map(party => 
-                                    `<tr style=\"color: ${party.color};\">` +
-                                        `<td>${party.name}</td>` +
-                                        `<td style=\"text-align: right;\">${formatCount(party.validVotes)}</td>` +
-                                        `<td style=\"text-align: right;\">${formatPercentage(party.validVotes / region.validVotes)}%</td>` +
-                                    '</tr>'
-                                ).reduce((str, acc) => str + acc, '') +
-                                '<tr style=\"color: #666;\">' +
-                                    '<td>Други</td>' +
-                                    `<td style=\"text-align: right;\">${formatCount(region.validVotes - displayPartiesTotal)}</td>`+ 
-                                    `<td style=\"text-align: right;\">${formatPercentage((region.validVotes - displayPartiesTotal) / region.validVotes)}%</td>` +
-                                '</tr>' +
-                            '</tbody></table>'+
-                        '</div>'
-                    )
-                } else if(mode === 'single-party') {
-                    return('<h2 style=\"margin: 5px;\">' + region.name + '</h2>');
-                } else if(mode === 'turnout') {
-                    return(
-                        '<div>' +
-                            '<h2 style=\"margin: 5px;\">' + region.name + '</h2>' +
-                            '<hr style=\"border-color: #aaa; border-top: none;\"/>' +
-                            '<table style=\"width: 100%;\"><tbody>' +
-                                '<tr>' +
-                                    '<td>Активност</td>' +
-                                    `<td style=\"text-align: right;\">${formatPercentage(regionPaths[regionNum].tooltipData.turnout)}%</td>`+ 
-                                '</tr>' +
-                            '</tbody></table>'+
-                        '</div>'
-                    )
-                    return('<h2 style=\"margin: 5px;\">' + region.name + '</h2>');
-                } else if(mode === 'votes-counted') {
-                    return('<h2 style=\"margin: 5px;\">' + region.name + '</h2>');
-                }
-                
-            }}
-        />,
         <svg
             id='bulgaria-map'
             style={{width: '100%'}}
@@ -226,7 +212,7 @@ export default props => {
                             onClick={clickHandler}
                             style={{fill: regionPaths[key].color}}
                             d={regionPaths[key].path}
-                            data-tip={key}
+                            data-tip={generateToolTipContent(key)}
                         />
                     )
                 })
