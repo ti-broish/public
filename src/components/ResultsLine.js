@@ -42,12 +42,29 @@ export default props => {
         )
     };
 
+    let firstParty = null;
+    if(props.firstParty) {
+        firstParty = displayParties.find(party => party.number === props.firstParty);
+    }
+
     return(
         <div className='results-line'>
             {
+                !firstParty? null : 
+                    <div 
+                        className={props.thin? 'result-line-segment thin' : 'result-line-segment'}
+                        style={{
+                            backgroundColor: firstParty.color,
+                            width: `${firstParty.validVotes / props.totalValid * 100}%`
+                        }}
+                        data-tip={generateTooltip(firstParty.color, firstParty.name, firstParty.validVotes / props.totalValid, firstParty.validVotes, firstParty.invalidVotes)}
+                    />  
+            }
+            {
                 displayParties.map(party => {
                     const percentage = party.validVotes / props.totalValid;
-                    return(
+                    if(firstParty && firstParty.number === party.number) return null;
+                    else return(
                         <div 
                             className={props.thin? 'result-line-segment thin' : 'result-line-segment'}
                             style={{

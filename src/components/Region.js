@@ -39,31 +39,34 @@ export default props => {
                 <h1>{Object.keys(data.admunits).length === 1? 'Райони' : 'Общини'}</h1>
                 {
                     Object.keys(data.admunits).length === 1?
-                        <table className='subdivision-table'>
-                            <tbody>
-                            {
-                                Object.keys(data.admunits[Object.keys(data.admunits)[0]].districts).map(districtKey => 
-                                    <tr>
-                                        <td>
-                                        <Link to={`/district/${params.region}-${Object.keys(data.admunits)[0]}-${districtKey}`}>
-                                            {data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].name}
-                                        </Link>
-                                        </td>
-                                        <td>
-                                        <ResultsLine
-                                            results={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].results} 
-                                            parties={props.globalData.parties}
-                                            totalValid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].validVotes} 
-                                            totalInvalid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].invalidVotes}
-                                            thin
-                                        /> 
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                            </tbody>
-                        </table> :
-                        <table className='subdivision-table'>
+                        <div className='subdivision-table'>
+                            <table>
+                                <tbody>
+                                {
+                                    Object.keys(data.admunits[Object.keys(data.admunits)[0]].districts).map(districtKey => 
+                                        <tr>
+                                            <td>
+                                            <Link to={`/district/${params.region}-${Object.keys(data.admunits)[0]}-${districtKey}`}>
+                                                {data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].name}
+                                            </Link>
+                                            </td>
+                                            <td>
+                                            <ResultsLine
+                                                results={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].results} 
+                                                parties={props.globalData.parties}
+                                                totalValid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].validVotes} 
+                                                totalInvalid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].invalidVotes}
+                                                thin
+                                            /> 
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                                </tbody>
+                            </table>
+                        </div> :
+                        <div className='subdivision-table'>
+                        <table>
                             <tbody>
                             {
                                 Object.keys(data.admunits).map(key => 
@@ -87,6 +90,7 @@ export default props => {
                             }
                             </tbody>
                         </table>
+                        </div>
                 }
             </div>
     );
