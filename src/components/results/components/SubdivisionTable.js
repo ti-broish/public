@@ -3,6 +3,65 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ResultsLine from './ResultsLine.js';
 
+import styled from 'styled-components';
+
+const SubdivisionTableDiv = styled.table`
+    width 100%
+    color #666
+    font-size 22px
+
+    td
+        padding 5px 20px
+        box-sizing border-box
+
+    td:nth-child(1)
+        text-align right
+        width 280px
+
+    td:nth-child(2)
+        width calc(100% - 280px)
+
+    a
+        color blue
+`;
+
+const SubdivisionTableControls = styled.div`
+    text-align left
+
+    button
+        border none
+        background none
+        padding 10px
+
+        &:hover
+            cursor pointer
+
+        &.selected
+            color white
+            background-color #444
+            border-radius 10px
+`;
+
+const SubdivisionControlsParty = styled.div`
+text-align left
+height 40px
+position relative
+margin-top 5px
+
+button
+    border none
+    background none
+    padding 5px
+
+    &:hover
+        cursor pointer
+
+    &.selected
+        color white
+        background-color #888
+        border-radius 10px
+`;
+
 export default props => {
     const [mode, setMode] = useState('distribution');
     const [singleParty, setSingleParty] = useState(''); 

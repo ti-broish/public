@@ -2,6 +2,53 @@ import React from 'react';
 
 import { formatCount, formatPercentage } from '../Util';
 
+import styled from 'styled-components';
+
+const ResultsTableDiv = styled.table`
+    width: 100%;
+    color: #666;
+    font-size: 28px;
+
+    td {
+        padding: 5px 20px;
+        box-sizing: border-box;
+    }
+
+    .vote-percent-bar {
+        height: 10px;
+        background-color: #eee;
+        transition: width 0.5s ease;
+        width: 0;
+    }
+
+    .vote-percent-remaining {
+        display: inline-block;
+        border-top: none;
+        box-sizing: border-box;
+        margin: 5px 0;
+        border-color: #ccc;
+    }
+
+    td:nth-child(1) {
+        text-align: right;
+        width: 72px;
+    }
+
+    td:nth-child(2) {
+        width: calc(100% - 72px);
+    }
+
+    .threshold-row {
+        font-size: 12px;
+        color: #777;
+
+        hr {
+            border-color: #aaa;
+            border-top: none;
+        }
+    }
+`;
+
 export default props => {
 
     let displayParties = [];

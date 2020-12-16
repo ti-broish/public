@@ -1,46 +1,64 @@
 import React, { useState, useEffect } from 'react';
 
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import axios from 'axios';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Global from './Global';
-import Region from './Region';
-import Admunit from './Admunit';
-import District from './District';
-import Section from './Section';
+import loadable from '@loadable/component';
 
-import Header from './layout/Header';
-import Footer from './layout/Footer';
+const Results = loadable(() => import('./results/Results.js'));
+const Post = loadable(() => import('./posts/Post.js'));
+const Front = loadable(() => import('./front/Front.js'));
 
-import LoadingScreen from './layout/LoadingScreen';
+import styled from 'styled-components';
+
+import MontserratRegular from '../../public/fonts/montserrat/Montserrat-Regular.ttf';
+import MontserratBold from '../../public/fonts/montserrat/Montserrat-Bold.ttf';
+import MontserratBlack from '../../public/fonts/montserrat/Montserrat-Black.ttf';
+
+const GlobalCSS = styled.div`
+    @font-face {
+        font-family: 'Montserrat';
+        src: local('Montserrat'), local('Montserrat'),
+        url(${MontserratRegular}) format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: local('Montserrat'), local('Montserrat'),
+        url(${MontserratBold}) format('woff');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: local('Montserrat'), local('Montserrat'),
+        url(${MontserratBlack}) format('woff');
+        font-weight: 900;
+        font-style: normal;
+    }
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    background-color: white;
+`;
+
+export const Wrapper = styled.div`
+    width: 900px;
+    margin: 0 auto;
+`;
 
 export default props => {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        axios.get('/data/global.json').then(res => {
-            setData(res.data);
-            console.log(res.data);
-        });
-    }, []);
-
     return(
-        <BrowserRouter>
-            <Header/>
-            <div className='wrapper' style={{minHeight: 'calc(100vh - 128px)', padding: '30px 0'}}>
-            {
-                !data? <LoadingScreen/> :          
-                    <Switch>
-                        <Route path='/section/:section' render={()=><Section globalData={data}/>}/>
-                        <Route path='/district/:district' render={()=><District globalData={data}/>}/>
-                        <Route path='/admunit/:admunit' render={()=><Admunit globalData={data}/>}/>
-                        <Route path='/region/:region' render={()=><Region globalData={data}/>}/>
-                        <Route exact path='/'  render={()=><Global globalData={data}/>}/>
-                        <Redirect to='/'/>
-                    </Switch>
-            }
-            </div>
-            <Footer/>
-        </BrowserRouter>
+        <GlobalCSS>
+            <BrowserRouter>
+                <Switch>
+                    <Route path='/results/:election' component={Results}/>
+                    <Route path='/post/:post' component={Post}/>
+                    <Route path='/' component={Front}/>
+                </Switch>
+            </BrowserRouter>
+        </GlobalCSS>
     );
 };

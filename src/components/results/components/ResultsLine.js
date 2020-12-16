@@ -2,6 +2,31 @@ import React from 'react';
 
 import { formatCount, formatPercentage } from '../Util';
 
+import styled from 'styled-components';
+
+const LegendItem = styled.div`
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 6px;
+    color: #bbb;
+`;
+
+const LegendItemColor = styled.div`
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin: 2px;
+`;
+
+const ResultLineSegment = styled.div`
+    display: inline-block;
+    background-color: #777;
+    height: 50px;
+
+    &.thin { height: 20px; }
+    &:hover { box-shadow: 0px 0px 3px #000; }
+`;    
+
 export default props => {
 
     let displayParties = [];
@@ -51,8 +76,8 @@ export default props => {
         <div className='results-line'>
             {
                 !firstParty? null : 
-                    <div 
-                        className={props.thin? 'result-line-segment thin' : 'result-line-segment'}
+                    <ResultLineSegment 
+                        className={props.thin? 'thin' : ''}
                         style={{
                             backgroundColor: firstParty.color,
                             width: `${firstParty.validVotes / props.totalValid * 100}%`
@@ -85,10 +110,10 @@ export default props => {
                 <div className='legend'>
                 {
                     displayParties.map(party => 
-                        <div className={'legend-item'}> 
-                            <div className='legend-item-color' style={{backgroundColor: party.color}}/>
+                        <LegendItem> 
+                            <LegendItemColor style={{backgroundColor: party.color}}/>
                             {party.name}            
-                        </div>
+                        </LegendItem>
                     )
                 }
                 </div>

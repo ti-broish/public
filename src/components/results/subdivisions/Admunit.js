@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import LoadingScreen from './layout/LoadingScreen';
-import ResultsTable from './ResultsTable';
+import LoadingScreen from '../layout/LoadingScreen';
+import ResultsTable from '../ResultsTable';
 import ResultsLine from './ResultsLine';
 
 export default props => {
