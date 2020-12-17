@@ -38,6 +38,11 @@ const GlobalCSS = styled.div`
     font-family: 'Montserrat', sans-serif;
     font-weight: normal;
     background-color: white;
+
+    а, a:active, a:focus, a:visited { 
+        outline: none; 
+        -moz-outline-style: none;
+    }
 `;
 
 export const Wrapper = styled.div`
