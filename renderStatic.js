@@ -88,3 +88,4 @@ for(const route of routes) {
 }
 
 console.log('\nDONE\n');
+process.exit(0);
