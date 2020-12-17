@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const LoadablePlugin = require('@loadable/webpack-plugin');
+
 module.exports = {
     entry: './src/index.js',
     output: {
@@ -15,6 +17,9 @@ module.exports = {
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
+                plugins: [
+                    "@loadable/babel-plugin"
+                ],
                 presets: [
                     "@babel/preset-env",
                     "@babel/preset-react"
@@ -31,5 +36,6 @@ module.exports = {
             test: [/\.woff?$/, /\.woff2?$/, /\.otf?$/, /\.ttf?$/, /\.eot?$/, /\.svg?$/, /\.png?$/, /\.gif?$/],
             loader: 'url-loader'
         }]
-    }
+    },
+    plugins: [new LoadablePlugin()],
 };

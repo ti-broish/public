@@ -15,7 +15,11 @@ export default props => {
             <Helmet>
                 <title>Застъпници | Ти Броиш</title>
                 <link rel="canonical" href={"https://tibroish.bg/watchers/"} />
-                <meta name="description" content={""}/>
+                <meta name="description" content={`
+                    Участниците в Националната кампания “Ти броиш” формално ще бъдат застъпници на 
+                    „Демократична България“, което ще им даде право да присъстват във всяка изборна 
+                    секция в предварително избрания изборен район.
+                `}/>
             </Helmet>
             <MainContent>
                 <h1>За застъпниците</h1>

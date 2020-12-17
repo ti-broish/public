@@ -15,7 +15,10 @@ export default props => {
             <Helmet>
                 <title>Кампанията | Ти Броиш</title>
                 <link rel="canonical" href={"https://tibroish.bg/about/"} />
-                <meta name="description" content={""}/>
+                <meta name="description" content={`
+                    “Ти броиш” е национална кампания, целяща предотврати опитите за измами и манипулации 
+                    при броенето на гласовете на предстоящите парламентарни избори.
+                `}/>
             </Helmet>
             <MainContent>
                 <h1>За кампанията</h1>

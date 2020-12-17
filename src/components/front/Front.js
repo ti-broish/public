@@ -14,6 +14,8 @@ import Footer from './layout/Footer';
 
 import styled from 'styled-components';
 
+import { MOBILE_WIDTH } from './Style';
+
 const FrontDiv = styled.div`
     //background-color: #d4d4d4;
 `;
@@ -38,6 +40,10 @@ export const MainContent = styled.div`
         border-top: none;
         border-top-color: currentcolor;
         border-color: #ddd;
+    }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        padding: 20px 10px;
     }
 `;
 

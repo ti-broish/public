@@ -1,11 +1,16 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { FacebookProvider, Page } from 'react-facebook';
 
 import styled from 'styled-components';
 
 import { GreenLine } from '../Front.js';
+
+import { MOBILE_WIDTH } from '../Style';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faMapMarkerAlt, faSitemap, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 
 const FooterStyle = styled.footer`
     background-color: #eee;
@@ -17,21 +22,43 @@ const FooterColumns = styled.div`
     padding: 50px 0;
     max-width: 900px;
     margin: 0 auto;
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        padding: 20px 0;
+    }
 `;
 
 const FooterColumn = styled.div`
     width: calc(100% / 3);
-    width: calc(100% / 3);
     display: inline-block;
     vertical-align: top;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #333;
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    a {
+        color: #333;
+        margin: 10px 0;
+        display: block;
+    }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        width: 100%;
+        padding-bottom: 20px;
+    }
 `;
 
 const Copyright = styled.div`
-    background-color: #bbb;
+    background-color: #666;
     color: white;
     text-align: center;
     width: 100%;
-    padding: 5px 0;
+    padding: 20px 0 30px 0;
     font-weight: bold;
 `;
 
@@ -41,6 +68,23 @@ export default props => {
         <FooterStyle>
             <FooterColumns>
                 <FooterColumn>
+                    <h2><FontAwesomeIcon icon={faAddressBook}/> Контакти</h2>
+                    <p>
+                        <b>ПП „Движение Да България”</b>
+                    </p>
+                    <p>
+                        <b><FontAwesomeIcon icon={faEnvelope}/> Имейл: </b>
+                        <a href='mailto: team@dabulgaria.bg'>team@dabulgaria.bg</a>
+                    </p>
+                    <p>
+                        <b><FontAwesomeIcon icon={faMapMarkerAlt}/> Адрес: </b> <br/>
+                        гр. София, 1164 <br/>
+                        бул. „Драган Цанков“ <br/>
+                        12-16, ет. 2, ап. 7
+                    </p>
+                </FooterColumn>
+                <FooterColumn>
+                    <h2><FontAwesomeIcon icon={faSitemap}/> Карта на сайта</h2>
                     <ul>
                         <li><Link to='/'>Начало</Link></li>
                         <li><Link to='/about'>Kампанията</Link></li>
@@ -51,19 +95,12 @@ export default props => {
                     </ul>
                 </FooterColumn>
                 <FooterColumn>
-                    <ul>
-                        <li>Имейл: team@dabulgaria.bg</li>
-                        <li>Адрес: гр. София, 1164</li>
-                        <li>бул. „Драган Цанков“</li>
-                        <li>12-16, ет. 2, ап. 7</li>
-                    </ul>
-                </FooterColumn>
-                <FooterColumn>
-                    {/*
-                    <FacebookProvider appId='0'>
-                        <Page href="https://www.facebook.com/tibroish/" tabs="timeline" />
-                    </FacebookProvider>
-                    */}
+                    <h2><FontAwesomeIcon icon={faFacebookSquare}/> Facebook</h2>
+                    <div dangerouslySetInnerHTML={{__html: `
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=0&autoLogAppEvents=1" nonce="IeSXLymW"></script>
+                        <div class="fb-page" data-href="https://www.facebook.com/tibroish/" data-tabs="timeline" data-width="" data-height="200px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/tibroish/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/tibroish/">Ти броиш</a></blockquote></div>
+                    `}}/>
                 </FooterColumn>
             </FooterColumns>
             <Copyright>ПП „Движение Да България” © 2020</Copyright>

@@ -9,12 +9,26 @@ import styled from 'styled-components';
 import { Wrapper, MainContent, GreenLine } from '../Front';
 import { VideoWrapper } from './Videos';
 
+import { MOBILE_WIDTH } from '../Style';
+
+import Fade from 'react-reveal/Fade';
+import config from 'react-reveal/globals';
+ 
+config({ ssrFadeout: window.ssr });
+
 const ContentPanel = styled.div`
 
 `;
 
 const LandingPage = styled.div`
     background-color: black;
+
+    .react-parallax {
+        width: 100%; 
+        height: calc(100vh - 60px);
+
+        img { width: auto !important; }
+    }
 `;
 
 const LandingPageOverlay = styled.div`
@@ -24,6 +38,50 @@ const LandingPageOverlay = styled.div`
     height: calc(100vh - 60px);
     position: absolute;
     text-align: center;
+
+    #text1 {
+        margin-top: 15vh;
+        font-size: 24px;
+
+        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+            margin-top: 10vh;
+            font-size: 18px;
+        }
+    }
+
+    #text2 {
+        font-size: 52px;
+
+        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+    }
+
+    #text3 {
+        font-size: 42px;
+        margin-bottom: 0;
+
+        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+            font-size: 36px;
+        }
+    }
+
+    #text4 {
+        font-size: 16px;
+        margin-top: 0;
+    }
+
+    #text5 {
+        font-size: 35px; 
+        position: absolute; 
+        top: calc(100vh - 180px);
+        width: 100%;
+
+        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+            top: calc(100vh - 220px);
+        }
+    }
 `;
 
 const LandingPageText = styled.p`
@@ -71,35 +129,37 @@ export default props => {
         <Helmet>
             <title>Начало | Ти Броиш</title>
             <link rel="canonical" href={"https://tibroish.bg/"} />
-            <meta name="description" content={""}/>
+            <meta name="description" content={`
+                “Ти броиш” е национална кампания, целяща предотврати опитите за измами и манипулации при 
+                броенето на гласовете на предстоящите парламентарни избори.
+            `}/>
         </Helmet>,
         <LandingPage>
             <Parallax 
                 bgImage="/images/sofia-2337926_1920.jpg" 
                 bgImageAlt="Народно събрание" 
                 strength={200}
-                style={{width: '100%', height: 'calc(100vh - 60px)'}}
             >
+            
                 <LandingPageOverlay>
-                    <LandingPageText style={{marginTop: '15vh', fontSize: '24px'}}>
-                        Да дадем на <b>България</b> шанс за
-                    </LandingPageText>
-                    <LandingPageText style={{fontSize: '52px'}}> 
-                        <b>ЧЕСТНИ</b> и <b>СВОБОДНИ</b> избори
-                    </LandingPageText>
-                    <LandingPageText style={{fontSize: '42px', marginBottom: '0'}}>
-                        търсим <b>12 000</b> защитници на вота
-                    </LandingPageText>
-                    <LandingPageText style={{fontSize: '16px', marginTop: '0'}}>
-                        които да следят за коректното преброяване на гласовете в изборния ден
-                    </LandingPageText>
-                    <Link to='/signup'><HomeButton>Запиши се за застъпник</HomeButton></Link>
-                    <LandingPageText style={{
-                        fontSize: '35px', 
-                        position: 'absolute', 
-                        top: 'calc(100vh - 180px)',
-                        width: '100%',
-                    }}>
+                    <Fade down>
+                        <div>
+                        <LandingPageText id='text1'>
+                            Да дадем на <b>България</b> шанс за
+                        </LandingPageText>
+                        <LandingPageText id='text2'> 
+                            <b>ЧЕСТНИ</b> и <b>СВОБОДНИ</b> избори
+                        </LandingPageText>
+                        <LandingPageText id='text3'>
+                            търсим <b>12 000</b> защитници на вота
+                        </LandingPageText>
+                        <LandingPageText id='text4'>
+                            които да следят за коректното преброяване на гласовете в изборния ден
+                        </LandingPageText>
+                        <Link to='/signup'><HomeButton>Запиши се за застъпник</HomeButton></Link> 
+                        </div>
+                    </Fade>
+                    <LandingPageText id='text5'>
                         Можем да го направим <b>заедно</b>!
                     </LandingPageText>
                 </LandingPageOverlay>
@@ -109,6 +169,7 @@ export default props => {
         <Wrapper>
             <MainContent>
             <h1>Национална кампания “Ти броиш”</h1>
+            <hr/>
             <h2>Какво е “Ти броиш”?</h2>
             <p>
                 “Ти броиш” е национална кампания, целяща предотврати опитите за измами и манипулации при броенето 
