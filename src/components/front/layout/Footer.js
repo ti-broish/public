@@ -97,8 +97,6 @@ export default props => {
                 <FooterColumn>
                     <h2><FontAwesomeIcon icon={faFacebookSquare}/> Facebook</h2>
                     <div dangerouslySetInnerHTML={{__html: `
-                        <div id="fb-root"></div>
-                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=0&autoLogAppEvents=1" nonce="IeSXLymW"></script>
                         <div class="fb-page" data-href="https://www.facebook.com/tibroish/" data-tabs="timeline" data-width="" data-height="200px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/tibroish/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/tibroish/">Ти броиш</a></blockquote></div>
                     `}}/>
                 </FooterColumn>
