@@ -102,7 +102,7 @@ export default props => {
         <HeaderStyle>
             <Wrapper>
                 <Link to='/'>
-                    <LogoImage src='/brand/logo_horizontal_white.png'/>
+                    <LogoImage src='/brand/logo_horizontal_white.png?v=2'/>
                 </Link>
                 <Navigation>
                     <Link to='/about'>Kампанията</Link>
