@@ -103,20 +103,6 @@ export default props => {
                 <p>
                     Изборният ден се открива в 7,00 часа и приключва в 20.00 часа местно време.
                 </p>
-                <hr/>
-                <h2>Полезни връзки:</h2>
-                <ul>
-                    <li>
-                        <a href="https://www.cik.bg/bg/decisions/4128/2017-01-26">
-                            https://www.cik.bg/bg/decisions/4128/2017-01-26
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.cik.bg/bg/decisions/4129/2017-01-26">
-                            https://www.cik.bg/bg/decisions/4129/2017-01-26
-                        </a>
-                    </li>
-                </ul>
             </MainContent>
         </Wrapper>
     )
