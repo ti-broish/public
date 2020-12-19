@@ -59,7 +59,6 @@ const MobileMenuButton = styled.button`
     font-size: 35px;
     display: none;
 
-
     @media only screen and (max-width: ${MOBILE_WIDTH}px) {
         display: block;
     }
@@ -75,6 +74,8 @@ const MobileNavigation = styled.div`
     .bm-menu {
         background-color: #20a898;
     }
+
+    .bm-burger-button { display: none; }
 `;
 
 const MobileNavMenu = styled.div`

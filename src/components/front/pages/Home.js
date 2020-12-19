@@ -11,15 +11,6 @@ import { VideoWrapper } from './Videos';
 
 import { MOBILE_WIDTH } from '../Style';
 
-import Fade from 'react-reveal/Fade';
-import config from 'react-reveal/globals';
- 
-config({ ssrFadeout: window.ssr });
-
-const ContentPanel = styled.div`
-
-`;
-
 const LandingPage = styled.div`
     background-color: black;
 
@@ -37,60 +28,83 @@ const LandingPageOverlay = styled.div`
     height: 100%;
     height: calc(100vh - 60px);
     position: absolute;
-    text-align: center;
-
-    #text1 {
-        margin-top: 15vh;
-        font-size: 24px;
-
-        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
-            margin-top: 10vh;
-            font-size: 18px;
-        }
-    }
-
-    #text2 {
-        font-size: 52px;
-
-        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
-            font-size: 36px;
-            margin-bottom: 40px;
-        }
-    }
-
-    #text3 {
-        font-size: 42px;
-        margin-bottom: 0;
-
-        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
-            font-size: 36px;
-        }
-    }
-
-    #text4 {
-        font-size: 16px;
-        margin-top: 0;
-    }
-
-    #text5 {
-        font-size: 35px; 
-        position: absolute; 
-        top: calc(100vh - 180px);
-        width: 100%;
-
-        @media only screen and (max-width: ${MOBILE_WIDTH}px) {
-            top: calc(100vh - 220px);
-        }
-    }
-`;
-
-const LandingPageText = styled.p`
+    box-sizing: border-box;
     text-align: center;
     color: white;
     font-weight: bold;
     text-shadow: 0px 0px 10px black;
 
     b { font-weight: 900; }
+    p { margin: 0; }
+`;
+
+const TopSection = styled.div`
+    position: absolute;
+    bottom: 55vh;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+
+    p { margin: 20px 0; }
+
+    #text1 { font-size: 24px; }
+    #text2 { font-size: 52px; }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        #text1 { font-size: 16px; }
+        #text2 { font-size: 42px; }
+    }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH * 0.6}px) {
+        #text1 { font-size: 14px; }
+        #text2 { font-size: 32px; }
+    }
+`;
+
+const MiddleSection = styled.div`
+    position: absolute;
+    width: 100%;
+    top: calc(45vh - 60px);
+    box-sizing: border-box;
+    padding: 0 10px;
+    padding-top: 50px;
+
+    #text3 { font-size: 42px; }
+    #text4 { font-size: 16px; margin-bottom: 20px; }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        padding-top: 5vh;
+
+        #text3 { font-size: 36px; }
+        #text4 { font-size: 14px; }
+    }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH * 0.6}px) {
+        padding-top: 10px;
+
+        #text3 { font-size: 28px; }
+        #text4 { font-size: 12px; }
+    }
+`;
+
+const BottomSection = styled.div`
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 0 10px 50px 10px;
+    box-sizing: border-box;
+
+    #text5 { font-size: 35px; }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        padding-bottom: 30px;
+        #text5 { font-size: 28px; }
+    }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        padding-bottom: 20px;
+        #text5 { font-size: 24px; }
+    }
 `;
 
 const HomeButton = styled.button`
@@ -142,26 +156,18 @@ export default props => {
             >
             
                 <LandingPageOverlay>
-                    <Fade down>
-                        <div>
-                        <LandingPageText id='text1'>
-                            Да дадем на <b>България</b> шанс за
-                        </LandingPageText>
-                        <LandingPageText id='text2'> 
-                            <b>ЧЕСТНИ</b> и <b>СВОБОДНИ</b> избори
-                        </LandingPageText>
-                        <LandingPageText id='text3'>
-                            търсим <b>12 000</b> защитници на вота
-                        </LandingPageText>
-                        <LandingPageText id='text4'>
-                            които да следят за коректното преброяване на гласовете в изборния ден
-                        </LandingPageText>
+                    <TopSection>
+                        <p id='text1'>Да дадем на <b>България</b> шанс за</p>
+                        <p id='text2'><b>ЧЕСТНИ</b> и <b>СВОБОДНИ</b> избори</p>
+                    </TopSection>
+                    <MiddleSection>
+                        <p id='text3'>търсим <b>12 000</b> защитници на вота</p>
+                        <p id='text4'>които да следят за коректното преброяване на гласовете в изборния ден</p>
                         <Link to='/signup'><HomeButton>Запиши се за застъпник</HomeButton></Link> 
-                        </div>
-                    </Fade>
-                    <LandingPageText id='text5'>
-                        Можем да го направим <b>заедно</b>!
-                    </LandingPageText>
+                    </MiddleSection>
+                    <BottomSection>
+                        <p id='text5'>Можем да го направим <b>заедно</b>!</p>
+                    </BottomSection>
                 </LandingPageOverlay>
             </Parallax>
         </LandingPage>,

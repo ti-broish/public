@@ -18,8 +18,7 @@
         <!-- END FAVICON -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="theme-color" content="#000000" />
-        <meta name="description" content=""/>
-        <link rel="stylesheet" href="/css/normalize.min.css"/>
+        <% if(locals.additionalStyleTags) { %><%- additionalStyleTags %><% } %>
         <% if(locals.linkTags) { %><%- linkTags %><% } %>
         <% if(locals.styleTags) { %><%- styleTags %><% } %>
         <% if(process.env.NODE_ENV === 'production') { %>
