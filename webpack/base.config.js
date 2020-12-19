@@ -8,8 +8,8 @@ module.exports = {
     output: {
         publicPath: '/bundles/',
         path: path.join(__dirname, '../public/bundles'),
-        filename: 'bundle.js',
-        chunkFilename: '[name].bundle.js',
+        filename: 'bundle.[contenthash].js',
+        chunkFilename: '[name].[contenthash].bundle.js',
     },
     module: {
         rules: [{
