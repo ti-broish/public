@@ -1,4 +1,4 @@
-name: Deploy
+name: Deployment to Staging
 
 on:
   push:
@@ -11,18 +11,30 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Check out repo
+        uses: actions/checkout@v1
 
-      - uses: actions/setup-node@v2
+      - name: Set up node
+        uses: actions/setup-node@v2
         with:
           node-version: '15'
 
-      - run: npm install
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+                ${{ runner.os }}-node-
 
-      - run: npm run-script build
+      - name: Clean install of dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run-script build
 
       - name: Minio Deploy
-        uses: hkdobrev/minio-deploy-action@main
+        uses: hkdobrev/minio-deploy-action@v1
         with:
           endpoint: ${{ secrets.MINIO_STAGING_ENDPOINT }}
           access_key: ${{ secrets.MINIO_STAGING_ACCESS_KEY }}
