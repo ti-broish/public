@@ -26,14 +26,15 @@ require('@babel/register') ({
     ],
 });
 
-//require.extensions['.ttf'] = () => {};
-
-/*require.extensions['.ttf'] = (module, filename) => {
-    let content = fs.readFileSync(filename).toString('base64');
-    module._compile(`module.exports="data:font/truetype;charset=utf-8;base64,${content}"`, filename);
-};*/
-
 const renderPage = require('./renderPage.js');
+
+
+const normalizeCssStr = fs.readFileSync('./public/css/normalize.min.css', 'utf-8');
+const fontAwesomeCss = require('@fortawesome/fontawesome-svg-core').dom.css();
+let additionalStyleTags = `
+    <style>${normalizeCssStr}</style>
+    <style>${fontAwesomeCss}</style>
+`;  
 
 const renderHTML = renderData => {
     return renderPage.default(renderData);
@@ -47,12 +48,9 @@ const writeHTML = (rendered, renderData) => {
         scriptTags: rendered.scriptTags,
         linkTags: rendered.linkTags,
         styleTags: rendered.styleTags,
-        renderData: renderData
+        renderData: renderData,
+        additionalStyleTags: additionalStyleTags
     });
-
-    //var result = minify(html, {
-    //    removeAttributeQuotes: true
-    //});
 
     let pathUrl = '';
 
