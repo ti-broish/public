@@ -11,15 +11,25 @@ export default props => {
         window.scrollTo(0, 0);
     }, []);
 
+    let metaTitle = "Кампанията | Ти Броиш";
+    let metaUrl = "https://tibroish.bg/about/";
+    let metaDescription = `
+        „Ти броиш“ е национална кампания, целяща предотврати опитите за измами и манипулации 
+        при броенето на гласовете на предстоящите парламентарни избори.
+    `;
+
     return(
         <Wrapper>
             <Helmet>
-                <title>Кампанията | Ти Броиш</title>
-                <link rel="canonical" href={"https://tibroish.bg/about/"} />
-                <meta name="description" content={`
-                    „Ти броиш“ е национална кампания, целяща предотврати опитите за измами и манипулации 
-                    при броенето на гласовете на предстоящите парламентарни избори.
-                `}/>
+                <title>{metaTitle}</title>
+                <link rel="canonical" href={metaUrl} />
+                <meta name="description" content={metaDescription}/>
+                <meta property="og:url" content={metaUrl}/>
+                <meta property="og:title" content={metaTitle}/>
+                <meta property="og:description" content={metaDescription}/>
+                <meta property="og:image" content={"https://tibroish.bg/brand/og_image.png"}/>
+                <meta property="og:image:width" content={"1200"}/>
+                <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
                 <h1>За кампанията</h1>

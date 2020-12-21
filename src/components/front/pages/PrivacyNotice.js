@@ -10,17 +10,27 @@ export default props => {
         window.scrollTo(0, 0);
     }, []);
 
+    let metaTitle = "Декларация за поверителност | Ти Броиш";
+    let metaUrl = "https://tibroish.bg/privacy-notice/";
+    let metaDescription = `
+        Тази Декларация за поверителност определя как ние, ПП „Движение Да България“ събираме, 
+        съхраняваме и използваме информация за Вас, когато използвате или взаимодействате с 
+        уебсайта ни, www.tibroish.bg (нашият уебсайт) и къде по друг начин получаваме или 
+        събираме информация за Вас. Тази Декларация за поверителност влиза в сила от 25.05.2018г.
+    `;
+
     return(
         <Wrapper>
             <Helmet>
-                <title>Декларация за поверителност | Ти Броиш</title>
-                <link rel="canonical" href={"https://tibroish.bg/privacy-notice/"} />
-                <meta name="description" content={`
-                    Тази Декларация за поверителност определя как ние, ПП „Движение Да България“ събираме, 
-                    съхраняваме и използваме информация за Вас, когато използвате или взаимодействате с 
-                    уебсайта ни, www.tibroish.bg (нашият уебсайт) и къде по друг начин получаваме или 
-                    събираме информация за Вас. Тази Декларация за поверителност влиза в сила от 25.05.2018г.
-                `}/>
+                <title>{metaTitle}</title>
+                <link rel="canonical" href={metaUrl} />
+                <meta name="description" content={metaDescription}/>
+                <meta property="og:url" content={metaUrl}/>
+                <meta property="og:title" content={metaTitle}/>
+                <meta property="og:description" content={metaDescription}/>
+                <meta property="og:image" content={"https://tibroish.bg/brand/og_image.png"}/>
+                <meta property="og:image:width" content={"1200"}/>
+                <meta property="og:image:height" content={"628"}/>
             </Helmet>
 
             <MainContent>

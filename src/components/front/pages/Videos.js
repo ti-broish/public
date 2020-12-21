@@ -63,12 +63,22 @@ export default props => {
         }
     }, []);
 
+    let metaTitle = "Видео | Ти Броиш";
+    let metaUrl = "https://tibroish.bg/videos/";
+    let metaDescription = "Видеа от кампанията";
+
     return(
         <Wrapper>
             <Helmet>
-                <title>Видео | Ти Броиш</title>
-                <link rel="canonical" href={"https://tibroish.bg/videos/"} />
-                <meta name="description" content={"Видеа от кампанията"}/>
+                <title>{metaTitle}</title>
+                <link rel="canonical" href={metaUrl} />
+                <meta name="description" content={metaDescription}/>
+                <meta property="og:url" content={metaUrl}/>
+                <meta property="og:title" content={metaTitle}/>
+                <meta property="og:description" content={metaDescription}/>
+                <meta property="og:image" content={"https://tibroish.bg/brand/og_image.png"}/>
+                <meta property="og:image:width" content={"1200"}/>
+                <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
                 <h1>Видеа от кампанията</h1>

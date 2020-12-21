@@ -10,16 +10,26 @@ export default props => {
         window.scrollTo(0, 0);
     }, []);
 
+    let metaTitle = "Актуална информация | Ти Броиш";
+    let metaUrl = "https://tibroish.bg/news";
+    let metaDescription = `
+        Участниците в Националната кампания „Ти броиш“ формално ще бъдат застъпници на 
+        „Демократична България“, което ще им даде право да присъстват във всяка изборна 
+        секция в предварително избрания изборен район.
+    `;
+
     return(
         <Wrapper>
             <Helmet>
-                <title>Актуална информация | Ти Броиш</title>
-                <link rel="canonical" href={"https://tibroish.bg/news"} />
-                <meta name="description" content={`
-                    Участниците в Националната кампания „Ти броиш“ формално ще бъдат застъпници на 
-                    „Демократична България“, което ще им даде право да присъстват във всяка изборна 
-                    секция в предварително избрания изборен район.
-                `}/>
+                <title>{metaTitle}</title>
+                <link rel="canonical" href={metaUrl} />
+                <meta name="description" content={metaDescription}/>
+                <meta property="og:url" content={metaUrl}/>
+                <meta property="og:title" content={metaTitle}/>
+                <meta property="og:description" content={metaDescription}/>
+                <meta property="og:image" content={"https://tibroish.bg/brand/og_image.png"}/>
+                <meta property="og:image:width" content={"1200"}/>
+                <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
                 <h1>Актуална информация</h1>

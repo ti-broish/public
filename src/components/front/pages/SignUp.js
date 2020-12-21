@@ -19,17 +19,27 @@ export default props => {
         window.scrollTo(0, 0);
     }, []);
 
+    let metaTitle = "Запиши се още сега | Ти Броиш";
+    let metaUrl = "https://tibroish.bg/signup/";
+    let metaDescription = `
+        За да дадем на България шанс за честни и свободни избори, търсим 12 000 защитници на вота, 
+        които да следят за коректното преброяване на гласовете в изборния ден. По един за всяка секция 
+        в страната. Ангажимент за няколко часа в края на изборния ден може да реши бъдещето на България 
+        за следващите години. Можем да го направим заедно!  
+    `;
+
     return(
         <Wrapper>
             <Helmet>
-                <title>Запиши се още сега | Ти Броиш</title>
-                <link rel="canonical" href={"https://tibroish.bg/signup/"} />
-                <meta name="description" content={`
-                    За да дадем на България шанс за честни и свободни избори, търсим 12 000 защитници на вота, 
-                    които да следят за коректното преброяване на гласовете в изборния ден. По един за всяка секция 
-                    в страната. Ангажимент за няколко часа в края на изборния ден може да реши бъдещето на България 
-                    за следващите години. Можем да го направим заедно!  
-                `}/>
+                <title>{metaTitle}</title>
+                <link rel="canonical" href={metaUrl} />
+                <meta name="description" content={metaDescription}/>
+                <meta property="og:url" content={metaUrl}/>
+                <meta property="og:title" content={metaTitle}/>
+                <meta property="og:description" content={metaDescription}/>
+                <meta property="og:image" content={"https://tibroish.bg/brand/og_image.png"}/>
+                <meta property="og:image:width" content={"1200"}/>
+                <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
                 <h1>Запиши се още сега</h1>
