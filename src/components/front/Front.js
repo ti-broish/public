@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import SignUp from './pages/SignUp';
-import Watchers from './pages/Watchers';
+import News from './pages/News';
 import Videos from './pages/Videos';
 import PrivacyNotice from './pages/PrivacyNotice';
 
@@ -61,7 +61,7 @@ export default props => {
                 <Route exact path='/' component={Home}/>
                 <Route path='/about' component={About}/>
                 <Route path='/signup' component={SignUp}/>
-                <Route path='/watchers' component={Watchers}/>
+                <Route path='/news' component={News}/>
                 <Route path='/videos' component={Videos}/>
                 <Route path='/privacy-notice' component={PrivacyNotice}/>
                 <Redirect to='/'/>

@@ -118,7 +118,7 @@ export default props => {
                 <Navigation>
                     <Link to='/about'>Kампанията</Link>
                     <Link to='/signup'>Запиши се</Link>
-                    <Link to='/watchers'>Актуална информация</Link>
+                    <Link to='/news'>Актуална информация</Link>
                     <Link to='/videos'>Видео</Link>
                 </Navigation>
                 <MobileMenuButton onClick={()=>setMenuOpen(!menuOpen)}>
@@ -132,7 +132,7 @@ export default props => {
                     <Link to='/' onClick={()=>setMenuOpen(false)}>Начало</Link>
                     <Link to='/about' onClick={()=>setMenuOpen(false)}>Kампанията</Link>
                     <Link to='/signup' onClick={()=>setMenuOpen(false)}>Запиши се</Link>
-                    <Link to='/watchers' onClick={()=>setMenuOpen(false)}>Застъпници</Link>
+                    <Link to='/news' onClick={()=>setMenuOpen(false)}>Актулна информация</Link>
                     <Link to='/videos' onClick={()=>setMenuOpen(false)}>Видео</Link>
                     <Link to='/privacy-notice' onClick={()=>setMenuOpen(false)}>Декларация за поверителност</Link>
                 </MobileNavMenu>

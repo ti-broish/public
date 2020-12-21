@@ -14,7 +14,7 @@ export default props => {
         <Wrapper>
             <Helmet>
                 <title>Актуална информация | Ти Броиш</title>
-                <link rel="canonical" href={"https://tibroish.bg/watchers/"} />
+                <link rel="canonical" href={"https://tibroish.bg/news"} />
                 <meta name="description" content={`
                     Участниците в Националната кампания “Ти броиш” формално ще бъдат застъпници на 
                     „Демократична България“, което ще им даде право да присъстват във всяка изборна 
