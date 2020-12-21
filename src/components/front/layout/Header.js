@@ -46,6 +46,16 @@ const Navigation = styled.nav`
         }
     }
 
+    @media only screen and (max-width: 835px) {
+        font-size: 15px;
+        a { padding: 7px;}
+    }
+
+    @media only screen and (max-width: 790px) {
+        font-size: 14px;
+        a { padding: 5px;}
+    }
+
     @media only screen and (max-width: ${MOBILE_WIDTH}px) {
         display: none;
     }

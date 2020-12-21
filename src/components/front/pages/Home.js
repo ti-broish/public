@@ -181,15 +181,15 @@ export default props => {
                 “Ти броиш” е национална кампания, целяща предотврати опитите за измами и манипулации при броенето 
                 на гласовете на предстоящите парламентарни избори.
             </p>
-            <HomeButtonWrapper>
-                <Link to='/about'><HomeButton>Научи повече</HomeButton></Link>
-            </HomeButtonWrapper>
             <p>
                 За целта търсим 12 000 души – колкото са изборните секции в страната – които да присъстват на 
                 броенето на бюлетините в изборния ден, да следят за тяхното честно преброяване и за коректното 
                 вписване на резултатите в протоколите.
             </p>
             <hr/>
+            <HomeButtonWrapper>
+                <Link to='/about'><HomeButton>Научи повече</HomeButton></Link>
+            </HomeButtonWrapper>
             <h2>Търсим 12 000 защитници на вота</h2>
             <p>
                 За да дадем на България шанс за честни и свободни избори, търсим 12 000 защитници на вота, 
@@ -197,29 +197,29 @@ export default props => {
                 в страната. Ангажимент за няколко часа в края на изборния ден може да реши бъдещето на България 
                 за следващите години. Можем да го направим заедно!  
             </p>
-            <HomeButtonWrapper>
-                <Link to='/signup'><HomeButton>Запиши се за тук</HomeButton></Link>
-            </HomeButtonWrapper>
             <p>
                 Запишете се днес и до няколко дни ще се свържем с Вас, за да Ви въведем в кампанията. 
             </p>
             <hr/>
+            <HomeButtonWrapper>
+                <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link>
+            </HomeButtonWrapper>
             <h2>Информация за застъпници</h2>
             <p>
                 Защитниците на вота (или т.нар. „застъпници“) имат право да присъстват в изборното помещение 
                 и да следи процеса на преброяване на резултатите от гласуването и изготвянето на протокола 
                 на секционната избирателна комисия.
             </p>
-            <HomeButtonWrapper>
-                <Link to='/watchers'><HomeButton>Научи повече</HomeButton></Link>
-            </HomeButtonWrapper>
             <p>
                 Застъпникът има право - и е задължително и изключително важно - да получи копие от 
                 подписания от членовете на СИК протокол с резултатите от гласуването в избирателната 
                 секция след приключване на избирателния ден в съответната секция!
             </p>
+            <HomeButtonWrapper>
+                <Link to='/watchers'><HomeButton>Научи повече</HomeButton></Link>
+            </HomeButtonWrapper>
             <hr/>
-            <h2>Видео</h2>
+            <h2>Видеа от кампанията</h2>
             <VideoWrapper>
                 <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fdabulgaria.bg%2Fvideos%2F363350401696989%2F&show_text=false&width=560" scrolling="no" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </VideoWrapper>
