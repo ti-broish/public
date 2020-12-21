@@ -101,7 +101,7 @@ export default props => {
                     `}}/>
                 </FooterColumn>
             </FooterColumns>
-            <Copyright>ПП „Движение Да България” © 2020</Copyright>
+            <Copyright>„Демократична България - обединение” © 2020</Copyright>
         </FooterStyle>
     ])
 };
