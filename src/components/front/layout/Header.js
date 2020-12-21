@@ -132,7 +132,7 @@ export default props => {
                     <Link to='/' onClick={()=>setMenuOpen(false)}>Начало</Link>
                     <Link to='/about' onClick={()=>setMenuOpen(false)}>Kампанията</Link>
                     <Link to='/signup' onClick={()=>setMenuOpen(false)}>Запиши се</Link>
-                    <Link to='/news' onClick={()=>setMenuOpen(false)}>Актулна информация</Link>
+                    <Link to='/news' onClick={()=>setMenuOpen(false)}>Актуална информация</Link>
                     <Link to='/videos' onClick={()=>setMenuOpen(false)}>Видео</Link>
                     <Link to='/privacy-notice' onClick={()=>setMenuOpen(false)}>Декларация за поверителност</Link>
                 </MobileNavMenu>
