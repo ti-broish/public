@@ -163,7 +163,7 @@ export default props => {
                     <MiddleSection>
                         <p id='text3'>търсим <b>12 000</b> защитници на вота</p>
                         <p id='text4'>които да следят за коректното преброяване на гласовете в изборния ден</p>
-                        <Link to='/signup'><HomeButton>Запиши се за тук</HomeButton></Link> 
+                        <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link> 
                     </MiddleSection>
                     <BottomSection>
                         <p id='text5'>Можем да го направим <b>заедно</b>!</p>
