@@ -216,7 +216,7 @@ export default props => {
                 секция след приключване на избирателния ден в съответната секция!
             </p>
             <HomeButtonWrapper>
-                <Link to='/watchers'><HomeButton>Научи повече</HomeButton></Link>
+                <Link to='/news'><HomeButton>Научи повече</HomeButton></Link>
             </HomeButtonWrapper>
             <hr/>
             <h2>Видеа от кампанията</h2>
