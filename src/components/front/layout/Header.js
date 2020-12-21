@@ -108,7 +108,7 @@ export default props => {
                 <Navigation>
                     <Link to='/about'>Kампанията</Link>
                     <Link to='/signup'>Запиши се</Link>
-                    <Link to='/watchers'>Застъпници</Link>
+                    <Link to='/watchers'>Актуална информация</Link>
                     <Link to='/videos'>Видео</Link>
                 </Navigation>
                 <MobileMenuButton onClick={()=>setMenuOpen(!menuOpen)}>
