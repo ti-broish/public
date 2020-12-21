@@ -68,10 +68,10 @@ export default props => {
             <Helmet>
                 <title>Видео | Ти Броиш</title>
                 <link rel="canonical" href={"https://tibroish.bg/videos/"} />
-                <meta name="description" content={"Видеа за кампанията"}/>
+                <meta name="description" content={"Видеа от кампанията"}/>
             </Helmet>
             <MainContent>
-                <h1>Видеа за кампанията</h1>
+                <h1>Видеа от кампанията</h1>
                 <hr/>
                 <EmbedFacebook src={"https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Ftibroish%2Fvideos%2F688370445203905%2F&show_text=false&width=560"}/>
                 <EmbedFacebook src={"https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fdabulgaria.bg%2Fvideos%2F3346383418748243%2F&show_text=false&width=560"}/>

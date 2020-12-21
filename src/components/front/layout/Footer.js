@@ -70,11 +70,11 @@ export default props => {
                 <FooterColumn>
                     <h2><FontAwesomeIcon icon={faAddressBook}/> Контакти</h2>
                     <p>
-                        <b>ПП „Движение Да България”</b>
+                        <b>Демократична България – обединение</b>
                     </p>
                     <p>
                         <b><FontAwesomeIcon icon={faEnvelope}/> Имейл: </b>
-                        <a href='mailto: team@dabulgaria.bg'>team@dabulgaria.bg</a>
+                        <a href='mailto:team@tibroish.bg'>team@tibroish.bg</a>
                     </p>
                     <p>
                         <b><FontAwesomeIcon icon={faMapMarkerAlt}/> Адрес: </b> <br/>
