@@ -89,7 +89,7 @@ export default props => {
                         <li><Link to='/'>Начало</Link></li>
                         <li><Link to='/about'>Kампанията</Link></li>
                         <li><Link to='/signup'>Запиши се</Link></li>
-                        <li><Link to='/watchers'>Застъпници</Link></li>
+                        <li><Link to='/watchers'>Актуална информация</Link></li>
                         <li><Link to='/videos'>Видео</Link></li>
                         <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>         
                     </ul>
