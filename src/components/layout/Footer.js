@@ -18,7 +18,7 @@ const FooterDiv = styled.footer`
 export default props => {
     return(
         <FooterDiv>
-            <p>Това е фуутър 2020</p>
+            <p>Това е фуутър {new Date().getFullYear()}</p>
         </FooterDiv>
     )
 };
