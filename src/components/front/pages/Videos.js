@@ -39,10 +39,6 @@ export default () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        
-        if (window.instgrm) {
-            window.instgrm.Embeds.process();
-        }
     }, []);
 
     let metaTitle = "Видео | Ти Броиш";
