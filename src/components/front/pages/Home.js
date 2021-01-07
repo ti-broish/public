@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
 import { Wrapper, MainContent, GreenLine } from '../Front';
-import { VideoWrapper } from './Videos';
+import { VideoWrapper, YouTubeVideoEmbed } from './Videos';
 
 import { MOBILE_WIDTH } from '../Style';
 
@@ -230,9 +230,7 @@ export default props => {
             </HomeButtonWrapper>
             <hr/>
             <h2>Видеа от кампанията</h2>
-            <VideoWrapper>
-                <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fdabulgaria.bg%2Fvideos%2F363350401696989%2F&show_text=false&width=560" scrolling="no" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-            </VideoWrapper>
+            <YouTubeVideoEmbed videoId={"J_B0525_hcs"} />
             <HomeButtonWrapper>
                 <Link to='/videos'><HomeButton>Виж още видеа</HomeButton></Link>
             </HomeButtonWrapper>

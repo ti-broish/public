@@ -25,8 +25,8 @@ export const VideoWrapper = styled.div`
     }
 `;
 
-const EmbedYouTubeVideo = props => {
-    const iframeSrc = `https://www.youtube.com/embed/${props.videoId}`;
+export const YouTubeVideoEmbed = ({ videoId }) => {
+    const iframeSrc = `https://www.youtube.com/embed/${videoId}`;
 
     return(
         <VideoWrapper>
@@ -61,17 +61,17 @@ export default () => {
             <MainContent>
                 <h1>Видеа от кампанията</h1>
                 <hr/>
-                <EmbedYouTubeVideo videoId={"JBgplUhCPCQ"} />
-                <EmbedYouTubeVideo videoId={"eOEUrun-I3M"} />
-                <EmbedYouTubeVideo videoId={"CoAk-Lu74rM"} />
-                <EmbedYouTubeVideo videoId={"-1zSi5tq82o"} />
-                <EmbedYouTubeVideo videoId={"yFS9Uv54R34"} />
-                <EmbedYouTubeVideo videoId={"nxM0fnUPDx4"} />
-                <EmbedYouTubeVideo videoId={"-L0y6Ih8id8"} />
-                <EmbedYouTubeVideo videoId={"apAuVIu53Gg"} />
-                <EmbedYouTubeVideo videoId={"xgIZ8uFmmpY"} />
-                <EmbedYouTubeVideo videoId={"Q4Ijwoy2WR8"} />
-                <EmbedYouTubeVideo videoId={"J_B0525_hcs"} />
+                <YouTubeVideoEmbed videoId={"JBgplUhCPCQ"} />
+                <YouTubeVideoEmbed videoId={"eOEUrun-I3M"} />
+                <YouTubeVideoEmbed videoId={"CoAk-Lu74rM"} />
+                <YouTubeVideoEmbed videoId={"-1zSi5tq82o"} />
+                <YouTubeVideoEmbed videoId={"yFS9Uv54R34"} />
+                <YouTubeVideoEmbed videoId={"nxM0fnUPDx4"} />
+                <YouTubeVideoEmbed videoId={"-L0y6Ih8id8"} />
+                <YouTubeVideoEmbed videoId={"apAuVIu53Gg"} />
+                <YouTubeVideoEmbed videoId={"xgIZ8uFmmpY"} />
+                <YouTubeVideoEmbed videoId={"Q4Ijwoy2WR8"} />
+                <YouTubeVideoEmbed videoId={"J_B0525_hcs"} />
             </MainContent>
         </Wrapper>
     )
