@@ -95,10 +95,11 @@ export default props => {
                     </ul>
                 </FooterColumn>
                 <FooterColumn>
-                    <h2><FontAwesomeIcon icon={faFacebookSquare}/> Facebook</h2>
-                    <div style={{maxWidth: '100%'}} dangerouslySetInnerHTML={{__html: `
-                        <div class="fb-page" data-href="https://www.facebook.com/tibroish/" data-tabs="timeline" data-width="" data-height="200px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/tibroish/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/tibroish/">Ти броиш</a></blockquote></div>
-                    `}}/>
+                    <h3>
+                        <FontAwesomeIcon icon={faFacebookSquare}/>
+                        &nbsp;
+                        <a href='https://www.facebook.com/tibroish/' style={{display: 'inline'}} target='_blank' rel='noopener noreferrer nofollow'>Facebook</a>
+                    </h3>
                 </FooterColumn>
             </FooterColumns>
             <Copyright>„Демократична България - обединение“ &copy; {new Date().getFullYear()}</Copyright>
