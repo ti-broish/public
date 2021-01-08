@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Helmet from 'react-helmet';
 
@@ -13,11 +13,25 @@ const FormWrapper = styled.div`
     }
 `;
 
-export default props => {
+export default () => {
+    const [loadCount, setLoadCount] = useState(0);
+
+    /* Second iframe load is after a submission */
+    if (loadCount > 1) {
+        /* reset counter to 0, so if user clicks "Submit another response" it continues to work */
+        setLoadCount(0);
+        window.gtag && gtag('event', 'conversion', {
+            'send_to': 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
+        });
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    const onSignupIframeLoad = () => {
+        setLoadCount(loadCount + 1);
+    };
 
     let metaTitle = "Запиши се още сега | Ти Броиш";
     let metaUrl = "https://tibroish.bg/signup/";
@@ -54,7 +68,7 @@ export default props => {
                     Запишете се днес и до няколко дни ще се свържем с Вас, за да Ви въведем в кампанията. 
                 </p>
                 <FormWrapper>
-                    <iframe id="gform" src="https://docs.google.com/forms/d/e/1FAIpQLSeBNgZgrixE7hJ_cykkFangamQnU4Pv9R6hi8n59-lB4dI5nw/viewform?embedded=true" frameBorder="0">Loading…</iframe>
+                    <iframe id="gform" onLoad={onSignupIframeLoad} src="https://docs.google.com/forms/d/e/1FAIpQLSeBNgZgrixE7hJ_cykkFangamQnU4Pv9R6hi8n59-lB4dI5nw/viewform?embedded=true" frameBorder="0">Loading…</iframe>
                 </FormWrapper>
             </MainContent>
         </Wrapper>
