@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
 import path from 'path';
 import Helmet from 'react-helmet';
-import App from './src/components/App.js';
+import App from '../../src/components/App.js';
 
 import { ServerStyleSheet } from 'styled-components';
 

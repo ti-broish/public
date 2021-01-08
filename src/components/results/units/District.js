@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-import axios from 'axios';
+//import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+/*import { Link } from 'react-router-dom';
 import LoadingScreen from './layout/LoadingScreen';
 import ResultsTable from './ResultsTable';
-import ResultsLine from './ResultsLine';
+import ResultsLine from './ResultsLine';*/
 
 export default props => {
-
     const params = useParams();
+
+    return(
+        <div>
+            <h1>Градски район {params.unit}</h1>
+        </div>
+    );
+
+    /*const params = useParams();
     const history = useHistory();
 
     const [data, setData] = useState(null);
@@ -101,5 +108,5 @@ export default props => {
                     </table>
                 </div>
             </div>
-    );
+    );*/
 };

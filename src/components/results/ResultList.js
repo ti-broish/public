@@ -1,5 +1,11 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 export default props => {
-    return(<h1>Election list</h1>);
+    return(
+        <div>
+            <Link to='/results/parliament2017'>Парламентарни избори 2017</Link>
+        </div>
+    );
 };

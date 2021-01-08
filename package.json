@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config webpack/dev.config.js && node renderStatic.js && node server/server.js",
+    "dev": "webpack --config webpack/dev.config.js && node ./server/static_render/renderStatic.js && node server/server.js",
     "serve": "node server/server.js",
     "build": "webpack --config webpack/prod.config.js && NODE_ENV=production node renderStatic.js"
   },

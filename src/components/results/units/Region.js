@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios';
+//import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+/*import { Link } from 'react-router-dom';
 import LoadingScreen from './layout/LoadingScreen';
 
 import ResultsTable from './ResultsTable';
-import ResultsLine from './ResultsLine';
+import ResultsLine from './ResultsLine';*/
 
 export default props => {
     const params = useParams();
-    const history = useHistory();
+
+    return(
+        <div>
+            <h1>Избирателен район {params.unit}</h1>
+        </div>
+    )
+
+    /*const history = useHistory();
 
     const [data, setData] = useState(null);
 
@@ -23,9 +30,9 @@ export default props => {
 
     useEffect(() => {
         refreshResults();
-    }, []);
+    }, []);*/
 
-    return(
+    /*return(
         !data? <LoadingScreen/> :
             <div id='regional-data'>
                 <Link to='/'>Назад</Link>
@@ -93,5 +100,5 @@ export default props => {
                         </div>
                 }
             </div>
-    );
+    );*/
 };

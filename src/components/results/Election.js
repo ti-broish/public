@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+/*
 
 import Global from './subdivisions/Global';
 import Region from './subdivisions/Region';
@@ -12,20 +13,45 @@ import Section from './subdivisions/Section';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
+*/
+
 import LoadingScreen from '../layout/LoadingScreen';
 
+import ResultUnit from './ResultUnit.js';
+import Global from './units/Global.js';
+
+export const ElectionContext = React.createContext();
+
 export default props => {
+    const { election } = useParams();
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        axios.get('/data/global.json').then(res => {
-            setData(res.data);
+        axios.get(`/results/${election}/routeData.json`).then(res => {
+            //setData(res.data);
             console.log(res.data);
         });
     }, []);
 
     return(
-        <div>
+        <ElectionContext.Provider value={{ data }}>
+            <h1>Резултати от конкретни избори</h1>
+            <Link to='/results/parliament2017/01'>Избирателен район 00</Link>
+            <Link to='/results/parliament2017/0101'>Адм. единица 0101</Link>
+            <Link to='/results/parliament2017/010101'>Градски район 010101</Link>
+            <Link to='/results/parliament2017/010101001'>Секция 010101001</Link>
+
+            {
+                !data? <LoadingScreen/> :
+                <Switch>
+                    <Route path={`/results/${params.election}/:unit`} component={ResultUnit}/>
+                    <Route path={`/results/${params.election}`} component={Global}/>
+                    <Redirect to={`/results/${params.election}`}/>
+                </Switch>
+            }
+
+            
+            {/*
             <Header/>
             <div className='wrapper' style={{minHeight: 'calc(100vh - 128px)', padding: '30px 0'}}>
             {
@@ -40,7 +66,7 @@ export default props => {
                     </Switch>
             }
             </div>
-            <Footer/>
-        </div>
+        <Footer/>*/}
+        </ElectionContext.Provider>
     );
 };

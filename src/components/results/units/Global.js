@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 
-import ReactTooltip from 'react-tooltip';
+/*import ReactTooltip from 'react-tooltip';
 
 import BulgariaMap from './BulgariaMap';
 import ResultsTable from './ResultsTable';
 import ResultsLine from './ResultsLine';
 
 import { formatCount, formatPercentage } from '../Util';
-import SubdivisionTable from './SubdivisionTable';
+import SubdivisionTable from './SubdivisionTable';*/
 
 export default props => {
 
@@ -15,6 +15,8 @@ export default props => {
 
     return(
         <div id='global-props.globalData'>
+            <h1>Това са глобални резултати</h1>
+            {/*
             <ReactTooltip 
                 multiline={true} 
                 html={true}
@@ -62,7 +64,7 @@ export default props => {
                         totalInvalid: props.globalData.regions[key].invalidVotes,
                     };
                 })}
-            />
+            />*/}
         </div>
     );
 };

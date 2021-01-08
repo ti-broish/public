@@ -54,7 +54,7 @@ export default props => {
     return(
         <GlobalCSS>
             <Switch>
-                <Route path='/results/:election' component={Results}/>
+                <Route path='/results' component={Results}/>
                 <Route path='/post/:post' component={Post}/>
                 <Route path='/' component={Front}/>
             </Switch>

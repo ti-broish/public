@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios';
+//import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+/*import { Link } from 'react-router-dom';
 import LoadingScreen from './layout/LoadingScreen';
-import { formatCount, formatPercentage } from '../Util';
+import { formatCount, formatPercentage } from '../Util';*/
 
 export default props => {
     const params = useParams();
+
+    return(
+        <div>
+            <h1>Секция {params.unit}</h1>
+        </div>
+    );
+
+    /*const params = useParams();
     const history = useHistory();
 
     const [data, setData] = useState(null);
@@ -120,5 +128,5 @@ export default props => {
                     </tbody>
                 </table>
             </div>
-    );
+    );*/
 };
