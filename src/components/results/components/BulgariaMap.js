@@ -2,56 +2,65 @@ import React, { useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import { formatCount, formatPercentage } from '../Util';
+import { formatCount, formatPercentage } from '../../../Util';
 
 import styled from 'styled-components';
 
 const BulgariaMapStyle = styled.div`
-    path
-        fill #ccc
-        stroke white
-        stroke-width 50px
-    path:hover
-        cursor pointer
-        filter: brightness(0.9)
+    path {
+        fill: #ccc;
+        stroke: white;
+        stroke-width: 50px;
+    }
+
+    path:hover {
+        cursor: pointer;
+        filter: brightness(0.9);
+    }
 `;
 
 const MapControls = styled.div`
-    text-align center
+    text-align: center;
 
-    button
-        border none
-        background none
-        padding 10px
+    button {
+        border: none;
+        background: none;
+        padding: 10px;
 
-        &:hover
-            cursor pointer
+        &:hover {
+            cursor: pointer;
+        }
 
-        &.selected
-            color white
-            background-color #444
-            border-radius 10px
+        &.selected {
+            color: white;
+            background-color: #444;
+            border-radius: 10px;
+        }
+    }
 `;
 
 const MapControlsSingleParty = styled.div`
-    text-align center
-    height 40px
-    margin-bottom -45px
-    position relative
-    margin-top 5px
+    text-align: center;
+    height: 40px;
+    margin-bottom: -45px;
+    position: relative;
+    margin-top: 5px;
 
-    button
-        border none
-        background none
-        padding 5px
+    button {
+        border: none;
+        background: none;
+        padding: 5px;
 
-        &:hover
-            cursor pointer
+        &:hover {
+            cursor: pointer;
+        }
 
-        &.selected
-            color white
-            background-color #888
-            border-radius 10px
+        &.selected {
+            color: white;
+            background-color: #888;
+            border-radius: 10px;
+        }
+    }
 `;
 
 const MapTooltip = styled.div`
@@ -224,14 +233,14 @@ export default props => {
     };
 
     return([
-        <div id='map-controls'>
+        <MapControls>
             <button className={mode === 'dominant'? 'selected' : ''} onClick={()=>setMode('dominant')}>Водеща партия</button>
             <button className={mode === 'single-party'? 'selected' : ''} onClick={()=>setMode('single-party')}>Отделна партия</button>
             <button className={mode === 'turnout'? 'selected' : ''} onClick={()=>setMode('turnout')}>Избирателна активност</button>
             <button className={mode === 'votes-counted'? 'selected' : ''} onClick={()=>setMode('votes-counted')}>Преброени протоколи</button>
-        </div>,
+        </MapControls>,
         mode === 'single-party'? 
-        <div id='map-controls-single-party'>
+        <MapControlsSingleParty>
         {
             displayParties.map(party =>
                 <button className={singleParty === party.number? 'selected' : ''} onClick={()=>setSingleParty(party.number)}>
@@ -239,7 +248,8 @@ export default props => {
                 </button>
             )
         }
-        </div> : null,
+        </MapControlsSingleParty> : null,
+        <BulgariaMapStyle>
         <svg
             id='bulgaria-map'
             style={{width: '100%'}}
@@ -278,5 +288,6 @@ export default props => {
             }
             </g>
         </svg>
+        </BulgariaMapStyle>
     ])
 };

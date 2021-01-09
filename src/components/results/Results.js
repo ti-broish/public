@@ -5,6 +5,13 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Election from './Election.js';
 import ResultList from './ResultList.js';
 
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+    max-width: 900px;
+    margin: 50px auto;
+`;
+
 export default props => {
     return(        
         <Switch>

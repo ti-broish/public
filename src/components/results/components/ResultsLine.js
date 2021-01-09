@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { formatCount, formatPercentage } from '../Util';
+import { formatCount, formatPercentage } from '../../../Util';
 
 import styled from 'styled-components';
 
@@ -90,8 +90,8 @@ export default props => {
                     const percentage = party.validVotes / props.totalValid;
                     if(firstParty && firstParty.number === party.number) return null;
                     else return(
-                        <div 
-                            className={props.thin? 'result-line-segment thin' : 'result-line-segment'}
+                        <ResultLineSegment 
+                            className={props.thin? 'thin' : ''}
                             style={{
                                 backgroundColor: party.color,
                                 width: `${percentage * 100}%`
@@ -101,8 +101,8 @@ export default props => {
                     )  
                 })
             }
-            <div 
-                className={props.thin? 'result-line-segment thin' : 'result-line-segment'}
+            <ResultLineSegment 
+                className={props.thin? 'thin' : ''}
                 style={{width: `${(props.totalValid - displayPartiesTotal) / props.totalValid * 100}%`}}
                 data-tip={generateTooltip('#ddd', 'Други', (props.totalValid - displayPartiesTotal) / props.totalValid, props.totalValid - displayPartiesTotal, props.totalInvalid - displayPartiesTotalInvalid)}
             />

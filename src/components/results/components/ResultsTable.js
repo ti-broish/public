@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { formatCount, formatPercentage } from '../Util';
+import { formatCount, formatPercentage } from '../../../Util';
 
 import styled from 'styled-components';
 
@@ -70,7 +70,7 @@ export default props => {
     let thresholdPlaced = false;
 
     return(
-        <table className='results-table'>
+        <ResultsTableDiv>
             <tbody>
                 {
                     displayParties.map(party => {
@@ -129,6 +129,6 @@ export default props => {
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </ResultsTableDiv>
     )
 }

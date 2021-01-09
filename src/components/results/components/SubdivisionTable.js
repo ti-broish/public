@@ -1,70 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ResultsLine from './ResultsLine.js';
 
 import styled from 'styled-components';
 
-const SubdivisionTableDiv = styled.table`
-    width 100%
-    color #666
-    font-size 22px
+import { ElectionContext } from '../Election';
 
-    td
-        padding 5px 20px
-        box-sizing border-box
+export const SubdivisionTableDiv = styled.table`
+    width: 100%;
+    color: #666;
+    font-size: 22px;
 
-    td:nth-child(1)
-        text-align right
-        width 280px
+    td {
+        padding: 5px 20px;
+        box-sizing: border-box;
+    }
 
-    td:nth-child(2)
-        width calc(100% - 280px)
+    td:nth-child(1) {
+        text-align: right;
+        width: 280px;
+    }
 
-    a
-        color blue
+    td:nth-child(2) {
+        width: calc(100% - 280px);
+    }
+
+    a {
+        color: blue;
+    }
 `;
 
 const SubdivisionTableControls = styled.div`
-    text-align left
+    text-align: left;
 
-    button
-        border none
-        background none
-        padding 10px
+    button {
+        border: none;
+        background: none;
+        padding: 10px;
 
-        &:hover
-            cursor pointer
+        &:hover {
+            cursor: pointer;
+        }
 
-        &.selected
-            color white
-            background-color #444
-            border-radius 10px
+        &.selected {
+            color: white;
+            background-color: #444;
+            border-radius: 10px;
+        }
+    }
 `;
 
 const SubdivisionControlsParty = styled.div`
-text-align left
-height 40px
-position relative
-margin-top 5px
+    text-align: left;
+    height: 40px;
+    position: relative;
+    margin-top: 5px;
 
-button
-    border none
-    background none
-    padding 5px
+    button {
+        border: none;
+        background: none;
+        padding: 5px;
 
-    &:hover
-        cursor pointer
+        &:hover {
+            cursor: pointer;
+        }
 
-    &.selected
-        color white
-        background-color #888
-        border-radius 10px
+        &.selected {
+            color: white;
+            background-color: #888;
+            border-radius: 10px;
+        }
+    }
 `;
 
 export default props => {
     const [mode, setMode] = useState('distribution');
-    const [singleParty, setSingleParty] = useState(''); 
+    const [singleParty, setSingleParty] = useState('');
+    const { election } = useContext(ElectionContext);
 
     let displayParties = [];
 
@@ -106,14 +119,14 @@ export default props => {
     };
 
     return(
-        <div className='subdivision-table'>
-            <div className='controls'>
+        <div>
+            <SubdivisionTableControls>
                 <button className={mode === 'distribution'? 'selected' : ''}  onClick={()=>setMode('distribution')}>Разпределение</button>
                 <button className={mode === 'voters'? 'selected' : ''}  onClick={()=>setMode('voters')}>Избиратели</button>
                 <button className={mode === 'turnout'? 'selected' : ''}  onClick={()=>setMode('turnout')}>Активност</button>
                 <button className={mode === 'protocols'? 'selected' : ''}  onClick={()=>setMode('protocols')}>Протоколи</button>
-            </div>
-            <div className='controls-party'>
+            </SubdivisionTableControls>
+            <SubdivisionControlsParty>
             { 
                 mode !== 'distribution'? null : [
                     'Подреди по партия: ',
@@ -125,14 +138,14 @@ export default props => {
                     )
                 ]
             }
-            </div>
-            <table>
+            </SubdivisionControlsParty>
+            <SubdivisionTableDiv>
             <tbody>
             {
                 sorted(props.subdivisions).map(subdivision =>
                     <tr>
                         <td>
-                            <Link to={`region/${subdivision.number}`}>
+                            <Link to={`/results/${election}/${subdivision.number}`}>
                                 {subdivision.number} {subdivision.name}
                             </Link>
                         </td>
@@ -150,7 +163,7 @@ export default props => {
                 )
             }
             </tbody>
-            </table>
+            </SubdivisionTableDiv>
         </div>
     )
 }

@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
-//import axios from 'axios';
+import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-/*import { Link } from 'react-router-dom';
-import LoadingScreen from './layout/LoadingScreen';
-import ResultsTable from './ResultsTable';
-import ResultsLine from './ResultsLine';*/
+import { Link } from 'react-router-dom';
+import LoadingScreen from '../layout/LoadingScreen';
+import ResultsTable from '../components/ResultsTable';
+import ResultsLine from '../components/ResultsLine';
+
+import { ElectionContext } from '../Election';
+import { SubdivisionTableDiv } from '../components/SubdivisionTable';
 
 export default props => {
-    const params = useParams();
-
-    return(
-        <div>
-            <h1>Градски район {params.unit}</h1>
-        </div>
-    );
-
-    /*const params = useParams();
+    const { unit } = useParams();
     const history = useHistory();
+    const { election, globalData } = useContext(ElectionContext);
 
     const [data, setData] = useState(null);
 
     const refreshResults = () => {
-        axios.get(`/data/districts/district-${params.district}.json`).then(res => {
-            console.log(res.data);
+        axios.get(`/results/${election}/${unit}/routeData.json`).then(res => {
             setData(res.data);
-        }).catch(err => { if(!data) history.push('/') });
+        }).catch(err => { if(!data) history.push('/'); });
     };
 
     useEffect(() => {
@@ -57,25 +52,29 @@ export default props => {
 
                 <ResultsTable
                     results={data.results} 
-                    parties={props.globalData.parties} 
+                    parties={globalData.parties} 
                     totalValid={data.validVotes} 
                     totalInvalid={data.invalidVotes}
                 />
 
                 <h1>Секции</h1>
                 <div className='subdivision-table'>
-                    <table>
+                    <SubdivisionTableDiv>
                         <tbody>
                         {
                             Object.keys(data.addresses).map(addressKey => [
                                 <tr><td colSpan={2} style={{textAlign: 'left'}}><b>{addressKey}</b></td></tr>,
                                 data.addresses[addressKey].sections.map(sectionKey =>
                                     <tr>
-                                        <td>Секция {sectionKey}</td>
+                                        <td>
+                                            <Link to={`/results/${election}/${unit}${sectionKey}`}>
+                                                Секция {sectionKey}
+                                            </Link>
+                                        </td>
                                         <td>
                                             <ResultsLine
                                                 results={data.sections[sectionKey].results} 
-                                                parties={props.globalData.parties}
+                                                parties={globalData.parties}
                                                 totalValid={data.sections[sectionKey].validVotes} 
                                                 totalInvalid={data.sections[sectionKey].invalidVotes}
                                                 thin
@@ -94,7 +93,7 @@ export default props => {
                                         <td>
                                             <ResultsLine
                                                 results={data.sections[sectionKey].results} 
-                                                parties={props.globalData.parties}
+                                                parties={globalData.parties}
                                                 totalValid={data.sections[sectionKey].validVotes} 
                                                 totalInvalid={data.sections[sectionKey].invalidVotes}
                                                 thin
@@ -105,8 +104,8 @@ export default props => {
                             ]
                         }
                         </tbody>
-                    </table>
+                    </SubdivisionTableDiv>
                 </div>
             </div>
-    );*/
+    );
 };

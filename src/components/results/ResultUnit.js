@@ -10,6 +10,8 @@ import Section from './units/Section.js';
 export default props => {
     const params = useParams();
 
+    useEffect(() => {window.scrollTo(0, 0);}, []);
+
     return(
         params.unit.length === 2
         ? <Region/> 

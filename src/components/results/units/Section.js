@@ -1,39 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
-//import axios from 'axios';
+import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-/*import { Link } from 'react-router-dom';
-import LoadingScreen from './layout/LoadingScreen';
-import { formatCount, formatPercentage } from '../Util';*/
+import { Link } from 'react-router-dom';
+import LoadingScreen from '../layout/LoadingScreen';
+import { formatCount, formatPercentage } from '../../../Util';
+
+import { ElectionContext } from '../Election'; 
 
 export default props => {
-    const params = useParams();
-
-    return(
-        <div>
-            <h1>Секция {params.unit}</h1>
-        </div>
-    );
-
-    /*const params = useParams();
     const history = useHistory();
+    const { election, globalData } = useContext(ElectionContext);
+    const { unit } = useParams();
 
     const [data, setData] = useState(null);
 
-    console.log(`/data/sections/section-${params.section}.json`);
-
     useEffect(() => {
-        axios.get(`/data/sections/section-${params.section}.json`).then(res => {
-            console.log(res.data);
+        axios.get(`/results/${election}/${unit}/routeData.json`).then(res => {
             setData(res.data);
         }).catch(err => { if(!data) history.push('/') });
     }, []);
 
-    let displayParties = [];
+    //let displayParties = [];
 
-    if(data) {
-        displayParties = data.parties.sort((a, b) => b.validVotes - a.validVotes).slice(0, 7);
-    }
+    //if(data) {
+    //    displayParties = data.parties.sort((a, b) => b.validVotes - a.validVotes).slice(0, 7);
+    //}
 
     return (
         !data? <LoadingScreen/> :
@@ -112,6 +104,7 @@ export default props => {
                         </tr>
                     </tbody>
                 </table>
+                {/*
                 <h1>Резултати по партии</h1>
                 <table>
                     <tbody>
@@ -127,6 +120,7 @@ export default props => {
                         }
                     </tbody>
                 </table>
+                    */}
             </div>
-    );*/
+    );
 };

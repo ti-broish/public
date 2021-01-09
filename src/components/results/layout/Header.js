@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
-import { Wrapper } from '../App';
+import { Wrapper } from '../Results';
 
 import styled from 'styled-components';
 
@@ -40,17 +40,22 @@ const AppTitle = styled.span`
     font-size: 34px;
 `;
 
+const LogoImage = styled.img`
+    height: 40px;
+`;
+
 export default props => {
-    return ([
-        <HeaderCompensator/>,
-        <HeaderDiv>
-            <Wrapper>
-                <Link to='/'>
-                    <Logo fill={'#fff'}/>
-                    <AppTitle>ти броиш</AppTitle>
-                </Link>
-                <h2>Парламентарни избори 2017</h2>
-            </Wrapper>
-        </HeaderDiv>
-    ])
+    return (
+        <div>
+            <HeaderCompensator/>
+            <HeaderDiv>
+                <Wrapper style={{margin: '0 auto'}}>
+                    <Link to='/'>
+                        <LogoImage src='/brand/logo_horizontal_white.png?v=2'/>
+                    </Link>
+                    <h2>Парламентарни избори 2017</h2>
+                </Wrapper>
+            </HeaderDiv>
+        </div>
+    );
 };

@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 
-/*import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip';
 
-import BulgariaMap from './BulgariaMap';
-import ResultsTable from './ResultsTable';
-import ResultsLine from './ResultsLine';
+import BulgariaMap from '../components/BulgariaMap';
+import ResultsTable from '../components/ResultsTable';
+import ResultsLine from '../components/ResultsLine';
 
-import { formatCount, formatPercentage } from '../Util';
-import SubdivisionTable from './SubdivisionTable';*/
+import { formatCount, formatPercentage } from '../../../Util';
+import SubdivisionTable from '../components/SubdivisionTable';
+
+import { ElectionContext } from '../Election.js';
 
 export default props => {
-
-    useEffect(() => {window.scrollTo(0, 0);}, []);
+    const { globalData } = useContext(ElectionContext);
 
     return(
         <div id='global-props.globalData'>
-            <h1>Това са глобални резултати</h1>
-            {/*
             <ReactTooltip 
                 multiline={true} 
                 html={true}
@@ -35,36 +34,36 @@ export default props => {
                 }}
             />
             <BulgariaMap 
-                regions={props.globalData.regions} 
-                parties={props.globalData.parties}
-                results={props.globalData.results} 
+                regions={globalData.regions} 
+                parties={globalData.parties}
+                results={globalData.results} 
             />
             <ResultsTable 
-                results={props.globalData.results} 
-                parties={props.globalData.parties} 
-                totalValid={props.globalData.validVotes} 
-                totalInvalid={props.globalData.invalidVotes}
+                results={globalData.results} 
+                parties={globalData.parties} 
+                totalValid={globalData.validVotes} 
+                totalInvalid={globalData.invalidVotes}
                 showThreshold={true}
             />
-            <p>Общо действителни гласове: {formatCount(props.globalData.validVotes)}</p>
-            <p>Общо недействителни гласове: {formatCount(props.globalData.invalidVotes)}</p>
-            <p>Общо гласове: {formatCount(props.globalData.validVotes + props.globalData.invalidVotes)}</p>
-            <p>Общо избиратели: {formatCount(props.globalData.voters)}</p>
+            <p>Общо действителни гласове: {formatCount(globalData.validVotes)}</p>
+            <p>Общо недействителни гласове: {formatCount(globalData.invalidVotes)}</p>
+            <p>Общо гласове: {formatCount(globalData.validVotes + globalData.invalidVotes)}</p>
+            <p>Общо избиратели: {formatCount(globalData.voters)}</p>
             
             <h1>Избирателни райони</h1>
             <SubdivisionTable
-                parties={props.globalData.parties}
-                results={props.globalData.results}
-                subdivisions={Object.keys(props.globalData.regions).map(key => {
+                parties={globalData.parties}
+                results={globalData.results}
+                subdivisions={Object.keys(globalData.regions).map(key => {
                     return {
                         number: key,
-                        name: props.globalData.regions[key].name,
-                        results: props.globalData.regions[key].results,
-                        totalValid: props.globalData.regions[key].validVotes,
-                        totalInvalid: props.globalData.regions[key].invalidVotes,
+                        name: globalData.regions[key].name,
+                        results: globalData.regions[key].results,
+                        totalValid: globalData.regions[key].validVotes,
+                        totalInvalid: globalData.regions[key].invalidVotes,
                     };
                 })}
-            />*/}
+            />
         </div>
     );
 };

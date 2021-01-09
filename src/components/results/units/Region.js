@@ -1,45 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
-//import axios from 'axios';
+import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-/*import { Link } from 'react-router-dom';
-import LoadingScreen from './layout/LoadingScreen';
+import { Link } from 'react-router-dom';
+import LoadingScreen from '../layout/LoadingScreen';
 
-import ResultsTable from './ResultsTable';
-import ResultsLine from './ResultsLine';*/
+import ResultsTable from '../components/ResultsTable';
+import ResultsLine from '../components/ResultsLine';
+
+import { ElectionContext } from '../Election'; 
+import { SubdivisionTableDiv } from '../components/SubdivisionTable';
 
 export default props => {
-    const params = useParams();
-
-    return(
-        <div>
-            <h1>Избирателен район {params.unit}</h1>
-        </div>
-    )
-
-    /*const history = useHistory();
+    const { election, globalData } = useContext(ElectionContext);
+    const { unit } = useParams();
+    const history = useHistory();
 
     const [data, setData] = useState(null);
 
     const refreshResults = () => {
-        axios.get(`/data/regions/region-${params.region}.json`).then(res => {
-            console.log(res.data);
+        axios.get(`/results/${election}/${unit}/routeData.json`).then(res => {
             setData(res.data);
         }).catch(err => { if(!data) history.push('/') });
     };
 
     useEffect(() => {
         refreshResults();
-    }, []);*/
+    }, []);
 
-    /*return(
+    return(
         !data? <LoadingScreen/> :
             <div id='regional-data'>
                 <Link to='/'>Назад</Link>
                 <h1>{data.name}</h1>
                 <ResultsTable
                     results={data.results} 
-                    parties={props.globalData.parties} 
+                    parties={globalData.parties} 
                     totalValid={data.validVotes} 
                     totalInvalid={data.invalidVotes}
                 />
@@ -47,20 +43,20 @@ export default props => {
                 {
                     Object.keys(data.admunits).length === 1?
                         <div className='subdivision-table'>
-                            <table>
+                            <SubdivisionTableDiv>
                                 <tbody>
                                 {
                                     Object.keys(data.admunits[Object.keys(data.admunits)[0]].districts).map(districtKey => 
                                         <tr>
                                             <td>
-                                            <Link to={`/district/${params.region}-${Object.keys(data.admunits)[0]}-${districtKey}`}>
+                                            <Link to={`/results/${election}/${unit}${Object.keys(data.admunits)[0]}${districtKey}`}>
                                                 {data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].name}
                                             </Link>
                                             </td>
                                             <td>
                                             <ResultsLine
                                                 results={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].results} 
-                                                parties={props.globalData.parties}
+                                                parties={globalData.parties}
                                                 totalValid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].validVotes} 
                                                 totalInvalid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].invalidVotes}
                                                 thin
@@ -70,23 +66,23 @@ export default props => {
                                     )
                                 }
                                 </tbody>
-                            </table>
+                            </SubdivisionTableDiv>
                         </div> :
                         <div className='subdivision-table'>
-                        <table>
+                        <SubdivisionTableDiv>
                             <tbody>
                             {
                                 Object.keys(data.admunits).map(key => 
                                     <tr>
                                         <td>
-                                            <Link to={`/admunit/${params.region}-${key}`}>
+                                            <Link to={`/results/${election}/${unit}${key}`}>
                                                 {data.admunits[key].name}
                                             </Link>
                                         </td>
                                         <td>
                                         <ResultsLine
                                             results={data.admunits[key].results} 
-                                            parties={props.globalData.parties}
+                                            parties={globalData.parties}
                                             totalValid={data.admunits[key].validVotes} 
                                             totalInvalid={data.admunits[key].invalidVotes}
                                             thin
@@ -96,9 +92,9 @@ export default props => {
                                 )
                             }
                             </tbody>
-                        </table>
+                        </SubdivisionTableDiv>
                         </div>
                 }
             </div>
-    );*/
+    );
 };
