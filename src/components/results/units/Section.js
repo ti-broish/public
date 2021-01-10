@@ -7,6 +7,7 @@ import LoadingScreen from '../layout/LoadingScreen';
 import { formatCount, formatPercentage } from '../../../Util';
 
 import { ElectionContext } from '../Election'; 
+import Crumbs from '../components/Crumbs';
 
 export default props => {
     const history = useHistory();
@@ -30,7 +31,7 @@ export default props => {
     return (
         !data? <LoadingScreen/> :
             <div id='section-data'>
-                <Link to={`/region/${data.region}`}>Обратно</Link>
+                <Crumbs data={data}/>
                 <h1>Секция {data.number}</h1>
                 <table>
                     <tbody>

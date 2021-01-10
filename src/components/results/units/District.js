@@ -9,6 +9,7 @@ import ResultsLine from '../components/ResultsLine';
 
 import { ElectionContext } from '../Election';
 import { SubdivisionTableDiv } from '../components/SubdivisionTable';
+import Crumbs from '../components/Crumbs';
 
 export default props => {
     const { unit } = useParams();
@@ -47,8 +48,8 @@ export default props => {
     return(
         !data? <LoadingScreen/> :
             <div>
-                <Link to='/'>Назад</Link>
-                <h1>Район (на град)</h1>
+                <Crumbs data={data}/>
+                <h1>Район {data.name}</h1>
 
                 <ResultsTable
                     results={data.results} 
@@ -58,54 +59,52 @@ export default props => {
                 />
 
                 <h1>Секции</h1>
-                <div className='subdivision-table'>
-                    <SubdivisionTableDiv>
-                        <tbody>
-                        {
-                            Object.keys(data.addresses).map(addressKey => [
-                                <tr><td colSpan={2} style={{textAlign: 'left'}}><b>{addressKey}</b></td></tr>,
-                                data.addresses[addressKey].sections.map(sectionKey =>
-                                    <tr>
-                                        <td>
-                                            <Link to={`/results/${election}/${unit}${sectionKey}`}>
-                                                Секция {sectionKey}
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <ResultsLine
-                                                results={data.sections[sectionKey].results} 
-                                                parties={globalData.parties}
-                                                totalValid={data.sections[sectionKey].validVotes} 
-                                                totalInvalid={data.sections[sectionKey].invalidVotes}
-                                                thin
-                                            /> 
-                                        </td>
-                                    </tr>
-                                )
-                            ])
-                        }
-                        {
-                            sectionsWithoutAddress.length === 0? null : [
-                                <tr><td><b>Неизяснен адрес</b></td><td></td></tr>,
-                                sectionsWithoutAddress.map(sectionKey =>
-                                    <tr>
-                                        <td>Секция {sectionKey}</td>
-                                        <td>
-                                            <ResultsLine
-                                                results={data.sections[sectionKey].results} 
-                                                parties={globalData.parties}
-                                                totalValid={data.sections[sectionKey].validVotes} 
-                                                totalInvalid={data.sections[sectionKey].invalidVotes}
-                                                thin
-                                            /> 
-                                        </td>
-                                    </tr>
-                                )
-                            ]
-                        }
-                        </tbody>
-                    </SubdivisionTableDiv>
-                </div>
+                <SubdivisionTableDiv>
+                    <tbody>
+                    {
+                        Object.keys(data.addresses).map(addressKey => [
+                            <tr><td colSpan={2} style={{textAlign: 'left'}}><b>{addressKey}</b></td></tr>,
+                            data.addresses[addressKey].sections.map(sectionKey =>
+                                <tr>
+                                    <td>
+                                        <Link to={`/results/${election}/${unit}${sectionKey}`}>
+                                            Секция {sectionKey}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <ResultsLine
+                                            results={data.sections[sectionKey].results} 
+                                            parties={globalData.parties}
+                                            totalValid={data.sections[sectionKey].validVotes} 
+                                            totalInvalid={data.sections[sectionKey].invalidVotes}
+                                            thin
+                                        /> 
+                                    </td>
+                                </tr>
+                            )
+                        ])
+                    }
+                    {
+                        sectionsWithoutAddress.length === 0? null : [
+                            <tr><td><b>Неизяснен адрес</b></td><td></td></tr>,
+                            sectionsWithoutAddress.map(sectionKey =>
+                                <tr>
+                                    <td>Секция {sectionKey}</td>
+                                    <td>
+                                        <ResultsLine
+                                            results={data.sections[sectionKey].results} 
+                                            parties={globalData.parties}
+                                            totalValid={data.sections[sectionKey].validVotes} 
+                                            totalInvalid={data.sections[sectionKey].invalidVotes}
+                                            thin
+                                        /> 
+                                    </td>
+                                </tr>
+                            )
+                        ]
+                    }
+                    </tbody>
+                </SubdivisionTableDiv>
             </div>
     );
 };

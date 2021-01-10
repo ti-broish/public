@@ -10,6 +10,7 @@ import ResultsLine from '../components/ResultsLine';
 
 import { ElectionContext } from '../Election'; 
 import { SubdivisionTableDiv } from '../components/SubdivisionTable';
+import Crumbs from '../components/Crumbs';
 
 export default props => {
     const { election, globalData } = useContext(ElectionContext);
@@ -30,9 +31,9 @@ export default props => {
 
     return(
         !data? <LoadingScreen/> :
-            <div id='regional-data'>
-                <Link to='/'>Назад</Link>
-                <h1>{data.name}</h1>
+            <div>
+                <Crumbs data={data}/>
+                <h1>{data.number}. {data.name}</h1>
                 <ResultsTable
                     results={data.results} 
                     parties={globalData.parties} 
@@ -68,7 +69,6 @@ export default props => {
                                 </tbody>
                             </SubdivisionTableDiv>
                         </div> :
-                        <div className='subdivision-table'>
                         <SubdivisionTableDiv>
                             <tbody>
                             {
@@ -93,7 +93,6 @@ export default props => {
                             }
                             </tbody>
                         </SubdivisionTableDiv>
-                        </div>
                 }
             </div>
     );

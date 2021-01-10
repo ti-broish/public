@@ -138,6 +138,7 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
         validVotes: 0,
         invalidVotes: 0,
         voters: 0,
+        name: 'Парламентарни избори 2017'
     };
     
     for(const key of Object.keys(sectionList)) {
@@ -149,12 +150,13 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
         const regions = global.regions;
     
         if(!regions[region]) {
-            let regionName = sectionList[key]
+            let regionName = sectionList[key];
             regionName = regionName.name.slice(4, regionName.length).toLowerCase();
             regionName = regionName.split(' ').map(word => word[0].toUpperCase() + word.slice(1));
     
             regions[region] = {
                 name: regionName.reduce((word, acc) => word + ' ' + acc, ''),
+                number: sectionList[key].region,
                 results: {},
                 admunits: {},
                 validVotes: 0,
@@ -286,7 +288,12 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
     
         const sections = districts[district].sections;
     
-        districts[district].sections[section] = { results: {},  ...sectionList[key], ...protocols[key]};
+        districts[district].sections[section] = { 
+            results: {},  
+            ...sectionList[key], 
+            ...protocols[key],
+            name: `Секция ${section}`,
+        };
         if(district === '00')
             admunits[admunit].towns[townId].districts[district].sections.push(section);
         
@@ -379,50 +386,81 @@ const optimizeData = global => {
 const separateUnits = global => {
     const units = {};
 
-    for(const region of Object.keys(global.regions)) {
-        for(const admunit of Object.keys(global.regions[region].admunits)) {
-            for(const district of Object.keys(global.regions[region].admunits[admunit].districts)) {
-                for(const sectionKey of Object.keys(global.regions[region].admunits[admunit].districts[district].sections)) {
-                    const section = global.regions[region].admunits[admunit].districts[district].sections[sectionKey];
+    for(const regionKey of Object.keys(global.regions)) {
+        const region = global.regions[regionKey];
+        for(const admunitKey of Object.keys(region.admunits)) {
+            const admunit = region.admunits[admunitKey];
+            for(const districtKey of Object.keys(admunit.districts)) {
+                const district = admunit.districts[districtKey];
+                for(const sectionKey of Object.keys(district.sections)) {
+                    const section = district.sections[sectionKey];
+
+                    section.crumbs = [
+                        { name: region.name, unit: regionKey },
+                        { name: admunit.name, unit: `${regionKey}${admunitKey}`},
+                    ];
+
+                    if(districtKey !== '00')
+                        section.crumbs.push({ name: district.name, unit: `${regionKey}${admunitKey}${districtKey}`});
+
                     units[section.number] = JSON.stringify(section);
-                    //fs.writeFileSync(`../public/data/sections/section-${section.number}.json`, JSON.stringify(section));
                 }
             }
         }
     }
 
-    for(const region of Object.keys(global.regions)) {
-        for(const admunit of Object.keys(global.regions[region].admunits)) {
-            for(const districtKey of Object.keys(global.regions[region].admunits[admunit].districts)) {
-                const district = global.regions[region].admunits[admunit].districts[districtKey];
+    for(const regionKey of Object.keys(global.regions)) {
+        const region = global.regions[regionKey];
+        for(const admunitKey of Object.keys(region.admunits)) {
+            const admunit = region.admunits[admunitKey];
+            for(const districtKey of Object.keys(admunit.districts)) {
+                const district = admunit.districts[districtKey];
                 if(districtKey != '00') {
                     for(const sectionKey of Object.keys(district.sections)) {
                         const section = district.sections[sectionKey];
-                        district.sections[sectionKey] = {results: section.results, validVotes: section.validVotes, invalidVotes: section.invalidVotes};
+                        district.sections[sectionKey] = {
+                            results: section.results, 
+                            validVotes: section.validVotes, 
+                            invalidVotes: section.invalidVotes
+                        };
                     }
-                    units[`${region}${admunit}${districtKey}`] = JSON.stringify(district);
-                    //fs.writeFileSync(`../public/data/districts/district-${region}-${admunit}-${districtKey}.json`, JSON.stringify(district));
+
+                    district.crumbs = [
+                        { name: region.name, unit: regionKey },
+                        { name: admunit.name, unit: `${regionKey}${admunitKey}`},
+                    ];
+
+                    units[`${regionKey}${admunitKey}${districtKey}`] = JSON.stringify(district);
                 }
             }
         }
     }
 
-    for(const region of Object.keys(global.regions)) {
-        for(const admunitKey of Object.keys(global.regions[region].admunits)) {
-            const admunit = global.regions[region].admunits[admunitKey];
+    for(const regionKey of Object.keys(global.regions)) {
+        const region = global.regions[regionKey];
+        for(const admunitKey of Object.keys(region.admunits)) {
+            const admunit = region.admunits[admunitKey];
             for(const districtKey of Object.keys(admunit.districts)) {
                 const district = admunit.districts[districtKey];
                 if(districtKey == '00') {
                     for(const sectionKey of Object.keys(district.sections)) {
                         const section = district.sections[sectionKey];
-                        district.sections[sectionKey] = {results: section.results, validVotes: section.validVotes, invalidVotes: section.invalidVotes};
+                        district.sections[sectionKey] = {
+                            results: section.results, 
+                            validVotes: section.validVotes, 
+                            invalidVotes: section.invalidVotes
+                        };
                     }
                 } else {
                     delete admunit.districts[districtKey].sections;
                 }
             }
-            units[`${region}${admunitKey}`] = JSON.stringify(admunit);
-            //fs.writeFileSync(`../public/data/admunits/admunit-${region}-${admunitKey}.json`, JSON.stringify(admunit));
+
+            admunit.crumbs = [
+                { name: region.name, unit: regionKey },
+            ];
+
+            units[`${regionKey}${admunitKey}`] = JSON.stringify(admunit);
         }
     }
 
@@ -437,7 +475,6 @@ const separateUnits = global => {
             }
         }
         units[`${regionKey}`] = JSON.stringify(region);
-        //fs.writeFileSync(`../public/data/regions/region-${regionKey}.json`, JSON.stringify(region));
     }
 
     for(const regionKey of Object.keys(global.regions)) {
@@ -446,7 +483,6 @@ const separateUnits = global => {
     }
 
     units['index'] = JSON.stringify(global);
-    //fs.writeFileSync(`../public/data/global.json`, JSON.stringify(global));
 
     return units;
 };

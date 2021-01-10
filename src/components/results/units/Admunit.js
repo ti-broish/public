@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import LoadingScreen from '../layout/LoadingScreen';
 import ResultsTable from '../components/ResultsTable';
 import ResultsLine from '../components/ResultsLine';
+import Crumbs from '../components/Crumbs';
 
 import { ElectionContext } from '../Election';
 
@@ -31,8 +32,8 @@ export default props => {
     return(
         !data? <LoadingScreen/> :
             <div>
-                <Link to='/'>Назад</Link>
-                <h1>Община (или държава)</h1>
+                <Crumbs data={data}/>
+                <h1>Община {data.name}</h1>
                 <ResultsTable
                     results={data.results} 
                     parties={globalData.parties} 
@@ -40,59 +41,57 @@ export default props => {
                     totalInvalid={data.invalidVotes}
                 />
                 <h1>Райони/секции</h1>
-                <div className='subdivision-table'>
-                    <SubdivisionTableDiv>
-                    <tbody>
-                    {
-                        Object.keys(data.towns).map(key => [
-                            <tr>
-                                <td style={{textAlign: 'left'}}><b>{data.towns[key].name}</b></td>
-                                <td></td>
-                            </tr>,
-                            Object.keys(data.towns[key].districts).map(districtKey =>
-                                districtKey === '00'? null :
-                                    <tr>
-                                        <td><Link to={`/results/${election}/${unit}${districtKey}`}>
-                                                {data.districts[districtKey].name}
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <ResultsLine
-                                                results={data.districts[districtKey].results} 
-                                                parties={globalData.parties}
-                                                totalValid={data.districts[districtKey].validVotes} 
-                                                totalInvalid={data.districts[districtKey].invalidVotes}
-                                                thin
-                                            /> 
-                                        </td>
-                                    </tr>
-                            ),
-                            Object.keys(data.towns[key].districts).map(districtKey => 
-                                districtKey !== '00'? null : 
-                                data.towns[key].districts[districtKey].sections.map(sectionKey =>
+                <SubdivisionTableDiv>
+                <tbody>
+                {
+                    Object.keys(data.towns).map(key => [
+                        <tr>
+                            <td style={{textAlign: 'left'}}><b>{data.towns[key].name}</b></td>
+                            <td></td>
+                        </tr>,
+                        Object.keys(data.towns[key].districts).map(districtKey =>
+                            districtKey === '00'? null :
                                 <tr>
-                                    <td>
-                                        <Link to={`/results/${election}/${unit}00${sectionKey}`}>
-                                            Секция {sectionKey}
+                                    <td><Link to={`/results/${election}/${unit}${districtKey}`}>
+                                            {data.districts[districtKey].name}
                                         </Link>
                                     </td>
                                     <td>
                                         <ResultsLine
-                                            results={data.districts[districtKey].sections[sectionKey].results} 
+                                            results={data.districts[districtKey].results} 
                                             parties={globalData.parties}
-                                            totalValid={data.districts[districtKey].sections[sectionKey].validVotes} 
-                                            totalInvalid={data.districts[districtKey].sections[sectionKey].invalidVotes}
+                                            totalValid={data.districts[districtKey].validVotes} 
+                                            totalInvalid={data.districts[districtKey].invalidVotes}
                                             thin
                                         /> 
                                     </td>
                                 </tr>
-                                )
+                        ),
+                        Object.keys(data.towns[key].districts).map(districtKey => 
+                            districtKey !== '00'? null : 
+                            data.towns[key].districts[districtKey].sections.map(sectionKey =>
+                            <tr>
+                                <td>
+                                    <Link to={`/results/${election}/${unit}00${sectionKey}`}>
+                                        Секция {sectionKey}
+                                    </Link>
+                                </td>
+                                <td>
+                                    <ResultsLine
+                                        results={data.districts[districtKey].sections[sectionKey].results} 
+                                        parties={globalData.parties}
+                                        totalValid={data.districts[districtKey].sections[sectionKey].validVotes} 
+                                        totalInvalid={data.districts[districtKey].sections[sectionKey].invalidVotes}
+                                        thin
+                                    /> 
+                                </td>
+                            </tr>
                             )
-                        ])
-                    }
-                    </tbody>
-                    </SubdivisionTableDiv>
-                </div>
+                        )
+                    ])
+                }
+                </tbody>
+                </SubdivisionTableDiv>
             </div>
     );
 };
