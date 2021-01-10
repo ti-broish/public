@@ -9,7 +9,7 @@ import ResultsTable from '../components/ResultsTable';
 import ResultsLine from '../components/ResultsLine';
 
 import { ElectionContext } from '../Election'; 
-import { SubdivisionTableDiv } from '../components/SubdivisionTable';
+import SubdivisionTable from '../components/SubdivisionTable';
 import Crumbs from '../components/Crumbs';
 
 export default props => {
@@ -43,56 +43,35 @@ export default props => {
                 <h1>{Object.keys(data.admunits).length === 1? 'Райони' : 'Общини'}</h1>
                 {
                     Object.keys(data.admunits).length === 1?
-                        <div className='subdivision-table'>
-                            <SubdivisionTableDiv>
-                                <tbody>
-                                {
-                                    Object.keys(data.admunits[Object.keys(data.admunits)[0]].districts).map(districtKey => 
-                                        <tr>
-                                            <td>
-                                            <Link to={`/results/${election}/${unit}${Object.keys(data.admunits)[0]}${districtKey}`}>
-                                                {data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].name}
-                                            </Link>
-                                            </td>
-                                            <td>
-                                            <ResultsLine
-                                                results={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].results} 
-                                                parties={globalData.parties}
-                                                totalValid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].validVotes} 
-                                                totalInvalid={data.admunits[Object.keys(data.admunits)[0]].districts[districtKey].invalidVotes}
-                                                thin
-                                            /> 
-                                            </td>
-                                        </tr>
-                                    )
-                                }
-                                </tbody>
-                            </SubdivisionTableDiv>
-                        </div> :
-                        <SubdivisionTableDiv>
-                            <tbody>
-                            {
-                                Object.keys(data.admunits).map(key => 
-                                    <tr>
-                                        <td>
-                                            <Link to={`/results/${election}/${unit}${key}`}>
-                                                {data.admunits[key].name}
-                                            </Link>
-                                        </td>
-                                        <td>
-                                        <ResultsLine
-                                            results={data.admunits[key].results} 
-                                            parties={globalData.parties}
-                                            totalValid={data.admunits[key].validVotes} 
-                                            totalInvalid={data.admunits[key].invalidVotes}
-                                            thin
-                                        /> 
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                            </tbody>
-                        </SubdivisionTableDiv>
+                        <SubdivisionTable
+                            parties={globalData.parties}
+                            results={globalData.results}
+                            subdivisions={Object.keys(data.admunits[Object.keys(data.admunits)[0]].districts).map(key => {
+                                const district = data.admunits[Object.keys(data.admunits)[0]].districts[key];
+                                return {
+                                    number: key,
+                                    name: district.name,
+                                    results: district.results,
+                                    totalValid: district.validVotes,
+                                    totalInvalid: district.invalidVotes,
+                                    voters: district.voters,
+                                };
+                            })}
+                        /> :
+                        <SubdivisionTable
+                            parties={globalData.parties}
+                            results={globalData.results}
+                            subdivisions={Object.keys(data.admunits).map(key => {
+                                return {
+                                    number: key,
+                                    name: data.admunits[key].name,
+                                    results: data.admunits[key].results,
+                                    totalValid: data.admunits[key].validVotes,
+                                    totalInvalid: data.admunits[key].invalidVotes,
+                                    voters: data.admunits[key].voters,
+                                };
+                            })}
+                        />
                 }
             </div>
     );

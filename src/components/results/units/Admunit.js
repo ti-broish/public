@@ -10,7 +10,7 @@ import Crumbs from '../components/Crumbs';
 
 import { ElectionContext } from '../Election';
 
-import { SubdivisionTableDiv } from '../components/SubdivisionTable';
+import SubdivisionTable, { SubdivisionTableDiv } from '../components/SubdivisionTable';
 
 export default props => {
     const { unit } = useParams();
@@ -33,7 +33,10 @@ export default props => {
         !data? <LoadingScreen/> :
             <div>
                 <Crumbs data={data}/>
-                <h1>Община {data.name}</h1>
+                <h1>
+                    {!data.abroad? 'Община' : null}
+                    {data.name}
+                </h1>
                 <ResultsTable
                     results={data.results} 
                     parties={globalData.parties} 
@@ -41,6 +44,22 @@ export default props => {
                     totalInvalid={data.invalidVotes}
                 />
                 <h1>Райони/секции</h1>
+                {/*
+                <SubdivisionTable
+                    parties={globalData.parties}
+                    results={globalData.results}
+                    groupings={data.towns}
+                    subdivisions={Object.keys(data.admunits).map(key => {
+                        return {
+                            number: key,
+                            name: data.admunits[key].name,
+                            results: data.admunits[key].results,
+                            totalValid: data.admunits[key].validVotes,
+                            totalInvalid: data.admunits[key].invalidVotes,
+                            voters: data.admunits[key].voters,
+                        };
+                    })}
+                />*/}
                 <SubdivisionTableDiv>
                 <tbody>
                 {

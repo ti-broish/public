@@ -30,10 +30,12 @@ const renderPage = require('./renderPage.js');
 
 
 const normalizeCssStr = fs.readFileSync('./public/css/normalize.min.css', 'utf-8');
+const fontCssStr = fs.readFileSync('./public/fonts/fonts.css', 'utf-8');
 const fontAwesomeCss = require('@fortawesome/fontawesome-svg-core').dom.css();
 let additionalStyleTags = `
     <style>${normalizeCssStr}</style>
     <style>${fontAwesomeCss}</style>
+    <style>${fontCssStr}</style>
 `;  
 
 const renderHTML = renderData => {

@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { Redirect, Route, Switch, useParams, Link } from 'react-router-dom';
+import { Redirect, Route, Switch, useParams } from 'react-router-dom';
 import axios from 'axios';
-/*
-
-import Global from './subdivisions/Global';
-import Region from './subdivisions/Region';
-import Admunit from './subdivisions/Admunit';
-import District from './subdivisions/District';
-import Section from './subdivisions/Section';
-
-*/
 
 import Header from './layout/Header';
 import Footer from './layout/Footer';
@@ -22,6 +13,18 @@ import Global from './units/Global.js';
 import { Wrapper } from './Results';
 
 export const ElectionContext = React.createContext();
+
+import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
+
+const StyledTooltip = styled(ReactTooltip)`
+    background-color: white !important;
+    opacity: 1 !important;
+    color: black !important;
+    border: none;
+    padding: 0;
+    margin: 0;
+`;
 
 export default props => {
     const { election } = useParams();
@@ -35,36 +38,32 @@ export default props => {
 
     return(
         <ElectionContext.Provider value={{ election, globalData }}>
+
             <Header/>
             <Wrapper>
             {
-                !globalData? <LoadingScreen/> :
+                !globalData? <LoadingScreen/> : [
+                    <StyledTooltip 
+                        multiline={true} 
+                        html={true}
+                        border={true}
+                        borderColor={'#aaa'}
+                        arrowColor={'white'}
+                        effect={'solid'}
+                        place={'top'}
+                        scrollHide={false}
+                        backgroundColor={'#fff'}
+                        type={"dark"}
+                    />,
                     <Switch>
                         <Route path={`/results/${election}/:unit`} component={ResultUnit}/>
                         <Route path={`/results/${election}`} component={Global}/>
                         <Redirect to={`/results/${election}`}/>
                     </Switch>
+                ]
             }
             </Wrapper>
             <Footer/>
-
-            
-            {/*
-            <Header/>
-            <div className='wrapper' style={{minHeight: 'calc(100vh - 128px)', padding: '30px 0'}}>
-            {
-                !data? <LoadingScreen/> :         
-                    <Switch>
-                        <Route path='/section/:section' render={()=><Section globalData={data}/>}/>
-                        <Route path='/district/:district' render={()=><District globalData={data}/>}/>
-                        <Route path='/admunit/:admunit' render={()=><Admunit globalData={data}/>}/>
-                        <Route path='/region/:region' render={()=><Region globalData={data}/>}/>
-                        <Route exact path='/'  render={()=><Global globalData={data}/>}/>
-                        <Redirect to='/'/>
-                    </Switch>
-            }
-            </div>
-        <Footer/>*/}
         </ElectionContext.Provider>
     );
 };

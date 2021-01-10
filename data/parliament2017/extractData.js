@@ -157,6 +157,7 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
             regions[region] = {
                 name: regionName.reduce((word, acc) => word + ' ' + acc, ''),
                 number: sectionList[key].region,
+                abroad: sectionList[key].region === '32',
                 results: {},
                 admunits: {},
                 validVotes: 0,
@@ -177,6 +178,7 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
                     validVotes: 0,
                     invalidVotes: 0,
                     voters: 0,
+                    abroad: true,
                 };
             } else  {
                 let xlsRegion = region;
@@ -198,6 +200,7 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
                     validVotes: 0,
                     invalidVotes: 0,
                     voters: 0,
+                    abroad: false,
                 };
             }
         }
@@ -241,6 +244,7 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
                 validVotes: 0,
                 invalidVotes: 0,
                 voters: 0,
+                abroad: regions[region].abroad,
             };
         }
     
@@ -293,6 +297,7 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
             ...sectionList[key], 
             ...protocols[key],
             name: `Секция ${section}`,
+            abroad: regions[region].abroad,
         };
         if(district === '00')
             admunits[admunit].towns[townId].districts[district].sections.push(section);

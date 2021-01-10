@@ -4,5 +4,6 @@
       "@babel/plugin-transform-runtime", 
       "@babel/plugin-syntax-object-rest-spread",
       "@loadable/babel-plugin",
+      "babel-plugin-styled-components"
     ],
   }

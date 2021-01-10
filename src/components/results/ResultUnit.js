@@ -13,14 +13,18 @@ export default props => {
     useEffect(() => {window.scrollTo(0, 0);}, []);
 
     return(
-        params.unit.length === 2
-        ? <Region/> 
-        : params.unit.length === 4
-        ? <Admunit/>
-        : params.unit.length === 6
-        ? <District/>
-        : params.unit.length === 9
-        ? <Section/>
-        : null
+        <div>
+            {
+                params.unit.length === 2
+                ? <Region/> 
+                : params.unit.length === 4
+                ? <Admunit/>
+                : params.unit.length === 6
+                ? <District/>
+                : params.unit.length === 9
+                ? <Section/>
+                : null
+            }
+        </div>
     )
 };
