@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 
+import Helmet from 'react-helmet';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -10,7 +11,7 @@ import Crumbs from '../components/Crumbs';
 
 import { ElectionContext } from '../Election';
 
-import SubdivisionTable, { SubdivisionTableDiv } from '../components/SubdivisionTable';
+import SubdivisionTable from '../components/SubdivisionTable';
 
 export default props => {
     const { unit } = useParams();
@@ -32,6 +33,9 @@ export default props => {
     return(
         !data? <LoadingScreen/> :
             <div>
+                <Helmet>
+                    <title>{data.name}</title>
+                </Helmet>
                 <Crumbs data={data}/>
                 <h1>
                     {!data.abroad? 'Община' : null}
@@ -44,73 +48,45 @@ export default props => {
                     totalInvalid={data.invalidVotes}
                 />
                 <h1>Райони/секции</h1>
-                {/*
                 <SubdivisionTable
                     parties={globalData.parties}
                     results={globalData.results}
-                    groupings={data.towns}
-                    subdivisions={Object.keys(data.admunits).map(key => {
-                        return {
-                            number: key,
-                            name: data.admunits[key].name,
-                            results: data.admunits[key].results,
-                            totalValid: data.admunits[key].validVotes,
-                            totalInvalid: data.admunits[key].invalidVotes,
-                            voters: data.admunits[key].voters,
-                        };
+                    groupings={Object.keys(data.towns).map(key => { 
+                        const town = data.towns[key];
+                        let units = [];
+                        
+                        for(const districtKey of Object.keys(data.towns[key].districts)) {
+                            if(districtKey !== '00') units.push(districtKey);
+                            else {
+                                units = units.concat(data.towns[key].districts[districtKey].sections.map(sectionKey => districtKey + sectionKey));
+                            }
+                        }
+                        
+                        return { name: town.name, units };
                     })}
-                />*/}
-                <SubdivisionTableDiv>
-                <tbody>
-                {
-                    Object.keys(data.towns).map(key => [
-                        <tr>
-                            <td style={{textAlign: 'left'}}><b>{data.towns[key].name}</b></td>
-                            <td></td>
-                        </tr>,
-                        Object.keys(data.towns[key].districts).map(districtKey =>
-                            districtKey === '00'? null :
-                                <tr>
-                                    <td><Link to={`/results/${election}/${unit}${districtKey}`}>
-                                            {data.districts[districtKey].name}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <ResultsLine
-                                            results={data.districts[districtKey].results} 
-                                            parties={globalData.parties}
-                                            totalValid={data.districts[districtKey].validVotes} 
-                                            totalInvalid={data.districts[districtKey].invalidVotes}
-                                            thin
-                                        /> 
-                                    </td>
-                                </tr>
-                        ),
-                        Object.keys(data.towns[key].districts).map(districtKey => 
-                            districtKey !== '00'? null : 
-                            data.towns[key].districts[districtKey].sections.map(sectionKey =>
-                            <tr>
-                                <td>
-                                    <Link to={`/results/${election}/${unit}00${sectionKey}`}>
-                                        Секция {sectionKey}
-                                    </Link>
-                                </td>
-                                <td>
-                                    <ResultsLine
-                                        results={data.districts[districtKey].sections[sectionKey].results} 
-                                        parties={globalData.parties}
-                                        totalValid={data.districts[districtKey].sections[sectionKey].validVotes} 
-                                        totalInvalid={data.districts[districtKey].sections[sectionKey].invalidVotes}
-                                        thin
-                                    /> 
-                                </td>
-                            </tr>
-                            )
-                        )
-                    ])
-                }
-                </tbody>
-                </SubdivisionTableDiv>
+                    subdivisions={Object.keys(data.districts).map(key => 
+                        key === '00'
+                        ? Object.keys(data.districts[key].sections).map(sectionKey => { 
+                            const section = data.districts[key].sections[sectionKey];
+                            return {
+                                number: key + sectionKey,
+                                name: `Секция ${sectionKey}`,
+                                results: section.results,
+                                totalValid: section.validVotes,
+                                totalInvalid: section.invalidVotes,
+                                voters: section.voters,
+                            }
+                            })
+                        : [{
+                            number: key,
+                            name: data.districts[key].name,
+                            results: data.districts[key].results,
+                            totalValid: data.districts[key].validVotes,
+                            totalInvalid: data.districts[key].invalidVotes,
+                            voters: data.districts[key].voters,
+                        }]
+                    ).reduce((arr, acc) => acc.concat(arr), [])}
+                />
             </div>
     );
 };

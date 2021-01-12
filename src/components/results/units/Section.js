@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 
+import Helmet from 'react-helmet';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -31,6 +32,9 @@ export default props => {
     return (
         !data? <LoadingScreen/> :
             <div id='section-data'>
+                <Helmet>
+                    <title>{data.name}</title>
+                </Helmet>
                 <Crumbs data={data}/>
                 <h1>Секция {data.number}</h1>
                 <table>

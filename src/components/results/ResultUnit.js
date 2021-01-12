@@ -8,20 +8,20 @@ import District from './units/District.js';
 import Section from './units/Section.js';
 
 export default props => {
-    const params = useParams();
+    const { unit } = useParams();
 
     useEffect(() => {window.scrollTo(0, 0);}, []);
 
     return(
         <div>
             {
-                params.unit.length === 2
+                unit.length === 2
                 ? <Region/> 
-                : params.unit.length === 4
+                : unit.length === 4
                 ? <Admunit/>
-                : params.unit.length === 6
+                : unit.length === 6
                 ? <District/>
-                : params.unit.length === 9
+                : unit.length === 9
                 ? <Section/>
                 : null
             }

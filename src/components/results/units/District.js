@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 
+import Helmet from 'react-helmet';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -8,7 +9,7 @@ import ResultsTable from '../components/ResultsTable';
 import ResultsLine from '../components/ResultsLine';
 
 import { ElectionContext } from '../Election';
-import { SubdivisionTableDiv } from '../components/SubdivisionTable';
+import SubdivisionTable, { SubdivisionTableDiv } from '../components/SubdivisionTable';
 import Crumbs from '../components/Crumbs';
 
 export default props => {
@@ -48,6 +49,9 @@ export default props => {
     return(
         !data? <LoadingScreen/> :
             <div>
+                <Helmet>
+                    <title>{data.name}</title>
+                </Helmet>
                 <Crumbs data={data}/>
                 <h1>Район {data.name}</h1>
 
@@ -59,52 +63,26 @@ export default props => {
                 />
 
                 <h1>Секции</h1>
-                <SubdivisionTableDiv>
-                    <tbody>
-                    {
-                        Object.keys(data.addresses).map(addressKey => [
-                            <tr><td colSpan={2} style={{textAlign: 'left'}}><b>{addressKey}</b></td></tr>,
-                            data.addresses[addressKey].sections.map(sectionKey =>
-                                <tr>
-                                    <td>
-                                        <Link to={`/results/${election}/${unit}${sectionKey}`}>
-                                            Секция {sectionKey}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <ResultsLine
-                                            results={data.sections[sectionKey].results} 
-                                            parties={globalData.parties}
-                                            totalValid={data.sections[sectionKey].validVotes} 
-                                            totalInvalid={data.sections[sectionKey].invalidVotes}
-                                            thin
-                                        /> 
-                                    </td>
-                                </tr>
-                            )
-                        ])
-                    }
-                    {
-                        sectionsWithoutAddress.length === 0? null : [
-                            <tr><td><b>Неизяснен адрес</b></td><td></td></tr>,
-                            sectionsWithoutAddress.map(sectionKey =>
-                                <tr>
-                                    <td>Секция {sectionKey}</td>
-                                    <td>
-                                        <ResultsLine
-                                            results={data.sections[sectionKey].results} 
-                                            parties={globalData.parties}
-                                            totalValid={data.sections[sectionKey].validVotes} 
-                                            totalInvalid={data.sections[sectionKey].invalidVotes}
-                                            thin
-                                        /> 
-                                    </td>
-                                </tr>
-                            )
-                        ]
-                    }
-                    </tbody>
-                </SubdivisionTableDiv>
+                <SubdivisionTable
+                    parties={globalData.parties}
+                    results={globalData.results}
+                    groupings={Object.keys(data.addresses).map(addressKey => {
+                        return {
+                            name: addressKey,
+                            units: data.addresses[addressKey].sections
+                        };
+                    })}
+                    subdivisions={Object.keys(data.sections).map(key => {
+                        return {
+                            number: key,
+                            name: `Секция ${key}`,
+                            results: data.sections[key].results,
+                            totalValid: data.sections[key].validVotes,
+                            totalInvalid: data.sections[key].invalidVotes,
+                            voters: data.sections[key].voters,
+                        };
+                    })}
+                />
             </div>
     );
 };

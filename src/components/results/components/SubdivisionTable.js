@@ -165,7 +165,7 @@ export default props => {
             <tr>
                 <td>
                     <Link to={`/results/${election}/${unit?unit:''}${subdivision.number}`}>
-                        {subdivision.number} {subdivision.name}
+                        {props.showNumbers? subdivision.number : null} {subdivision.name}
                     </Link>
                 </td>
                 <td>
@@ -193,92 +193,73 @@ export default props => {
     };
 
     const renderWithGroupings = () => {
-        console.log(props.groupings);
-        return null;
-        /*const subdivisionsWithoutGroup = [];
-        
-        Object.keys(props.subdivisions).forEach(key => {
+        const subdivisionsWithoutGroup = [];
+
+        props.subdivisions.forEach(subdivision => {
             let contained = false;
-            Object.keys(props.groupings).forEach(groupingKey => {
-                if(data.groupings[groupingKey].sections.includes(key)) {
+            props.groupings.forEach(grouping => {
+                if(grouping.units.includes(subdivision.number)) {
                     contained = true;
                 }
             });
 
             if(!contained) {
-                subdivisionsWithoutGroup.push(key);
+                subdivisionsWithoutGroup.push(subdivision.number);
             }
         });
 
         return([
-            Object.keys(props.groupings).map(groupingKey => [
-                <tr><td colSpan={2} style={{textAlign: 'left'}}><b>{groupingKey}</b></td></tr>,
-                data.groupings[groupingKey].sections.map(sectionKey =>
-                    <tr>
-                        <td>
-                            <Link to={`/results/${election}/${unit}${sectionKey}`}>
-                                Секция {sectionKey}
-                            </Link>
-                        </td>
-                        <td>
-                            <ResultsLine
-                                results={data.sections[sectionKey].results} 
-                                parties={globalData.parties}
-                                totalValid={data.sections[sectionKey].validVotes} 
-                                totalInvalid={data.sections[sectionKey].invalidVotes}
-                                thin
-                            /> 
-                        </td>
-                    </tr>
-                )
+            props.groupings.map(grouping => [
+                <tr><td colSpan={2} style={{textAlign: 'left'}}><b>{grouping.name}</b></td></tr>,
+                grouping.units.map(unitKey => {
+                    const subdivision = props.subdivisions.find(sn => sn.number.toString() === unitKey.toString());
+                    return(
+                        <tr>
+                            <td>
+                                <Link to={`/results/${election}/${unit?unit:''}${subdivision.number}`}>
+                                    {props.showNumbers? subdivision.number : null} {subdivision.name}
+                                </Link>
+                            </td>
+                            <td>
+                                <ResultsLine
+                                    results={subdivision.results} 
+                                    parties={props.parties}
+                                    totalValid={subdivision.totalValid} 
+                                    totalInvalid={subdivision.totalInvalid}
+                                    firstParty={singleParty === ''? null : singleParty}
+                                    thin
+                                />
+                            </td>
+                        </tr>
+                    );
+                })
             ]),
             subdivisionsWithoutGroup.length === 0? null : [
                 <tr><td><b>Неизяснен адрес</b></td><td></td></tr>,
-                subdivisionsWithoutGroup.map(sectionKey =>
-                    <tr>
-                        <td>Секция {sectionKey}</td>
-                        <td>
-                            <ResultsLine
-                                results={data.sections[sectionKey].results} 
-                                parties={globalData.parties}
-                                totalValid={data.sections[sectionKey].validVotes} 
-                                totalInvalid={data.sections[sectionKey].invalidVotes}
-                                thin
-                            /> 
-                        </td>
-                    </tr>
-                )
+                subdivisionsWithoutGroup.map(unitKey => {
+                    const subdivision = props.subdivisions.find(sn => sn.number.toString() === unitKey.toString());
+                    return(
+                        <tr>
+                            <td>
+                                <Link to={`/results/${election}/${unit?unit:''}${subdivision.number}`}>
+                                    {props.showNumbers? subdivision.number : null} {subdivision.name}
+                                </Link>
+                            </td>
+                            <td>
+                                <ResultsLine
+                                    results={subdivision.results} 
+                                    parties={props.parties}
+                                    totalValid={subdivision.totalValid} 
+                                    totalInvalid={subdivision.totalInvalid}
+                                    firstParty={singleParty === ''? null : singleParty}
+                                    thin
+                                />
+                            </td>
+                        </tr>
+                    ); 
+                })
             ]
-        ]);
-            
-            <tr>
-                <td>
-                    <Link to={`/results/${election}/${unit?unit:''}${subdivision.number}`}>
-                        {subdivision.number} {subdivision.name}
-                    </Link>
-                </td>
-                <td>
-                {
-                    mode === 'distribution'?
-                        <ResultsLine
-                            results={subdivision.results} 
-                            parties={props.parties}
-                            totalValid={subdivision.totalValid} 
-                            totalInvalid={subdivision.totalInvalid}
-                            firstParty={singleParty === ''? null : singleParty}
-                            thin
-                        /> :
-                        <SimpleLine
-                            percentage={subdivision.percentage}
-                            tooltipTitle={subdivision.name}
-                            tooltipField={subdivision.tooltipField}
-                            tooltipValue={subdivision.tooltipValue}
-                            thin
-                        />
-                }
-                </td>
-            </tr>
-        );*/
+        ])
     };
 
     return(

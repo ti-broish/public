@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import Helmet from 'react-helmet';
+
 import BulgariaMap from '../components/BulgariaMap';
 import ResultsTable from '../components/ResultsTable';
 import SubdivisionTable from '../components/SubdivisionTable';
@@ -11,6 +13,9 @@ export default props => {
 
     return(
         <div>
+            <Helmet>
+                <title>{globalData.name}</title>
+            </Helmet>
             <BulgariaMap 
                 regions={globalData.regions} 
                 parties={globalData.parties}
@@ -33,6 +38,7 @@ export default props => {
             <SubdivisionTable
                 parties={globalData.parties}
                 results={globalData.results}
+                showNumbers
                 subdivisions={Object.keys(globalData.regions).map(key => {
                     return {
                         number: key,

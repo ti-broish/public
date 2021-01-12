@@ -453,7 +453,8 @@ const separateUnits = global => {
                         district.sections[sectionKey] = {
                             results: section.results, 
                             validVotes: section.validVotes, 
-                            invalidVotes: section.invalidVotes
+                            invalidVotes: section.invalidVotes,
+                            voters: section.voters,
                         };
                     }
                 } else {

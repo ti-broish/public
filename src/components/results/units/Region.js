@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 
+import Helmet from 'react-helmet';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -32,6 +33,9 @@ export default props => {
     return(
         !data? <LoadingScreen/> :
             <div>
+                <Helmet>
+                    <title>{data.name}</title>
+                </Helmet>
                 <Crumbs data={data}/>
                 <h1>{data.number}. {data.name}</h1>
                 <ResultsTable
@@ -49,7 +53,7 @@ export default props => {
                             subdivisions={Object.keys(data.admunits[Object.keys(data.admunits)[0]].districts).map(key => {
                                 const district = data.admunits[Object.keys(data.admunits)[0]].districts[key];
                                 return {
-                                    number: key,
+                                    number: Object.keys(data.admunits)[0] + key,
                                     name: district.name,
                                     results: district.results,
                                     totalValid: district.validVotes,

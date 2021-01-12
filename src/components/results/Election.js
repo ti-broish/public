@@ -38,7 +38,6 @@ export default props => {
 
     return(
         <ElectionContext.Provider value={{ election, globalData }}>
-
             <Header/>
             <Wrapper>
             {
