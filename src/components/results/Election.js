@@ -38,7 +38,7 @@ export default props => {
 
     return(
         <ElectionContext.Provider value={{ election, globalData }}>
-            <Header/>
+            <Header title={!globalData? null : globalData.name}/>
             <Wrapper>
             {
                 !globalData? <LoadingScreen/> : [

@@ -26,7 +26,7 @@ export default props => {
                 parties={globalData.parties} 
                 totalValid={globalData.validVotes} 
                 totalInvalid={globalData.invalidVotes}
-                showThreshold={true}
+                showThreshold={globalData.electionType === 'national-parliament'}
             />
             {/*
             <p>Общо действителни гласове: {formatCount(globalData.validVotes)}</p>

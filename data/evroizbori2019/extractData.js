@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 const readCikFiles = () => {
-    const partiesTxt = fs.readFileSync(path.join(__dirname, './cik/cik_parties_26.03.2017.txt'), 'utf-8');
-    const protocolsTxt = fs.readFileSync(path.join(__dirname, './cik/protocols_26.03.2017.txt'), 'utf-8');
-    const sectionsTxt = fs.readFileSync(path.join(__dirname, './cik/sections_26.03.2017.txt'), 'utf-8');
-    const votesTxt = fs.readFileSync(path.join(__dirname, './cik/votes_26.03.2017.txt'), 'utf-8');
+    const partiesTxt = fs.readFileSync(path.join(__dirname, './cik/cik_parties.txt'), 'utf-8');
+    const protocolsTxt = fs.readFileSync(path.join(__dirname, './cik/protocols.txt'), 'utf-8');
+    const sectionsTxt = fs.readFileSync(path.join(__dirname, './cik/sections.txt'), 'utf-8');
+    const votesTxt = fs.readFileSync(path.join(__dirname, './cik/votes.txt'), 'utf-8');
 
     const parties = {};
     const protocols = {};
@@ -138,8 +138,8 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
         validVotes: 0,
         invalidVotes: 0,
         voters: 0,
-        name: 'Парламентарни избори 2017',
-        electionType: 'national-parliament',
+        name: 'Европейски избори 2019',
+        electionType: 'european-parliament',
     };
     
     for(const key of Object.keys(sectionList)) {

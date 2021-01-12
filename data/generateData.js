@@ -1,22 +1,37 @@
 const fs = require('fs');
 const path = require('path');
 
-const extractData = require('./parliament2017/extractData.js');
-
-const units = extractData();
-
 const requireDir = dir => {
     if(!fs.existsSync(dir)) fs.mkdirSync(dir);
 };
 
 requireDir(path.join(__dirname, '../public/results'));
-requireDir(path.join(__dirname, '../public/results/parliament2017'));
 
-for(const key of Object.keys(units)) {
-    requireDir(path.join(__dirname, `../public/results/parliament2017/${key}`));
-    if(key === 'index') {
-        fs.writeFileSync(path.join(__dirname, `../public/results/parliament2017/routeData.json`), units[key]);
-    } else {
-        fs.writeFileSync(path.join(__dirname, `../public/results/parliament2017/${key}/routeData.json`), units[key]);
+fs.readdirSync(path.join(__dirname, '.')).forEach(file => {
+    if(fs.lstatSync(path.join(__dirname, `./${file}`)).isDirectory()) {
+        if(fs.existsSync(path.join(__dirname, `./${file}/extractData.js`))) {
+            requireDir(path.join(__dirname, `../public/results/${file}`));
+            const extractData = require(path.join(__dirname, `./${file}/extractData.js`));
+            const units = extractData();
+            for(const key of Object.keys(units)) {
+                requireDir(path.join(__dirname, `../public/results/${file}/${key}`));
+                if(key === 'index') {
+                    fs.writeFileSync(path.join(__dirname, `../public/results/${file}/routeData.json`), units[key]);
+                } else {
+                    fs.writeFileSync(path.join(__dirname, `../public/results/${file}/${key}/routeData.json`), units[key]);
+                }
+            }
+        }
     }
-}
+});
+
+/*
+
+
+
+
+
+
+
+
+*/

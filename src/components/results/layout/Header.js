@@ -53,7 +53,7 @@ export default props => {
                     <Link to='/'>
                         <LogoImage src='/brand/logo_horizontal_white.png?v=2'/>
                     </Link>
-                    <h2>Парламентарни избори 2017</h2>
+                    <h2>{props.title}</h2>
                 </Wrapper>
             </HeaderDiv>
         </div>
