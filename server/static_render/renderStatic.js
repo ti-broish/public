@@ -38,11 +38,11 @@ let additionalStyleTags = `
     <style>${fontCssStr}</style>
 `;  
 
-const renderHTML = renderData => {
-    return renderPage.default(renderData);
+const renderHTML = staticProps => {
+    return renderPage.default(staticProps);
 };
 
-const writeHTML = (rendered, renderData) => {
+const writeHTML = (rendered, staticProps) => {
     const template = fs.readFileSync('./src/index.ejs').toString();
     const html = ejs.render(template, {
         body: rendered.html, 
@@ -50,14 +50,14 @@ const writeHTML = (rendered, renderData) => {
         scriptTags: rendered.scriptTags,
         linkTags: rendered.linkTags,
         styleTags: rendered.styleTags,
-        renderData: renderData,
+        staticProps: staticProps,
         additionalStyleTags: additionalStyleTags
     });
 
     let pathUrl = '';
 
-    if(renderData.path !== '/') {
-        pathUrl = renderData.path;
+    if(staticProps.path !== '/') {
+        pathUrl = staticProps.path;
     }
 
     if(!fs.existsSync(`./public${pathUrl}`)) {
@@ -67,26 +67,7 @@ const writeHTML = (rendered, renderData) => {
     fs.writeFileSync(`./public${pathUrl}/index.html`, minify(html, {
         removeComments: true,
     }));
-    console.log("Generated HTML", `./public${pathUrl}/index.html`);
+    //console.log("Generated HTML", `./public${pathUrl}/index.html`);
 };
 
-const routes = [
-    '/',
-    '/about',
-    '/signup',
-    '/watchers',
-    '/videos',
-    '/privacy-notice',
-    '/results'
-];
-
-console.log('\nGENERATING STATIC HTML\n');
-
-for(const route of routes) {
-    const renderData = {path: route};
-    const rendered = renderHTML(renderData);
-    writeHTML(rendered, renderData);
-}
-
-console.log('\nDONE\n');
-process.exit(0);
+module.exports = { renderHTML, writeHTML };

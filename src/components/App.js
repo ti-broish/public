@@ -7,7 +7,7 @@ import Main from './Main';
 export default props => {
     return(
         window.ssr?
-            <StaticRouter context={{}} location={props.renderData.path}>
+            <StaticRouter context={{}} location={props.staticProps.path}>
                 <Main/>
             </StaticRouter> :
             <BrowserRouter>

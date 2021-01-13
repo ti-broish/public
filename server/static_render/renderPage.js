@@ -7,14 +7,14 @@ import App from '../../src/components/App.js';
 
 import { ServerStyleSheet } from 'styled-components';
 
-export default renderData => {
+export default staticProps => {
     const sheet = new ServerStyleSheet();
     const statsFile = path.resolve('./public/bundles/loadable-stats.json')
     const extractor = new ChunkExtractor({ statsFile });
 
     try {
         const html = ReactDOMServer.renderToString(
-            sheet.collectStyles(extractor.collectChunks(<App renderData={renderData}/>))
+            sheet.collectStyles(extractor.collectChunks(<App staticProps={staticProps}/>))
         );
         const headTags = Helmet.renderStatic();
         const scriptTags = extractor.getScriptTags();
