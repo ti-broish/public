@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const FormWrapper = styled.div`
     iframe {
         width: 100%;
-        height: 600px;
+        height: 700px;
     }
 `;
 
@@ -29,7 +29,7 @@ export default () => {
             : "message";
 
         const formSubmitHandler = e => {
-            if (e.data === "formSubmitted" || e.message === "formSubmitted") {
+            if (e.data === "formSubmit" || e.message === "formSubmit") {
                 window.gtag && gtag('event', 'conversion', {
                     'send_to': 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
                 });
