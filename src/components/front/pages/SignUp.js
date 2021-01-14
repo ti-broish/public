@@ -70,7 +70,7 @@ export default () => {
                     Запишете се днес и до няколко дни ще се свържем с Вас, за да Ви въведем в кампанията. 
                 </p>
                 <FormWrapper>
-                    <iframe id="gform" onLoad={onSignupIframeLoad} src="https://docs.google.com/forms/d/e/1FAIpQLSeBNgZgrixE7hJ_cykkFangamQnU4Pv9R6hi8n59-lB4dI5nw/viewform?embedded=true" frameBorder="0">Loading…</iframe>
+                    <iframe id="gform" onLoad={onSignupIframeLoad} src="https://docs.google.com/forms/d/e/1FAIpQLSdXMU-qZsIDLMEymzZl7VMthQyC0gJ0-X0Ew8wZo8P3oLHElg/viewform?embedded=true" frameBorder="0">Loading…</iframe>
                 </FormWrapper>
             </MainContent>
         </Wrapper>
