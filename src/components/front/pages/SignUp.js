@@ -17,10 +17,9 @@ const FormWrapper = styled.div`
 export default () => {
     const [loadCount, setLoadCount] = useState(0);
 
-    /* Second iframe load is after a submission */
-    if (loadCount > 1) {
-        /* reset counter to 0, so if user clicks "Submit another response" it continues to work */
-        setLoadCount(0);
+    // Second iframe load is after a submission
+    // Do not count future loads after editing a response as submissions
+    if (loadCount === 2) {
         window.gtag && gtag('event', 'conversion', {
             'send_to': 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
         });
