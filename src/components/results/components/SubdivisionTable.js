@@ -106,19 +106,22 @@ export default props => {
     const sorted = subdivisions => {
         if(mode === 'distribution') {
             if(singleParty === '') {
-                subdivisions.sort((s1, s2) => s1.number > s2.number );
+                subdivisions = subdivisions.sort((s1, s2) => s1.number - s2.number );
             } else {
-                subdivisions.sort((s1, s2) => {
+                subdivisions = subdivisions.sort((s1, s2) => {
                     const getPartyPercentage = subdivision => {
                         const partyMap = {};
                         for(var i = 0; i < subdivision.results.length; i += 3) {
                             partyMap[subdivision.results[i]] = subdivision.results[i+1];
                         }
 
-                        return partyMap[singleParty] / subdivision.totalValid;
+                        if(!partyMap[singleParty])
+                            return 0;
+                        else
+                            return partyMap[singleParty] / subdivision.totalValid;
                     };
 
-                    return getPartyPercentage(s2) > getPartyPercentage(s1);
+                    return getPartyPercentage(s2) - getPartyPercentage(s1);
                 });
             }
         } else if(mode === 'voters') {
@@ -137,7 +140,7 @@ export default props => {
                 subdivision.tooltipValue = formatCount(subdivision.voters);
             }
 
-            subdivisions.sort((s1, s2) => s1.percentage < s2.percentage);
+            subdivisions.sort((s1, s2) => s2.percentage - s1.percentage);
         } else if(mode === 'turnout') {
             let highestCount = 0;
             for(const subdivision of subdivisions) {
@@ -154,7 +157,7 @@ export default props => {
                 subdivision.tooltipValue = `${formatPercentage(currentCount)}%`;
             }
 
-            subdivisions.sort((s1, s2) => s1.percentage < s2.percentage);
+            subdivisions.sort((s1, s2) => s2.percentage - s1.percentage);
         }
 
         return subdivisions;

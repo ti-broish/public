@@ -38,8 +38,8 @@ const readCikFiles = () => {
             invalidVotes228: parseInt(protocol[12]), // 13)4.д)брой на недействителните бюлетини по чл. 228 от ИК
             wrongVotes267: parseInt(protocol[13]), // 14)4.е)брой на сгрешените бюлетини по чл. 267, ал. 2 от ИК
             totalVotes: parseInt(protocol[14]), // 15)  5.Брой на намерените в избирателната кутия бюлетини
-            invalidVotes: parseInt(protocol[15]), // 16)  6.Брой намерени в избирателната кутия недействителни гласове (бюлетини)
-            validVotes: parseInt(protocol[16]), // 17)  7.Общ брой намерени в избирателната кутия действителни гласове (бюлетини)
+            invalidVotes: 0,//parseInt(protocol[15]), // 16)  6.Брой намерени в избирателната кутия недействителни гласове (бюлетини)
+            validVotes: 0,//parseInt(protocol[16]), // 17)  7.Общ брой намерени в избирателната кутия действителни гласове (бюлетини)
             validCandidateVotes: parseInt(protocol[17]), // 18) 7.1брой на действителните гласове, подадени за кандидатските листи на партии, коалиции и инициативни комитети
             validNAVotes: parseInt(protocol[18]), // 19) 7.2брой действителни гласове (отбелязвания) само в квадратчето „Не подкрепям никого“
             emptyVotes: parseInt(protocol[19]), // 20)  9.Празни бюлетини; бюлетини, в които е гласувано в повече от едно квадратче; бюлетини, в които не може да се установи еднозначно вотът на избирателя и други видове недействителни гласове
@@ -329,6 +329,9 @@ const generateJsonData = (parties, protocols, sectionList, votes, xlsSections) =
     
             districts[district].validVotes += vote.parties[partyKey].valid;
             districts[district].invalidVotes += vote.parties[partyKey].invalid;
+
+            sections[section].validVotes += vote.parties[partyKey].valid;
+            sections[section].invalidVotes += vote.parties[partyKey].invalid;
     
             global.results[partyKey].valid += vote.parties[partyKey].valid;
             global.results[partyKey].invalid += vote.parties[partyKey].invalid;

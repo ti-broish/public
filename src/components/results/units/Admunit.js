@@ -68,6 +68,8 @@ export default props => {
                         key === '00'
                         ? Object.keys(data.districts[key].sections).map(sectionKey => { 
                             const section = data.districts[key].sections[sectionKey];
+                            console.log(sectionKey);
+                            console.log(section);
                             return {
                                 number: key + sectionKey,
                                 name: `Секция ${sectionKey}`,
