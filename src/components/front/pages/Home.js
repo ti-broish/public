@@ -69,14 +69,20 @@ const MiddleSection = styled.div`
     padding: 0 10px;
     padding-top: 50px;
 
+    a { color: white; }
+
     #text3 { font-size: 42px; }
     #text4 { font-size: 16px; margin-bottom: 20px; }
+    #text5 { font-size: 18px; margin-top: 15px;}
+    #text6 { font-size: 48px; margin-top: 5px; }
 
     @media only screen and (max-width: ${MOBILE_WIDTH}px) {
         padding-top: 5vh;
 
         #text3 { font-size: 36px; }
         #text4 { font-size: 14px; }
+        #text5 { font-size: 18px; }
+        #text6 { font-size: 42px; }
     }
 
     @media only screen and (max-width: ${MOBILE_WIDTH * 0.6}px) {
@@ -84,6 +90,8 @@ const MiddleSection = styled.div`
 
         #text3 { font-size: 28px; }
         #text4 { font-size: 12px; }
+        #text5 { font-size: 18px; }
+        #text6 { font-size: 42px; }
     }
 `;
 
@@ -172,8 +180,14 @@ export default props => {
                     </TopSection>
                     <MiddleSection>
                         <p id='text3'>търсим <b>12 000</b> защитници на вота</p>
-                        <p id='text4'>които да следят за коректното преброяване на гласовете в изборния ден</p>
-                        <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link> 
+                        <p id='text4'>които да следят за коректното преброяване на <b>всички</b> гласове в изборния ден</p>
+                        <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link>
+                        <p id='text5'>или изпрати безплатен <b>SMS</b> с текст <b>УЧАСТВАМ</b> на тел</p>
+                        <p id='text6'>
+                            <a href="sms:108006?body=УЧАСТВАМ">
+                                <b>108 006</b>
+                            </a>
+                        </p>
                     </MiddleSection>
                     <BottomSection>
                         <p id='text5'>Можем да го направим <b>заедно</b>!</p>
@@ -203,7 +217,7 @@ export default props => {
             <h2>Търсим 12 000 защитници на вота</h2>
             <p>
                 За да дадем на България шанс за честни и свободни избори, търсим 12 000 защитници на вота, 
-                които да следят за коректното преброяване на гласовете в изборния ден. По един за всяка секция 
+                които да следят за коректното преброяване на всички гласове в изборния ден. По един за всяка секция 
                 в страната. Ангажимент за няколко часа в края на изборния ден може да реши бъдещето на България 
                 за следващите години. Можем да го направим заедно!  
             </p>
