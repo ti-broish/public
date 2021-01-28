@@ -15,6 +15,7 @@ import Footer from './layout/Footer';
 import styled from 'styled-components';
 
 import { MOBILE_WIDTH } from './Style';
+import Instructions from './pages/Instructions';
 
 const FrontDiv = styled.div`
     //background-color: #d4d4d4;
@@ -63,6 +64,7 @@ export default props => {
                 <Route path='/signup' component={SignUp}/>
                 <Route path='/news' component={News}/>
                 <Route path='/videos' component={Videos}/>
+                <Route path='/instructions' component={Instructions}/>
                 <Route path='/privacy-notice' component={PrivacyNotice}/>
                 <Redirect to='/'/>
             </Switch>

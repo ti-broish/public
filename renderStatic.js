@@ -74,7 +74,8 @@ const routes = [
     '/signup',
     '/news',
     '/videos',
-    '/privacy-notice'
+    '/privacy-notice',
+    '/instructions'
 ];
 
 console.log('\nGENERATING STATIC HTML\n');
