@@ -61,6 +61,7 @@ export default () => {
             <MainContent>
                 <h1>Видеа от кампанията</h1>
                 <hr/>
+                <YouTubeVideoEmbed videoId={"nc_eZ-xmbA4"} />
                 <YouTubeVideoEmbed videoId={"0m3eBb6M6zs"} />
                 <YouTubeVideoEmbed videoId={"JBgplUhCPCQ"} />
                 <YouTubeVideoEmbed videoId={"eOEUrun-I3M"} />
