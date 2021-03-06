@@ -62,6 +62,21 @@ const Copyright = styled.div`
     font-weight: bold;
 `;
 
+const FooterAppBadges = styled.div`
+    text-align: center;
+    
+    img {
+        width: 80%;
+    }
+
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        img {
+            height: 80px;
+            width: unset;
+        }
+    }
+`;
+
 export default props => {
     return([
         <GreenLine/>,
@@ -89,9 +104,9 @@ export default props => {
                         <li><Link to='/'>Начало</Link></li>
                         <li><Link to='/about'>Kампанията</Link></li>
                         <li><Link to='/signup'>Запиши се</Link></li>
-                        <li><Link to='/news'>Актуална информация</Link></li>
-                        <li><Link to='/videos'>Видео</Link></li>
                         <li><Link to='/instructions'>Инструкции</Link></li> 
+                        <li><Link to='/videos'>Видео</Link></li>
+                        <li><Link to='/news'>Актуална информация</Link></li>
                         <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>         
                     </ul>
                 </FooterColumn>
@@ -101,6 +116,17 @@ export default props => {
                         &nbsp;
                         <a href='https://www.facebook.com/tibroish/' style={{display: 'inline'}} target='_blank' rel='noopener noreferrer nofollow'>Facebook</a>
                     </h3>
+                    <FooterAppBadges>
+                        <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish&hl=bg">
+                            <img src='/google-play-badge.png'/>
+                        </a>
+                        <a href="https://apps.apple.com/us/app/ti-broish/id1555255776">
+                            <img src='/apple-badge.svg'/>
+                        </a>
+                        <a href="https://appgallery.huawei.com/#/app/C103937827">
+                            <img src='/huawei-badge.png'/>
+                        </a>
+                    </FooterAppBadges>
                 </FooterColumn>
             </FooterColumns>
             <Copyright>„Демократична България - обединение“ &copy; {new Date().getFullYear()}</Copyright>

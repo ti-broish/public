@@ -141,6 +141,19 @@ const HomeButtonWrapper = styled.div`
     text-align: center;
 `;
 
+export const AppBadges = styled.div`
+    padding: 20px;
+    text-align: center;
+    background-color: #eee;
+    width: 100%;
+    box-sizing: border-box;
+
+    img {
+        height: 60px;
+        margin: 10px 10px;
+    }
+`;
+
 export default props => {
 
     useEffect(() => {
@@ -195,7 +208,18 @@ export default props => {
                 </LandingPageOverlay>
             </Parallax>
         </LandingPage>,
-        <GreenLine/>,
+        <GreenLine style={{height: '15px'}}/>,
+        <AppBadges>
+            <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish&hl=bg">
+                <img src='/google-play-badge.png'/>
+            </a>
+            <a href="https://apps.apple.com/us/app/ti-broish/id1555255776">
+                <img src='/apple-badge.svg'/>
+            </a>
+            <a href="https://appgallery.huawei.com/#/app/C103937827">
+                <img src='/huawei-badge.png'/>
+            </a>
+        </AppBadges>,
         <Wrapper>
             <MainContent>
             <h1>Национална кампания „Ти броиш“</h1>
