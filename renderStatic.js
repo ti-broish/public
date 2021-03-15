@@ -72,6 +72,7 @@ const routes = [
     '/',
     '/about',
     '/signup',
+    '/signup-validator',
     '/news',
     '/videos',
     '/privacy-notice',
