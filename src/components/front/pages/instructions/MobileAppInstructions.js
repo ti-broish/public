@@ -7,6 +7,7 @@ import { Wrapper, MainContent } from '../../Front';
 import styled from 'styled-components';
 
 import { MOBILE_WIDTH } from '../../Style';
+import { YouTubeVideoEmbed } from '../Videos';
 
 const ImagesContainer = styled.div`
     text-align: center;
@@ -63,6 +64,7 @@ export default props => {
                 <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
+                <YouTubeVideoEmbed videoId={"SkxWJ5GjYgk"} />
                 <h1>Инструкция за използване на мобилно приложение “Ти броиш”</h1>
                 <hr/>
                 <AppBadges>
