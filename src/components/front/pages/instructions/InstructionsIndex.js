@@ -51,6 +51,9 @@ export default props => {
                 <InstructionLink to='/instructions/watchers'>
                     Какво правят участниците в “Ти Броиш” на 4 април 2021
                 </InstructionLink>
+                <InstructionLink to='/instructions/what-to-watch-for'>
+                    За какво да следите при преброяването на бюлетините?
+                </InstructionLink>
             </MainContent>
         </Wrapper>
     );

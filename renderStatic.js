@@ -78,7 +78,8 @@ const routes = [
     '/privacy-notice',
     '/instructions',
     '/instructions/mobile-app',
-    '/instructions/watchers'
+    '/instructions/watchers',
+    '/instructions/what-to-watch-for',
 ];
 
 console.log('\nGENERATING STATIC HTML\n');
