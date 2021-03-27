@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 
 import Helmet from 'react-helmet';
 
@@ -33,7 +32,6 @@ export default () => {
                 window.gtag && gtag('event', 'conversion', {
                     'send_to': 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
                 });
-                axios.get('https://dabulgaria.bg/zastapnik.php');
             }
         };
 
