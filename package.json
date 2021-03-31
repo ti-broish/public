@@ -43,7 +43,7 @@
     "react-parallax": "^3.1.2",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.2.0",
-    "react-tooltip": "^4.2.11",
+    "react-tooltip": "^4.2.15",
     "static-server": "^2.2.1",
     "style-loader": "^2.0.0",
     "styled-components": "^5.2.1",
