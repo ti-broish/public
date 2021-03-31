@@ -31,7 +31,7 @@
     "fs": "0.0.1-security",
     "html-minifier": "^4.0.0",
     "ignore-styles": "^5.0.1",
-    "isomorphic-loader": "^4.2.1",
+    "isomorphic-loader": "^4.5.0",
     "node-hook": "^1.0.0",
     "node-xlsx": "^0.15.0",
     "normalize.css": "^8.0.1",
