@@ -21,20 +21,6 @@ const InstructionLink = styled(Link)`
     border-bottom: 2px solid #ccc;
 `;
 
-const InstructionAnchorLink = styled.a`
-    font-size: 22px;
-    width: 100%;
-    display: block;
-    text-decoration: none;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    border-bottom: 2px solid #ccc;
-`;
-
 export default props => {
 
     let metaTitle = "Инструкции | Ти Броиш";
@@ -68,9 +54,9 @@ export default props => {
                 <InstructionLink to='/instructions/what-to-watch-for'>
                     За какво да следите при преброяването на бюлетините?
                 </InstructionLink>
-                <InstructionAnchorLink href='/files/Ти-броиш-снимане-на-бюлетини-OK-2.docx'>
-                    Ти Броиш Снимане на Бюлетини
-                </InstructionAnchorLink>
+                <InstructionLink to='/instructions/how-to-take-photos'>
+                    Как да снимаме процеса на броене на бюлетините без да нарушаваме правилата?
+                </InstructionLink>
             </MainContent>
         </Wrapper>
     );

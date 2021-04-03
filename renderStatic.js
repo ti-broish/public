@@ -80,6 +80,7 @@ const routes = [
     '/instructions/mobile-app',
     '/instructions/watchers',
     '/instructions/what-to-watch-for',
+    '/instructions/how-to-take-photos',
 ];
 
 console.log('\nGENERATING STATIC HTML\n');
