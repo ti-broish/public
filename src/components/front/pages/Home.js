@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Parallax } from 'react-parallax';
@@ -142,6 +142,27 @@ const HomeButtonWrapper = styled.div`
     text-align: center;
 `;
 
+const IframeContainer = styled.div`
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 650px;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+`
+
 export const AppBadges = styled.div`
     padding: 20px;
     text-align: center;
@@ -155,11 +176,28 @@ export const AppBadges = styled.div`
     }
 `;
 
+const setHeightOfIframeContainer = iframeContainerElem => {
+    if (iframeContainerElem.current) {
+        let iframeContainerWidth = iframeContainerElem.current.offsetWidth;
+        if (iframeContainerWidth < 800) {
+            let iframeContainerHeight = iframeContainerWidth / 1.08;
+            iframeContainerElem.current.style.height = `${iframeContainerHeight}px`;
+        }
+    }
+}
+
 export default props => {
+    const iframeContainerElem = useRef();
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
+        setHeightOfIframeContainer(iframeContainerElem);
+
+        window.onresize = () => {
+            setHeightOfIframeContainer(iframeContainerElem);
+        }
+
+    }, [iframeContainerElem]);
 
     let metaUrl = "https://tibroish.bg/";
     let metaDescription = `
@@ -191,16 +229,13 @@ export default props => {
                 </a>
             </div>
         </AppBadges>,
-        <div className="lg-only">
+        <IframeContainer ref={iframeContainerElem}>
             <iframe 
-                width={800} 
-                height={650} 
-                style={{border: 'none', display: 'block', margin: '50px auto'}} 
                 loading="lazy" 
                 allowFullScreen 
                 src="https://tibroish.bg/results/parliament-2021-04-04/embed/mini-results?mapOnly=true&linkToMainSite=true&homepage=true"
             ></iframe>
-        </div>,
+        </IframeContainer>,
         <GreenLine style={{height: '15px'}}/>,
         <AppBadges>
             <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish&hl=bg">
