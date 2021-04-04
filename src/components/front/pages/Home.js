@@ -179,35 +179,16 @@ export default props => {
             <meta property="og:image:width" content={"1200"}/>
             <meta property="og:image:height" content={"628"}/>
         </Helmet>,
-        <LandingPage>
-            <Parallax 
-                bgImage="/images/sofia-2337926_1920.jpg" 
-                bgImageAlt="Народно събрание" 
-                strength={200}
-            >
-            
-                <LandingPageOverlay>
-                    <TopSection>
-                        <p id='text1'>Да дадем на <b>България</b> шанс за</p>
-                        <p id='text2'><b>ЧЕСТНИ</b> и <b>СВОБОДНИ</b> избори</p>
-                    </TopSection>
-                    <MiddleSection>
-                        <p id='text3'>търсим <b>12 000</b> защитници на вота</p>
-                        <p id='text4'>които да следят за коректното преброяване на <b>всички</b> гласове в изборния ден</p>
-                        <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link>
-                        <p id='text5'>или изпрати безплатен <b>SMS</b> с текст <b>УЧАСТВАМ</b> на тел</p>
-                        <p id='text6'>
-                            <a href="sms:108006?body=УЧАСТВАМ">
-                                <b>108 006</b>
-                            </a>
-                        </p>
-                    </MiddleSection>
-                    <BottomSection>
-                        <p id='text5'>Можем да го направим <b>заедно</b>!</p>
-                    </BottomSection>
-                </LandingPageOverlay>
-            </Parallax>
-        </LandingPage>,
+        <div>
+            <iframe 
+                width={800} 
+                height={650} 
+                style={{border: 'none', display: 'block', margin: '50px auto'}} 
+                loading="lazy" 
+                allowFullScreen 
+                src="https://tibroish.bg/results/parliament-2021-04-04/embed/mini-results?mapOnly=true&linkToMainSite=true&homepage=true"
+            ></iframe>
+        </div>,
         <GreenLine style={{height: '15px'}}/>,
         <AppBadges>
             <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish&hl=bg">
