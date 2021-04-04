@@ -251,7 +251,12 @@ export default props => {
             <MainContent>
             <h1>Национална кампания „Ти броиш“</h1>
             <GreenLine style={{height: '5px'}}/>
-            <h2>Брой сигнали: през приложениято - 612 бр.; по телефон - 289 бр.</h2>
+            <h2>Брой сигнали:</h2>
+            <h2><ul>
+                    <li>през приложениято - 612 бр.</li>
+                    <li>по телефон - 342 бр.</li>
+                </ul>
+            </h2>
             <GreenLine style={{height: '5px'}}/>
             <h2>Последни сигнали за нередности</h2>
             <ol style={{listStyle: 'none', padding: 0}}>
