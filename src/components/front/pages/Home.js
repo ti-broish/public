@@ -149,7 +149,6 @@ const IframeContainer = styled.div`
     height: 650px;
     max-width: 800px;
     margin: 0 auto;
-    overflow: hidden;
 
     iframe {
         position: absolute;
