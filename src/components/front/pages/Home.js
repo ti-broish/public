@@ -217,7 +217,7 @@ export default props => {
             <MainContent>
             <h1>Национална кампания „Ти броиш“</h1>
             <GreenLine style={{height: '5px'}}/>
-            <h2>Последни сигнали</h2>
+            <h2>Последни сигнали за нередности</h2>
             <ol style={{listStyle: 'none', padding: 0}}>
                 <li>
                     <p><strong>
