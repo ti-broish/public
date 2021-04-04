@@ -192,9 +192,9 @@ export default props => {
         window.scrollTo(0, 0);
         setHeightOfIframeContainer(iframeContainerElem);
 
-        window.onresize = () => {
+        window.addEventListener('resize', () => {
             setHeightOfIframeContainer(iframeContainerElem);
-        }
+        })
 
     }, [iframeContainerElem]);
 
