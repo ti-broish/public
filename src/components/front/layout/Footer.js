@@ -103,7 +103,6 @@ export default props => {
                     <ul>
                         <li><Link to='/'>Начало</Link></li>
                         <li><Link to='/about'>Kампанията</Link></li>
-                        <li><Link to='/signup'>Запиши се</Link></li>
                         <li><Link to='/instructions'>Инструкции</Link></li> 
                         <li><Link to='/videos'>Видео</Link></li>
                         <li><Link to='/news'>Актуална информация</Link></li>
