@@ -186,6 +186,9 @@ export default props => {
                 <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish.stream&hl=bg">
                     <img src='/google-play-badge.png'/>
                 </a>
+                <a>
+                    <img src='/apple-badge.svg'/>
+                </a>
             </div>
         </AppBadges>,
         <div className="lg-only">
@@ -297,6 +300,7 @@ export default props => {
                 </li>
             </ol>
             <GreenLine style={{height: '5px'}}/>
+            <br />
             <h2>Какво е „Ти броиш“?</h2>
             <p>
                 „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации при броенето 
