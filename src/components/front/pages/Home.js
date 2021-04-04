@@ -181,6 +181,8 @@ const setHeightOfIframeContainer = iframeContainerElem => {
         if (iframeContainerWidth < 800) {
             let iframeContainerHeight = iframeContainerWidth / 1.08;
             iframeContainerElem.current.style.height = `${iframeContainerHeight}px`;
+        } else {
+            iframeContainerElem.current.style.height = `650px`;
         }
     }
 }
