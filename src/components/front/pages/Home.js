@@ -10,6 +10,7 @@ import { Wrapper, MainContent, GreenLine } from '../Front';
 import { VideoWrapper, YouTubeVideoEmbed } from './Videos';
 
 import { MOBILE_WIDTH } from '../Style';
+import './utils.css';
 
 const LandingPage = styled.div`
     background-color: black;
@@ -179,7 +180,15 @@ export default props => {
             <meta property="og:image:width" content={"1200"}/>
             <meta property="og:image:height" content={"628"}/>
         </Helmet>,
-        <div>
+        <AppBadges>
+            <div style={{maxWidth: '800px', margin: '0 auto'}}> 
+                <h2 style={{float: 'left'}}>Към Ти броиш <em style={{color: 'red'}}>Live</em></h2>
+                <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish.stream&hl=bg">
+                    <img src='/google-play-badge.png'/>
+                </a>
+            </div>
+        </AppBadges>,
+        <div className="lg-only">
             <iframe 
                 width={800} 
                 height={650} 
@@ -204,7 +213,90 @@ export default props => {
         <Wrapper>
             <MainContent>
             <h1>Национална кампания „Ти броиш“</h1>
-            <hr/>
+            <GreenLine style={{height: '5px'}}/>
+            <h2>Последни сигнали</h2>
+            <ol style={{listStyle: 'none', padding: 0}}>
+                <li>
+                    <p><strong>
+                        Проблем с машината. Преустановено е машинното гласуване.
+                    </strong></p>
+                    <dl>
+                        <dt>Статус:</dt>
+                        <dd>Обработва се</dd>
+                        <dt>Секция:</dt>
+                        <dd>0040400041</dd>
+                        <dt>Населено място:</dt>
+                        <dd>Велико Търново</dd>
+                        <dt>Локация:</dt>
+                        <dd>Езикова гимназия "Проф.д-р А. Златаров"</dd>
+                    </dl>
+                    <GreenLine style={{height: '2px'}}/>
+                </li>
+                <li>
+                    <p><strong>
+                    Член на СИК без инструктаж раздава и приема бюлетините. Едва след като 10-15 бюлетини бяха пуснати се установи, че не са положени втори печати на бюлетините. Имаше предложение тези печати да бъдат поставени впоследствие при отварянето на кутиите.
+                    </strong></p>
+                    <dl>
+                        <dt>Статус:</dt>
+                        <dd>Обработва се</dd>
+                        <dt>Секция:</dt>
+                        <dd>0244606021</dd>
+                        <dt>Населено място:</dt>
+                        <dd>София</dd>
+                        <dt>Локация:</dt>
+                        <dd>143 ОУ "Георги Бенковски" ул. Тодорини кукли № 9</dd>
+                    </dl>
+                    <GreenLine style={{height: '2px'}}/>
+                </li>
+                <li>
+                    <p><strong>
+                        Членовете на комисията не поставиха печат на бюлетината преди гласуването, нито след това! След направена забележка от мен бяха поставени два печата едновремено след гласуването. Отговора беше, че не знаели. Преди мен имаше поне 10 бюлетини.
+                    </strong></p>
+                    <dl>
+                        <dt>Статус:</dt>
+                        <dd>Изпратен сигнал до РИК</dd>
+                        <dt>Секция:</dt>
+                        <dd>0234610002</dd>
+                        <dt>Населено място:</dt>
+                        <dd>София</dd>
+                        <dt>Локация:</dt>
+                        <dd>41 ОУ "СВ.ПАТР.ЕВТИМИЙ", УЛ. "ЦАР САМУИЛ" № 24</dd>
+                    </dl>
+                    <GreenLine style={{height: '2px'}}/>
+                </li>
+                <li>
+                    <p><strong>
+                        Машината за машинно гласуване в секцията не работи. Хората не желаят да гласуват с хартиена бюлетина. Искат възможност да гласуват в съседната 55-а секция или друго разрешение на техния казус.Към кого да се обърнат
+                    </strong></p>
+                    <dl>
+                        <dt>Статус:</dt>
+                        <dd>Изпратено разяснения на запитващия.</dd>
+                        <dt>Секция:</dt>
+                        <dd>0234609056</dd>
+                        <dt>Населено място:</dt>
+                        <dd>София</dd>
+                        <dt>Локация:</dt>
+                        <dd>Център за специалнаобразователна подкрепа ул. "Русалийски проход", 12</dd>
+                    </dl>
+                    <GreenLine style={{height: '2px'}}/>
+                </li>
+                <li>
+                    <p><strong>
+                        Изборният процес все още не е започнал. В момента вече е 07:08 ч.
+                    </strong></p>
+                    <dl>
+                        <dt>Статус:</dt>
+                        <dd>Изпратен сигнал до РИК</dd>
+                        <dt>Секция:</dt>
+                        <dd>0273100079</dd>
+                        <dt>Населено място:</dt>
+                        <dd>Стара Загора</dd>
+                        <dt>Локация:</dt>
+                        <dd>Клуб на пенсионера, ул. "Августа Траяна" №3</dd>
+                    </dl>
+                </li>
+            </ol>
+            <GreenLine style={{height: '5px'}}/>
             <h2>Какво е „Ти броиш“?</h2>
             <p>
                 „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации при броенето 
