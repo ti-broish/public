@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Parallax } from 'react-parallax';
@@ -10,7 +10,6 @@ import { Wrapper, MainContent, GreenLine } from '../Front';
 import { VideoWrapper, YouTubeVideoEmbed } from './Videos';
 
 import { MOBILE_WIDTH } from '../Style';
-import './utils.css';
 
 const LandingPage = styled.div`
     background-color: black;
@@ -142,26 +141,6 @@ const HomeButtonWrapper = styled.div`
     text-align: center;
 `;
 
-const IframeContainer = styled.div`
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 650px;
-    max-width: 800px;
-    margin: 0 auto;
-
-    iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-`
-
 export const AppBadges = styled.div`
     padding: 20px;
     text-align: center;
@@ -175,30 +154,11 @@ export const AppBadges = styled.div`
     }
 `;
 
-const setHeightOfIframeContainer = iframeContainerElem => {
-    if (iframeContainerElem.current) {
-        let iframeContainerWidth = iframeContainerElem.current.offsetWidth;
-        if (iframeContainerWidth < 800) {
-            let iframeContainerHeight = iframeContainerWidth / 1.08;
-            iframeContainerElem.current.style.height = `${iframeContainerHeight}px`;
-        } else {
-            iframeContainerElem.current.style.height = `650px`;
-        }
-    }
-}
-
 export default props => {
-    const iframeContainerElem = useRef();
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        setHeightOfIframeContainer(iframeContainerElem);
-
-        window.addEventListener('resize', () => {
-            setHeightOfIframeContainer(iframeContainerElem);
-        })
-
-    }, [iframeContainerElem]);
+    }, []);
 
     let metaUrl = "https://tibroish.bg/";
     let metaDescription = `
@@ -219,24 +179,35 @@ export default props => {
             <meta property="og:image:width" content={"1200"}/>
             <meta property="og:image:height" content={"628"}/>
         </Helmet>,
-        <AppBadges>
-            <div style={{maxWidth: '800px', margin: '0 auto'}}> 
-                <h2 style={{float: 'left'}}>Към Ти броиш <em style={{color: 'red'}}>Live</em></h2>
-                <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish.stream&hl=bg">
-                    <img src='/google-play-badge.png'/>
-                </a>
-                <a>
-                    <img src='/apple-badge.svg'/>
-                </a>
-            </div>
-        </AppBadges>,
-        <IframeContainer ref={iframeContainerElem}>
-            <iframe 
-                loading="lazy" 
-                allowFullScreen 
-                src="https://tibroish.bg/results/parliament-2021-04-04/embed/mini-results?mapOnly=true&linkToMainSite=true&homepage=true"
-            ></iframe>
-        </IframeContainer>,
+        <LandingPage>
+            <Parallax 
+                bgImage="/images/sofia-2337926_1920.jpg" 
+                bgImageAlt="Народно събрание" 
+                strength={200}
+            >
+            
+                <LandingPageOverlay>
+                    <TopSection>
+                        <p id='text1'>Да дадем на <b>България</b> шанс за</p>
+                        <p id='text2'><b>ЧЕСТНИ</b> и <b>СВОБОДНИ</b> избори</p>
+                    </TopSection>
+                    <MiddleSection>
+                        <p id='text3'>търсим <b>12 000</b> защитници на вота</p>
+                        <p id='text4'>които да следят за коректното преброяване на <b>всички</b> гласове в изборния ден</p>
+                        <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link>
+                        <p id='text5'>или изпрати безплатен <b>SMS</b> с текст <b>УЧАСТВАМ</b> на тел</p>
+                        <p id='text6'>
+                            <a href="sms:108006?body=УЧАСТВАМ">
+                                <b>108 006</b>
+                            </a>
+                        </p>
+                    </MiddleSection>
+                    <BottomSection>
+                        <p id='text5'>Можем да го направим <b>заедно</b>!</p>
+                    </BottomSection>
+                </LandingPageOverlay>
+            </Parallax>
+        </LandingPage>,
         <GreenLine style={{height: '15px'}}/>,
         <AppBadges>
             <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish&hl=bg">
@@ -252,158 +223,14 @@ export default props => {
         <Wrapper>
             <MainContent>
             <h1>Национална кампания „Ти броиш“</h1>
-            <GreenLine style={{height: '5px'}}/>
-            <h2>Брой сигнали в "Ти броиш":</h2>
-            <h2><ul>
-                    <li>през приложението - 612 бр.</li>
-                    <li>по телефон - 342 бр.</li>
-                </ul>
-            </h2>
-            <GreenLine style={{height: '5px'}}/>
-            <h2>Последни сигнали за нередности</h2>
-            <ol style={{listStyle: 'none', padding: 0}}>
-                <li>
-                    <p><strong>
-                        Беше даден достъп до документацията на секцията и комисията на лице, което отказа да се легитимира. Извикана е полиция за идентифициране на лицето. Сигнал до РИК изпратен
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработен</dd>
-                        <dt>Секция:</dt>
-                        <dd>162201083</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. Пловдив</dd>
-                        <dt>Локация:</dt>
-                        <dd>СУ Л.Каравелов-сграда 1 ул. Бранислав Велешки №2</dd>
-                    </dl>
-<p><strong>
-                        От началото на изборния ден членовете на комисията не изискват от избирателите да свалят за малко маските си, за да се легитимират
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработен</dd>
-                        <dt>Секция:</dt>
-                        <dd>030602096</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. Варна</dd>
-                        <dt>Локация:</dt>
-                        <dd>Народно читалище Васил Левски - 1945, ул. Лоза №3</dd>
-                    </dl>
-<p><strong>
-                        Пред входа на секцията няма информация, че в секцията има машина и че може и машинно да се гласува.
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработва се</dd>
-                        <dt>Секция:</dt>
-                        <dd>031400008</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. Девня</dd>
-                        <dt>Локация:</dt>
-                        <dd>Кв.Девня, бул. Съединение №165 (Народно читалище Просвета)</dd>
-                    </dl>
-<p><strong>
-                        Не се изисква сваляне на маската, за разпознаване на желаещия да гласува и за сравняване със снимката от личната карта.
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработва се</dd>
-                        <dt>Секция:</dt>
-                        <dd>234609006</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. София</dd>
-                        <dt>Локация:</dt>
-                        <dd>120 ОУГ.С.Раковски, пл. Папа Йоан Павел, 7</dd>
-                    </dl>
-<p><strong>
-                        Спряно е машинното гласуване. Това се обяснява устно, причината несъответствие. Имало нареждане от РИК. Подаден сигнал до ЦИК
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработен</dd>
-                        <dt>Секция:</dt>
-                        <dd>082800029</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. Добрич</dd>
-                        <dt>Локация:</dt>
-                        <dd>ОУ Христо Ботев ул. Цар Самуил № 14</dd>
-                    </dl>
-<p><strong>
-                        Членовете на изборната секция не питат гражданите дали искат машинно или ръчно, а целенасочено ги насочват към машината. Изпратен сигнал до РИК
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработен</dd>
-                        <dt>Секция:</dt>
-                        <dd>254624007</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. Банкя</dd>
-                        <dt>Локация:</dt>
-                        <dd>Помещение към трафопост, кв. Изгрев, ул. Иванянско шосе</dd>
-                    </dl>
-<p><strong>
-                        Машината за гласуване не работи вследствие употреба на дезинфектант, доставен заедно с нея. Тъчскрийнът не реагира. Повече от 3 минути гласоподавател се опитва и се наложи да гласува с хартиена бюлетина. Подаден сигнал по имейл до РИК
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработен</dd>
-                        <dt>Секция:</dt>
-                        <dd>152400106</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. Плевен</dd>
-                        <dt>Локация:</dt>
-                        <dd>ул. „Васил Левски” № 155, ДКТ „Иван Радоев”</dd>
-                    </dl>
-<p><strong>
-                        Коментар за секцията: Дойдохме в 09:00 и чакахме един час. Тези, които дойдоха в 9:30 чакат час и половина
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработен</dd>
-                        <dt>Секция:</dt>
-                        <dd>321300102</dd>
-                        <dt>Населено място:</dt>
-                        <dd>Мюнхен</dd>
-                        <dt>Локация:</dt>
-                        <dd>Edelweisstrase 10</dd>
-                    </dl>
-<p><strong>
-                        Бюлетините от машинното гласуване се пускат в урната на хартиеното гласуване. Уведомени в РИК.
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработен</dd>
-                        <dt>Секция:</dt>
-                        <dd>244601042</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. София</dd>
-                        <dt>Локация:</dt>
-                        <dd>12 СОУ - ул. Цар Иван Асен ІІ № 72</dd>
-                    </dl>
-<p><strong>
-                        В стаята има член на сик с червена маска с надпис С грижа за хората (слоган на БСП)
-                    </strong></p>
-                    <dl>
-                        <dt>Статус:</dt>
-                        <dd>Обработва се</dd>
-                        <dt>Секция:</dt>
-                        <dd>030602112</dd>
-                        <dt>Населено място:</dt>
-                        <dd>гр. Варна</dd>
-                        <dt>Локация:</dt>
-                        <dd>Икономически университет (II корпус), ул. Евлоги Георгиев №24</dd>
-                    </dl>
-                </li>
-            </ol>
-            <GreenLine style={{height: '5px'}}/>
-            <br />
+            <hr/>
             <h2>Какво е „Ти броиш“?</h2>
             <p>
                 „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации при броенето 
                 на гласовете на предстоящите парламентарни избори.
             </p>
             <p>
-                За целта сме организирали 12 000 души – колкото са изборните секции в страната – които да присъстват на 
+                За целта търсим 12 000 души – колкото са изборните секции в страната – които да присъстват на 
                 броенето на бюлетините в изборния ден, да следят за тяхното честно преброяване и за коректното 
                 вписване на резултатите в протоколите.
             </p>
@@ -411,13 +238,19 @@ export default props => {
                 <Link to='/about'><HomeButton>Научи повече</HomeButton></Link>
             </HomeButtonWrapper>
             <hr/>
-            <h2>12 000 защитници на вота</h2>
+            <h2>Търсим 12 000 защитници на вота</h2>
             <p>
-                За да дадем на България шанс за честни и свободни избори, сме организирали 12 000 защитници на вота, 
+                За да дадем на България шанс за честни и свободни избори, търсим 12 000 защитници на вота, 
                 които да следят за коректното преброяване на всички гласове в изборния ден. По един за всяка секция 
                 в страната. Ангажимент за няколко часа в края на изборния ден може да реши бъдещето на България 
                 за следващите години. Можем да го направим заедно!  
             </p>
+            <p>
+                Запишете се днес и до няколко дни ще се свържем с Вас, за да Ви въведем в кампанията. 
+            </p>
+            <HomeButtonWrapper>
+                <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link>
+            </HomeButtonWrapper>
             <hr/>
             <h2>Информация за застъпници</h2>
             <p>
