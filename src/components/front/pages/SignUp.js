@@ -80,7 +80,7 @@ export default () => {
                     Запишете се днес, а с наближаването на изборния ден ние ще се свържем с вас във връзка с вашето разпределение! 
                 </p>
                 <FormWrapper>
-                    <iframe id="gform" style={{border: 'none';}} src="https://dabulgaria.bg/tibroish-chlen-na-sik-embed/">Loading...</iframe>
+                    <iframe id="gform" style={{border: 'none'}} src="https://dabulgaria.bg/tibroish-chlen-na-sik-embed/">Loading...</iframe>
                     {/*<iframe id="gform" onLoad={onSignupIframeLoad} src="https://docs.google.com/forms/d/e/1FAIpQLSdXMU-qZsIDLMEymzZl7VMthQyC0gJ0-X0Ew8wZo8P3oLHElg/viewform?embedded=true" frameBorder="0">Loading…</iframe>*/}
                 </FormWrapper>
                 <hr/>
