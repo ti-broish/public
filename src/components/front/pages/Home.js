@@ -193,7 +193,7 @@ export default props => {
                     </TopSection>
                     <MiddleSection>
                         <p id='text3'>търсим <b>12 000</b> пазители на вота</p>
-                        <p id='text4'>които да следят за коректното преброяване на <b>всички</b> гласове в изборния ден</p>
+                        <p id='text4'>които да гарантират за коректното протичане на изборния ден!</p>
                         <Link to='/signup'><HomeButton>Запиши се тук</HomeButton></Link>
                     </MiddleSection>
                     <BottomSection>
