@@ -273,12 +273,6 @@ export default props => {
             <HomeButtonWrapper>
                 <Link to='/news'><HomeButton>Научи повече</HomeButton></Link>
             </HomeButtonWrapper>
-            <hr/>
-            <h2>Видеа от кампанията</h2>
-            <YouTubeVideoEmbed videoId={"J_B0525_hcs"} />
-            <HomeButtonWrapper>
-                <Link to='/videos'><HomeButton>Виж още видеа</HomeButton></Link>
-            </HomeButtonWrapper>
             </MainContent>
         </Wrapper>
     ]);
