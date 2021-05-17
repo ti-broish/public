@@ -84,7 +84,7 @@ export default () => {
                     {/*<iframe id="gform" onLoad={onSignupIframeLoad} src="https://docs.google.com/forms/d/e/1FAIpQLSdXMU-qZsIDLMEymzZl7VMthQyC0gJ0-X0Ew8wZo8P3oLHElg/viewform?embedded=true" frameBorder="0">Loading…</iframe>*/}
                 </FormWrapper>
                 <hr/>
-                <h1>Какво предстои след като се запишете за защитник на вота?</h1>
+                <h1>Какво предстои след като се запишете за пазител на вота?</h1>
                 <hr/>
                 <h2>Ще ви изпратим обучително видео и материали</h2>
                 <p>
