@@ -31,9 +31,11 @@ const renderPage = require('./renderPage.js');
 
 const normalizeCssStr = fs.readFileSync('./public/css/normalize.min.css', 'utf-8');
 const fontAwesomeCss = require('@fortawesome/fontawesome-svg-core').dom.css();
+const fontsCss = fs.readFileSync('./public/fonts/fonts.css', 'utf-8');
 let additionalStyleTags = `
     <style>${normalizeCssStr}</style>
     <style>${fontAwesomeCss}</style>
+    <style>${fontsCss}</style>
 `;  
 
 const renderHTML = renderData => {
@@ -81,6 +83,7 @@ const routes = [
     '/instructions/watchers',
     '/instructions/what-to-watch-for',
     '/instructions/how-to-take-photos',
+    '/ti-glasuvash',
 ];
 
 console.log('\nGENERATING STATIC HTML\n');

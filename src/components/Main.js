@@ -9,32 +9,9 @@ const Post = loadable(() => import('./posts/Post.js'));
 const Front = loadable(() => import('./front/Front.js'));
 
 import styled from 'styled-components';
+import TiGlasuvash from './ti_glasuvash/TiGlasuvash.js';
 
 const GlobalCSS = styled.div`
-    @font-face {
-        font-family: 'Montserrat';
-        src: local('Montserrat'), local('Montserrat'),
-        url(/fonts/montserrat/Montserrat-Regular.ttf) format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Montserrat';
-        src: local('Montserrat'), local('Montserrat'),
-        url(/fonts/montserrat/Montserrat-Bold.ttf) format('woff');
-        font-weight: bold;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Montserrat';
-        src: local('Montserrat'), local('Montserrat'),
-        url(/fonts/montserrat/Montserrat-Black.ttf) format('woff');
-        font-weight: 900;
-        font-style: normal;
-    }
-
     font-family: 'Montserrat', sans-serif;
     font-weight: normal;
     background-color: white;
