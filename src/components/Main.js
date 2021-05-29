@@ -33,6 +33,7 @@ export default props => {
             <Switch>
                 <Route path='/results/:election' component={Results}/>
                 <Route path='/post/:post' component={Post}/>
+                <Route path='/ti-glasuvash' component={TiGlasuvash}/>
                 <Route path='/' component={Front}/>
             </Switch>
         </GlobalCSS>
