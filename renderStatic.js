@@ -67,7 +67,7 @@ const writeHTML = (rendered, renderData) => {
 
     fs.writeFileSync(`./public${pathUrl}/index.html`, minify(html, {
         removeComments: true,
-    }), 'utf-8');
+    }), 'utf8');
     console.log("Generated HTML", `./public${pathUrl}/index.html`);
 };
 
