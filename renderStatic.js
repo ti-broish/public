@@ -1,5 +1,5 @@
 const fs = require('fs');
-const ejs = require('ejs');
+const handlebars = require('handlebars');
 const minify = require('html-minifier').minify;
 require('ignore-styles');
 
@@ -28,7 +28,6 @@ require('@babel/register') ({
 
 const renderPage = require('./renderPage.js');
 
-
 const normalizeCssStr = fs.readFileSync('./public/css/normalize.min.css', 'utf-8');
 const fontAwesomeCss = require('@fortawesome/fontawesome-svg-core').dom.css();
 const fontsCss = fs.readFileSync('./public/fonts/fonts.css', 'utf-8');
@@ -42,16 +41,18 @@ const renderHTML = renderData => {
     return renderPage.default(renderData);
 };
 
+const template = handlebars.compile(fs.readFileSync('./src/index.hbs').toString());
+
 const writeHTML = (rendered, renderData) => {
-    const template = fs.readFileSync('./src/index.ejs').toString();
-    const html = ejs.render(template, {
+    const html = template({
         body: rendered.html, 
         headTags: rendered.headTags,
         scriptTags: rendered.scriptTags,
         linkTags: rendered.linkTags,
         styleTags: rendered.styleTags,
         renderData: renderData,
-        additionalStyleTags: additionalStyleTags
+        additionalStyleTags: additionalStyleTags,
+        production: process.env.NODE_ENV == 'production'
     });
 
     let pathUrl = '';
@@ -66,7 +67,7 @@ const writeHTML = (rendered, renderData) => {
 
     fs.writeFileSync(`./public${pathUrl}/index.html`, minify(html, {
         removeComments: true,
-    }));
+    }), 'utf-8');
     console.log("Generated HTML", `./public${pathUrl}/index.html`);
 };
 
