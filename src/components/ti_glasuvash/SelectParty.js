@@ -200,12 +200,12 @@ export default props => {
     };
 
     const clickReview = () => {
-        const party = !selectedParty? null : {
+        const party = selectedParty == null? null : {
             number: addZeroIfNeeded(selectedParty + 1),
             name: parties[selectedParty],
         };
 
-        const preference = !selectedPreference? null : {
+        const preference = selectedPreference == null? null : {
             number: selectedPreference,
             name: 'Неназован кандидат',
         };

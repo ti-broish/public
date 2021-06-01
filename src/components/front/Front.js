@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -58,6 +59,9 @@ export const GreenLine = styled.div`
 export default props => {
     return(
         <FrontDiv>
+            <Helmet>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            </Helmet>
             <Header/>
             <Switch>
                 <Route exact path='/' component={Home}/>
