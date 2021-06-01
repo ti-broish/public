@@ -190,6 +190,7 @@ export default props => {
         'ГЕРБ-СДС',
         'ПП ИМА ТАКЪВ НАРОД',
         'ПРЯКА ДЕМОКРАЦИЯ',
+        'Не подкрепям никого',
     ];
 
     const addZeroIfNeeded = number => {
@@ -205,33 +206,43 @@ export default props => {
             name: parties[selectedParty],
         };
 
+        if(selectedParty === parties.length-1) {
+            party.nikogo = true;
+        }
+
         const preference = selectedPreference == null? null : {
             number: selectedPreference,
-            name: 'Неназован кандидат',
+            name: 'Име на кандидат',
         };
 
         props.selectParty(party, preference);
     };
 
+    const partyClicked = partyNum => {
+        if(partyNum === selectedParty) {
+            setSelectedParty();
+        } else setSelectedParty(partyNum);
+        setSelectedPreference();
+    };
+
     return (
         <SelectPartyScreen>
             <h5>РИК 310000000 000000035</h5>
-            <h2>НАРОДНИ ПРЕДСТАВИТЕЛИ</h2>
+            <h2>Избори за Народни представители 2021</h2>
             <VoteSelectionScreen>
                 <PartyHalf>
                     <PartyTable>
                     <tbody>
                     {
                         parties.slice(page * 13, (page + 1) * 13).map((party, i) => 
-                            <tr onClick={()=> {
-                                if(page * 13 + i === selectedParty) {
-                                    setSelectedParty();
-                                } else setSelectedParty(page * 13 + i)
-                            }} className={page * 13 + i === selectedParty? 'selected' : ''}>
+                            <tr onClick={()=>partyClicked(page * 13 + i)} className={page * 13 + i === selectedParty? 'selected' : ''}>
                                 <td>
                                     <NumberSquare className={page * 13 + i === selectedParty? 'selected' : ''}>
                                         {page * 13 + i === selectedParty? <Cross/> : null}
-                                        {addZeroIfNeeded(page * 13 + i + 1)}
+                                        {
+                                            page * 13 + i == parties.length-1? '' :
+                                            addZeroIfNeeded(page * 13 + i + 1)
+                                        }
                                     </NumberSquare>
                                 </td>
                                 <td>{party}</td>
@@ -253,10 +264,15 @@ export default props => {
                 </PartyHalf>
                 <PreferenceHalf>
                     <h2>Предпочитание (преференция) за кандидат</h2>
-                    {selectedParty == null? null :
+                    {selectedParty == null || selectedParty == parties.length-1? null :
                         [...Array(17).keys()].map(key => 
                             <PreferenceCircle className={101 + key === selectedPreference? 'selected' : ''}
-                                onClick={()=>setSelectedPreference(101 + key)}
+                                onClick={()=>{
+                                    if(selectedPreference)
+                                        setSelectedPreference(null);
+                                    else
+                                        setSelectedPreference(101 + key)
+                                }}
                             >
                                 {101 + key === selectedPreference? [
                                     <Cross style={{marginLeft: '1px'}}/>,

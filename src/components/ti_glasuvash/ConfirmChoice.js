@@ -55,13 +55,18 @@ const DarkButton = styled.button`
     padding: 10px;
     border-radius: 10px;
     font-size: 12px;
+
+    &:disabled {
+        background-color: #aaa;
+        color: #ccc;
+    }
 `;
 
 export default props => {
     return(
         <ConfirmChoiceStyle>
             <h5>РИК 310000000 000000035</h5>
-            <h2>НАРОДНИ ПРЕДСТАВИТЕЛИ</h2>
+            <h2>Избори за Народни представители 2021</h2>
             <h1>Преглед на направените избори</h1>
             <p>
                 Прегледайте избора си по-долу. Докоснете бутона „Гласуване“, за да завършите процеса на
@@ -71,7 +76,7 @@ export default props => {
             <ChoiceBox>
                 <h3>000000035</h3>
                 <hr/>
-                <h2>НАРОДНИ ПРЕДСТАВИТЕЛИ</h2>
+                <h2>Избори за Народни представители 2021</h2>
                 {
                     !props.partySelected.party?
                         <p>Не е направен избор</p> :
@@ -93,8 +98,10 @@ export default props => {
                                     borderLeft: '1px solid #262629',
                                     fontSize: '12px', 
                                 }}>
-                                    {props.partySelected.party.number}
-                                    {'. '}
+                                    {
+                                        props.partySelected.party.nikogo? null :
+                                            props.partySelected.party.number + '. '
+                                    }
                                     {props.partySelected.party.name}
                                 </p>
                             </div>
@@ -116,8 +123,8 @@ export default props => {
                                     marginLeft: '18px',
                                     marginBottom: '20px',
                                 }}>
-                                    
-                                    {!props.partySelected.preference? 
+                                    {props.partySelected.party.nikogo? '' :
+                                    !props.partySelected.preference? 
                                         'Не е направен избор' :
                                         `${props.partySelected.preference.number}. ${props.partySelected.preference.name}`
                                     }
@@ -140,7 +147,9 @@ export default props => {
                 position: 'absolute',
                 bottom: '19px',
                 right: '9px',
-            }}>
+            }}
+                disabled={!props.partySelected.party}
+            >
                 Гласуване
             </DarkButton>
         </ConfirmChoiceStyle>

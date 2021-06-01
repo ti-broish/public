@@ -37,7 +37,7 @@ export default props => {
         
         setTimeout(() => {
             props.receiptPrintedDone();
-        }, 5000);
+        }, 3000);
     }, []);
 
     return (

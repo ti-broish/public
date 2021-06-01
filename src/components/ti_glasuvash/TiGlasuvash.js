@@ -8,6 +8,7 @@ import SelectParty from './SelectParty';
 import PrintReceipt from './PrintReceipt';
 import RemoveCard from './RemoveCard';
 import ConfirmChoice from './ConfirmChoice';
+import RemoveReceipt from './RemoveReceipt';
 
 const TiGlasuvashStyle = styled.div`
     font-family: Arial, sans-serif;
@@ -29,7 +30,7 @@ export const MachineFrame = styled.div`
 `;
 
 export const ReceiptSlot = styled.div`
-    width: 120px;
+    width: 180px;
     margin: 30px auto;
     background-color: #0a0a0a;
     height: 10px;
@@ -131,7 +132,7 @@ const ReceiptTopPanelHalf = styled.div`
 
     div {
         background-color: black;
-        width: 120px;
+        width: 180px;
         position: absolute;
         bottom: 0;
         z-index: 11;
@@ -155,13 +156,13 @@ const BrandName = styled.div`
 
 const Receipt = styled.div`
     opacity: 1;
-    top: -153px;
+    top: -330px;
     background-color: white;
     z-index: 15;
     display: block;
     position: absolute;
-    width: 100px;
-    padding: 30px 10px;
+    width: 160px;
+    padding: 20px 10px;
     font-size: 12px;
     box-sizing: border-box;
     left: 0;
@@ -170,6 +171,62 @@ const Receipt = styled.div`
     border: 1px solid #aaa;
     box-shadow: 0 0 10px #333;
     color: #777;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    &:hover {
+        width: 166px;
+        border: 4px solid yellow;
+    }
+
+    hr {
+        border-top: 4px solid #777
+    }
+
+    h1 {
+        font-size: 8px;
+        width: 100px;
+        width: 100px;
+        margin: 0 auto;
+        margin-top: -20px;
+        background-color: white;
+        padding: 6px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 11px;
+        margin: 5px 0 0 0;
+    }
+
+    h3 {
+        font-size: 11px;
+        margin: 0;
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 11px;
+        margin: 10px 5px 0 5px;
+    }
+
+    p {
+        font-size: 9px;
+    }
+
+    img {
+        width: 100%;
+
+        g {
+            stroke: #777;
+        }
+        
+        rect {
+            fill: #777;
+        }
+    }
 `;
 
 export default props => {
@@ -177,6 +234,7 @@ export default props => {
     const [partySelected, setPartySelected] = useState(null);
     const [choiceConfirmed, setChoiceConfirmed] = useState(false);
     const [receiptPrinted, setReceiptPrinted] = useState(false);
+    const [receiptRemoved, setReceiptRemoved] = useState(false);
 
     const [cardStyle, setCardStyle] = useState(null);
     const [receiptStyle, setReceiptStyle] = useState(null);
@@ -218,7 +276,7 @@ export default props => {
             }, 2000);
         }
 
-        if(receiptPrinted) {
+        if(receiptRemoved) {
             setCardStyle({
                 top: '830px',
                 right: 'calc(100vw / 2 - 56px)',
@@ -244,6 +302,7 @@ export default props => {
                 setPartySelected(null);
                 setChoiceConfirmed(false);
                 setReceiptPrinted(false);
+                setReceiptRemoved(false);
                 setCardStyle(null);
             }, 3500);
         }
@@ -254,18 +313,21 @@ export default props => {
             top: '58px',
             transition: 'top 2s linear'
         });
+    };
 
-        setTimeout(() => {
+    const removeReceipt = () => {
+        if(receiptPrinted) {
             setReceiptStyle({
                 top: '58px',
                 opacity: 0,
                 transition: 'opacity 1s ease'
             });
-        }, 5000);
 
-        setTimeout(() => {
-            setReceiptStyle(null);
-        }, 6000);
+            setTimeout(() => {
+                setReceiptRemoved(true);
+                setReceiptStyle(null);
+            }, 1500);
+        }
     };
 
     const selectParty = (party, preference) => {
@@ -337,6 +399,8 @@ export default props => {
                         /> :
                     !receiptPrinted?
                         <PrintReceipt printReceipt={printReceipt} receiptPrintedDone={receiptPrintedDone}/> :
+                    !receiptRemoved?
+                        <RemoveReceipt/> :
                         <RemoveCard/>
                 }
                 </MachineScreen>
@@ -358,9 +422,31 @@ export default props => {
                 <CardSign>ИЗБИРАТЕЛ</CardSign>
             </VotingCard>
 
-            <Receipt style={receiptStyle}>
-                Това беше симулация на машинно гласуване за предстоящите избори
-                на 11-ти юли. Благодарим ви много, че участвахте!
+            <Receipt style={receiptStyle} onClick={removeReceipt}>
+                <hr/>
+                <h1 style={{width: '72px', marginTop: '-22px'}}>ДОКЛАД ЗА ГЛАСУВАНЕТО</h1>
+                <h2>Избори за Народни представители 2021</h2>
+                <h3>310000035</h3>
+                <h4>Избори за Народни представители 2021</h4>
+                <p>
+                {
+                    !partySelected? null :
+                    <div>
+                        {partySelected.party.nikogo? '' :
+                            partySelected.party.number + '. '
+                        }
+                        {partySelected.party.name}
+                        <br/>
+                        {!partySelected.preference? null :
+                            partySelected.preference.number + '. ' +
+                            partySelected.preference.name
+                        }
+                    </div>
+                }
+                </p>
+                <img src="/ti-glasuvash/bilet_code.png"/>
+                <hr/>
+                <h1>КРАЙ НА ДОКУМЕНТА</h1>
             </Receipt>
         </TiGlasuvashStyle>
     );
