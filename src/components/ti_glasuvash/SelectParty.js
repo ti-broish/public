@@ -253,7 +253,7 @@ export default props => {
                 </PartyHalf>
                 <PreferenceHalf>
                     <h2>Предпочитание (преференция) за кандидат</h2>
-                    {!selectedParty? null :
+                    {selectedParty == null? null :
                         [...Array(17).keys()].map(key => 
                             <PreferenceCircle className={101 + key === selectedPreference? 'selected' : ''}
                                 onClick={()=>setSelectedPreference(101 + key)}
