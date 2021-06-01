@@ -430,7 +430,7 @@ export default props => {
                 <h4>Избори за Народни представители 2021</h4>
                 <p>
                 {
-                    !partySelected? null :
+                    !partySelected || !partySelected.party? null :
                     <div>
                         {partySelected.party.nikogo? '' :
                             partySelected.party.number + '. '

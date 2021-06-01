@@ -78,6 +78,7 @@ export default props => {
                 <hr/>
                 <h2>Избори за Народни представители 2021</h2>
                 {
+                    !props.partySelected || 
                     !props.partySelected.party?
                         <p>Не е направен избор</p> :
                         <div style={{marginTop: '10px'}}>
