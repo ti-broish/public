@@ -384,7 +384,7 @@ export default props => {
                     <div/>
                 </ReceiptTopPanelHalf>
                 <ReceiptSlot/>
-                <BrandName>ГЛАСУВАНЕТИКС</BrandName>
+                <BrandName>ТИ ГЛАСУВАШ</BrandName>
                 <MachineScreen>
                 {
                     !cardInserted?

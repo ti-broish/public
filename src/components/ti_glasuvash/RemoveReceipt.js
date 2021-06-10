@@ -7,7 +7,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 const RemoveReceiptStyle = styled.div`
     h1 {
         font-weight: 400;
-        margin: 216px 70px 0 64px;
+        margin: 367px 70px 0 64px;
         font-size: 20px;
     }
 `;
