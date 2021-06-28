@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Helmet from 'react-helmet';
 
@@ -238,6 +238,10 @@ export default props => {
 
     const [cardStyle, setCardStyle] = useState(null);
     const [receiptStyle, setReceiptStyle] = useState(null);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const insertCard = () => {
         if(!cardStyle) {

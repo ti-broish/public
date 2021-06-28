@@ -46,7 +46,7 @@ const Navigation = styled.nav`
         }
     }
 
-    @media only screen and (max-width: 835px) {
+    @media only screen and (max-width: 854px) {
         font-size: 15px;
         a { padding: 7px;}
     }
@@ -120,6 +120,7 @@ export default props => {
                     <Link to='/signup'>Запиши се</Link>
                     <Link to='/instructions'>Инструкции</Link>
                     <Link to='/videos'>Видео</Link>
+                    <Link to='/ti-glasuvash'>Ти Гласуваш</Link>
                 </Navigation>
                 <MobileMenuButton onClick={()=>setMenuOpen(!menuOpen)}>
                     <FontAwesomeIcon icon={faBars} />
@@ -136,6 +137,7 @@ export default props => {
                     <Link to='/videos' onClick={()=>setMenuOpen(false)}>Видео</Link>
                     <Link to='/news' onClick={()=>setMenuOpen(false)}>Актуална информация</Link>
                     <Link to='/privacy-notice' onClick={()=>setMenuOpen(false)}>Декларация за поверителност</Link>
+                    <Link to='/ti-glasuvash' onClick={()=>setMenuOpen(false)}>Ти Гласуваш!</Link>
                 </MobileNavMenu>
             </Menu>
         </MobileNavigation>

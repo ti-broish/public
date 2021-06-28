@@ -106,7 +106,8 @@ export default props => {
                         <li><Link to='/instructions'>Инструкции</Link></li> 
                         <li><Link to='/videos'>Видео</Link></li>
                         <li><Link to='/news'>Актуална информация</Link></li>
-                        <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>         
+                        <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>   
+                        <li><Link to='/ti-glasuvash'>Ти Гласуваш!</Link></li>          
                     </ul>
                 </FooterColumn>
                 <FooterColumn>
