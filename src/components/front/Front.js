@@ -18,6 +18,7 @@ import styled from 'styled-components';
 import { MOBILE_WIDTH } from './Style';
 import Instructions from './pages/Instructions';
 import SignUpValidator from './pages/SignUpValidator';
+import MobileAppFeedback from './pages/MobileAppFeedback';
 
 const FrontDiv = styled.div`
     //background-color: #d4d4d4;
@@ -72,6 +73,7 @@ export default props => {
                 <Route path='/videos' component={Videos}/>
                 <Route path='/instructions' component={Instructions}/>
                 <Route path='/privacy-notice' component={PrivacyNotice}/>
+                <Route path='/mobile-app-feedback' component={MobileAppFeedback}/>
                 <Redirect to='/'/>
             </Switch>
             <Footer/>
