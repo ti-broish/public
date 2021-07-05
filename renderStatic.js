@@ -85,6 +85,7 @@ const routes = [
     '/instructions/what-to-watch-for',
     '/instructions/how-to-take-photos',
     '/ti-glasuvash',
+    '/mobile-app-feedback',
 ];
 
 console.log('\nGENERATING STATIC HTML\n');
