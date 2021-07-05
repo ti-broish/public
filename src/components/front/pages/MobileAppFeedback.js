@@ -68,7 +68,7 @@ export default () => {
                 <h1>Отзив за приложението</h1>
                 <hr/>
                 <FormWrapper>
-                    <iframe id="gform" style={{border: 'none'}} src="https://dabulgaria.bg/tibroish-feedback-embed/">Loading...</iframe>
+                    <iframe id="gform" style={{border: 'none'}} src="https://dabulgaria.bg/tibroish-validator-embed/">Loading...</iframe>
                 </FormWrapper>
             </MainContent>
         </Wrapper>
