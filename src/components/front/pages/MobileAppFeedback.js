@@ -65,7 +65,7 @@ export default () => {
                 <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
-                <h1>Записване за валидатор</h1>
+                <h1>Отзив за приложението</h1>
                 <hr/>
                 <FormWrapper>
                     <iframe id="gform" style={{border: 'none'}} src="https://dabulgaria.bg/tibroish-feedback-embed/">Loading...</iframe>
