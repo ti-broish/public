@@ -17,6 +17,7 @@ export default () => {
 
     /*useEffect(() => {
         window.scrollTo(0, 0);
+
         var eventMethod = window.addEventListener
 			? "addEventListener"
             : "attachEvent";
@@ -25,6 +26,7 @@ export default () => {
         var messageEvent = eventMethod === "attachEvent"
             ? "onmessage"
             : "message";
+
         const formSubmitHandler = e => {
             if (e.data === "formSubmit" || e.message === "formSubmit") {
                 window.gtag && gtag('event', 'conversion', {
@@ -32,7 +34,9 @@ export default () => {
                 });
             }
         };
+
         eventer(messageEvent, formSubmitHandler);
+
         return () => {
             var cleanupMethod = window.addEventListener
                 ? "removeEventListener"
@@ -42,7 +46,7 @@ export default () => {
         };
     }, []);*/
 
-    let metaTitle = "Изпрати ни отзив | Ти Броиш";
+    let metaTitle = "Остави ни отзив | Ти Броиш";
     let metaUrl = "https://tibroish.bg/mobile-app-feedback/";
     let metaDescription = `
         За да дадем на България шанс за честни и свободни избори, търсим 12 000 защитници на вота, 
@@ -65,10 +69,10 @@ export default () => {
                 <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
-                <h1>Отзив за приложението</h1>
+                <h1>Отзив за мобилното приложение</h1>
                 <hr/>
                 <FormWrapper>
-                    <iframe id="gform" style={{border: 'none'}} src="https://dabulgaria.bg/tibroish-validator-embed/">Loading...</iframe>
+                    <iframe id="gform" style={{border: 'none'}} src="https://dabulgaria.bg/tibroish-feedback-embed/">Loading...</iframe>
                 </FormWrapper>
             </MainContent>
         </Wrapper>
