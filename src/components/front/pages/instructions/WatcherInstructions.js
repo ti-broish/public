@@ -34,7 +34,7 @@ export default props => {
                 <hr/>
                 <h2>ЧЛЕН НА СИК</h2>    
                 <hr/>
-                  <iframe src="/public/public/files/Организационни-действия-на-СИК-2.pdf" width="100%" height="500px">
+                  <iframe src="/public/files/Организационни-действия-на-СИК-2.pdf" width="100%" height="500px">
                         </iframe>
                 <hr/>
                 <h2>ЗАЩИТНИК НА ВОТА</h2>    
