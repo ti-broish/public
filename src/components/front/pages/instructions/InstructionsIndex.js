@@ -49,10 +49,10 @@ export default props => {
                     Инструкция за използване на мобилно приложение “Ти броиш”
                 </InstructionLink>
                 <InstructionLink to='/instructions/watchers'>
-                    Какво правят участниците в “Ти Броиш” на 4 април 2021
+                    Какво правят участниците в “Ти Броиш” на 11 юли 2021
                 </InstructionLink>
                 <InstructionLink to='/instructions/what-to-watch-for'>
-                    За какво да следите при преброяването на бюлетините?
+                    Как протича изборния ден?
                 </InstructionLink>
                 <InstructionLink to='/instructions/how-to-take-photos'>
                     Как да снимаме процеса на броене на бюлетините без да нарушаваме правилата?
