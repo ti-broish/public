@@ -55,7 +55,7 @@ export default props => {
                     Как протича изборния ден?
                 </InstructionLink>
                 <InstructionLink to='/instructions/how-to-take-photos'>
-                    Как да снимаме процеса на броене на бюлетините без да нарушаваме правилата?
+                    Как да снимаме процеса на установяване на резултатите
                 </InstructionLink>
             </MainContent>
         </Wrapper>
