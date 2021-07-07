@@ -35,6 +35,7 @@ export default props => {
                 <h2>ЗАЩИТНИК НА ВОТА</h2>    
                 <hr/>
                     <iframe src="https://drive.google.com/file/d/17nHRlevqI3kf0ek2Mk46DNvtoJqHkhi4/view?usp=sharing" width="100%" height="500px">
+                        </iframe>
                 <hr/>
                 <h2>ЗАЩИТНИК НА ВОТА</h2>    
                 <hr/>
