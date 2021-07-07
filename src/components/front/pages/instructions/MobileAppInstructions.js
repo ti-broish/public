@@ -64,8 +64,8 @@ export default props => {
                 <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
-                <YouTubeVideoEmbed videoId={"SkxWJ5GjYgk"} />
                 <h1>Инструкция за използване на мобилно приложение “Ти броиш”</h1>
+                <YouTubeVideoEmbed videoId={"SkxWJ5GjYgk"} />
                 <hr/>
                 <AppBadges>
                     <a href="https://play.google.com/store/apps/details?id=bg.dabulgaria.tibroish&hl=bg">
