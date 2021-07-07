@@ -8,7 +8,7 @@ import { YouTubeVideoEmbed } from '../Videos';
 
 export default props => {
 
-    let metaTitle = "За какво да следим? | Ти Броиш";
+    let metaTitle = "Как протича изборния ден | Ти Броиш";
     let metaUrl = "https://tibroish.bg/instructions/what-to-watch-for";
     let metaDescription = `
         „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации 
@@ -29,12 +29,14 @@ export default props => {
                 <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
-                <h1>За&nbsp;какво да следите при преброяването на&nbsp;бюлетините?</h1>
+                <h1>Как протича изборния ден</h1>
                 <hr/>
-                <YouTubeVideoEmbed videoId={"_vMu6jdSgmA"} />
-                <YouTubeVideoEmbed videoId={"gY8Yzcqr0fo"} />
-                <YouTubeVideoEmbed videoId={"Mxs6egB2c9w"} />
-                <YouTubeVideoEmbed videoId={"_ZCAbpsoUgI"} />
+                <YouTubeVideoEmbed videoId={"lGB14D2J8z8"} />
+                <YouTubeVideoEmbed videoId={"3O88ZRHs4mQ"} />
+                <YouTubeVideoEmbed videoId={"H7FhzNln8tU"} />
+                <YouTubeVideoEmbed videoId={"D5aFBroNLuQ"} />
+                <YouTubeVideoEmbed videoId={"xq-RK3j4MMY"} />
+                <YouTubeVideoEmbed videoId={"d-fmYBITnG8"} />
             </MainContent>
         </Wrapper>
     );
