@@ -29,7 +29,9 @@ export default props => {
                 <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
-                <h1>Какво правят участниците в “Ти Броиш” на 4 април 2021</h1>
+                <h1>Какво правят участниците в “Ти Броиш” на 11 юли 2021</h1>
+                <hr/>
+                <h2>ЗАЩИТНИК НА ВОТА</h2>    
                 <hr/>
                 <YouTubeVideoEmbed videoId={"ePIlIW_dLfE"} />
                 <p>
