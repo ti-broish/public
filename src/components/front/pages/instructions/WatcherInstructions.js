@@ -30,6 +30,11 @@ export default props => {
             </Helmet>
             <MainContent>
                 <h1>Какво правят участниците в “Ти Броиш” на 11 юли 2021</h1>
+
+                <hr/>
+                <h2>ЗАЩИТНИК НА ВОТА</h2>    
+                <hr/>
+                    <iframe src="https://drive.google.com/file/d/17nHRlevqI3kf0ek2Mk46DNvtoJqHkhi4/view?usp=sharing" width="100%" height="500px">
                 <hr/>
                 <h2>ЗАЩИТНИК НА ВОТА</h2>    
                 <hr/>
