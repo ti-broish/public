@@ -34,7 +34,8 @@ export default props => {
                 <hr/>
                 <h2>ЧЛЕН НА СИК</h2>    
                 <hr/>
-                   <iframe src="http://docs.google.com/gview?url=https://drive.google.com/file/d/17nHRlevqI3kf0ek2Mk46DNvtoJqHkhi4/view?usp=sharing&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>
+                  <iframe src="/public/public/files/Организационни-действия-на-СИК-2.pdf" width="100%" height="500px">
+                        </iframe>
                 <hr/>
                 <h2>ЗАЩИТНИК НА ВОТА</h2>    
                 <hr/>
