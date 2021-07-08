@@ -163,8 +163,8 @@ export default props => {
                 </p>
                 <ImagesContainer cols={3}>
                     <img src="/images/mobile_instructions_2_0/VI-1.jpg"/>
-                    <img src="/images/mobile_instructions_2_0/VI-2.jpg"/>
-                    <img src="/images/mobile_instructions_2_0/VI-4.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/VI-5.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/VI-6.jpg"/>
                 </ImagesContainer>
                 <hr/>
                 <h2>VII. Отбелязване</h2>
