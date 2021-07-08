@@ -6,6 +6,22 @@ import Helmet from 'react-helmet';
 
 import { YouTubeVideoEmbed } from '../Videos';
 
+const ImagesContainer = styled.div`
+    text-align: center;
+    img {
+        width: calc(100% / ${props => props.cols});
+        max-width: 190px;
+        margin: 10px;
+    }
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+        img {
+            width: 100%;
+            margin: 10px 0;
+            max-width: 300px;
+        }
+    }
+`;
+
 export default props => {
 
     let metaTitle = "Инструкции | Ти Броиш";
