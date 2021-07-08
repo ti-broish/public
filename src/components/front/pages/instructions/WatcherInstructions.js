@@ -34,8 +34,16 @@ export default props => {
                 <hr/>
                 <h2>ЧЛЕН НА СИК</h2>    
                 <hr/>
-                  <iframe src="/files/Организационни-действия-на-СИК-2.pdf#toolbar=0" width="100%" height="500px">
-                        </iframe>
+                <ImagesContainer cols={1}>
+                    <img src="/images/cik-organization/cik-organization-slide1.jpg"/>
+                    <img src="/images/cik-organization/cik-organization-slide2.jpg"/>
+                    <img src="/images/cik-organization/cik-organization-slide3.jpg"/>
+                    <img src="/images/cik-organization/cik-organization-slide4.jpg"/>
+                    <img src="/images/cik-organization/cik-organization-slide5.jpg"/>
+                    <img src="/images/cik-organization/cik-organization-slide6.jpg"/>
+                    <img src="/images/cik-organization/cik-organization-slide7.jpg"/>
+                    <img src="/images/cik-organization/cik-organization-slide8.jpg"/>
+                </ImagesContainer>
                 <hr/>
                 <h2>ЗАЩИТНИК НА ВОТА</h2>    
                 <hr/>
