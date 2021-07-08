@@ -64,7 +64,7 @@ export default props => {
                 <meta property="og:image:height" content={"628"}/>
             </Helmet>
             <MainContent>
-                <YouTubeVideoEmbed videoId={"SkxWJ5GjYgk"} />
+                <YouTubeVideoEmbed videoId={"DHI5b53Hyik"} />
                 <h1>Инструкция за използване на мобилно приложение “Ти броиш”</h1>
                 <hr/>
                 <AppBadges>
@@ -87,9 +87,9 @@ export default props => {
                     имейл за потвърждение на въведената от Вас електронна поща.
                 </p>
                 <ImagesContainer cols={3}>
-                    <img src="/images/instructions/I-1.jpg"/>
-                    <img src="/images/instructions/I-2.jpg"/>
-                    <img src="/images/instructions/I-3.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/I-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/I-2.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/I-3.jpg"/>
                 </ImagesContainer>
                 <hr/>
                 <h2>II. Забравена парола</h2>
@@ -99,7 +99,7 @@ export default props => {
                     отвори линкът от полученото съобщение и да се въведе новата парола.
                 </p>
                 <ImagesContainer cols={3}>
-                    <img src="/images/instructions/II-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/II-1.jpg"/>
                 </ImagesContainer>
                 <hr/>
                 <h2>III. Навигация</h2>
@@ -111,33 +111,26 @@ export default props => {
                     участникът не е дал изрично съгласието си данните да бъдат запазени и за следващите избори. 
                 </p>
                 <ImagesContainer cols={3}>
-                    <img src="/images/instructions/III-1.jpg"/>
-                    <img src="/images/instructions/III-2.jpg"/>
-                    <img src="/images/instructions/III-3.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/III-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/III-2.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/III-3.jpg"/>
                 </ImagesContainer>
                 <hr/>
                 <h2>IV. Изпрати протокол</h2>
                 <p>
-                    От меню “Изпращане на протокол” участникът регистрира данните за секцията, в която присъства. 
-                    Задължително се попълват всички полета за локацията на самата секция и номера ѝ. Полето “Район” е 
-                    достъпно и се попълва само за секции в градовете София, Пловдив и Варна. Протокол се добавя чрез 
-                    отваряне на галерията от бутон “Качи снимка”, ако вече е сниман от участника или чрез включване на 
+                    От меню “Изпрати на протокол” участникът регистрира номера на секцията, в която присъства. 
+                    Протокол се добавя чрез отваряне на галерията от бутон “Избери снимки”, ако вече е сниман от участника или чрез включване на 
                     камерата от бутон “Снимай”. При включване и на двете функционалности за първи път, трябва да се 
                     разреши достъп на приложението до съответния ресурс. Достъпът е активен само и единствено докато 
-                    се използва приложението. С бутон “Продължи” се преминава към екрана за въвеждане на броя гласове 
-                    за участващите на изборите партии и коалиции. Пълен списък на участниците в изборите може да се 
-                    достъпи с бутона “Добави резултат”, след което се добавят и получените гласове, вписани в протокола. 
-                    Всеки участник, използващ приложението “Ти броиш”, може да въведе получените гласове на всички 
-                    партии и коалиции, които са се явили на изборите. С натискането на бутона “Изпрати резултатите” 
-                    завършва и процесът по изпращане на протокола от секцията. 
+                    се използва приложението. С натискането на бутона “Изпрати” завършва и процесът по изпращане на протокола от секцията. 
                 </p>
                 <ImagesContainer cols={3}>
-                    <img src="/images/instructions/IV-1.jpg"/>
-                    <img src="/images/instructions/IV-2.jpg"/>
-                    <img src="/images/instructions/IV-3.jpg"/>
-                    <img src="/images/instructions/IV-4.jpg"/>
-                    <img src="/images/instructions/IV-5.jpg"/>
-                    <img src="/images/instructions/IV-6.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/IV-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/IV-2.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/IV-3.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/IV-4.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/IV-5.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/IV-6.jpg"/>
                 </ImagesContainer>
                 <hr/>
                 <h2>V. Изпрати сигнал</h2>
@@ -147,24 +140,52 @@ export default props => {
                     всички полета за избирателния район, където е засечено нарушението, а ако е пред или вътре в 
                     избирателна секция - попълва се и нейният номер. Полето “Район” е достъпно и се попълва само 
                     за секции в градовете София, Пловдив и Варна. Снимки към сигнал се добавят чрез отваряне на 
-                    галерията от бутон “Качи снимка”, ако вече са налични, или чрез включване на камерата от 
+                    галерията от бутон “Избери снимки”, ако вече са налични, или чрез включване на камерата от 
                     бутон “Снимай”. При включване и на двете функционалности за първи път, трябва да се разреши 
                     достъп на приложението до съответния ресурс. Достъпът е активен само и единствено докато се 
                     използва приложението. Сигналът се изпраща с натискане на бутон “Изпрати”.
                 </p>
                 <ImagesContainer cols={3}>
-                    <img src="/images/instructions/V-1.jpg"/>
-                    <img src="/images/instructions/V-2.jpg"/>
-                    <img src="/images/instructions/V-3.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/V-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/V-2.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/V-3.jpg"/>
                 </ImagesContainer>
                 <hr/>
-                <h2>VI. Права и задължения</h2>
+                <h2>VI. Излъчване на живо</h2>
+                <p>
+                    От меню “Ти броиш Live” участникът предава на живо процеса на броене на хартиените бюлетини, разпечатване 
+                    на финалната разписка от машините и попълване на протоколи в изборната секция. Видеозаснемане 
+                    може да се прави единствено след обявяване на края на изборния ден от секционната комисия. Задължително 
+                    се попълват всички полета за локацията на самата секция и номера ѝ. Полето “Район” е достъпно и се попълва 
+                    само за секции в градовете София, Пловдив и Варна.  При включване на функционалността за първи път,
+                    трябва да се разреши достъп на приложението до съответния ресурс. Достъпът е активен само и единствено докато се 
+                    използва приложението. Излъчването се стартира и спира с натискане на червения бутон. Надпис "На живо" показва, дали участникът излъчва или не.
+                </p>
+                <ImagesContainer cols={2}>
+                    <img src="/images/mobile_instructions_2_0/VI-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/VI-2.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/VI-3.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/VI-4.jpg"/>
+                </ImagesContainer>
+                <hr/>
+                <h2>VII. Отбелязване</h2>
+                <p>
+                    От меню “Отбелязване” участникът регистрира присъстието си в поверената му секция. Отбелязването се потвърждава с натискане на бутон “Изпрати”. 
+                    Препоръчително е да се направи от предния или най-късно сутринта в изборния ден. Това ще спомогне за по-добрата организация и логистика на застъпници 
+                    и наблюдатели и по-добра комуникация с членовете на СИК.
+                </p>
+                <ImagesContainer cols={2}>
+                    <img src="/images/mobile_instructions_2_0/VII-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/VII-2.jpg"/>
+                </ImagesContainer>
+                <hr/>
+                <h2>VIII. Права и задължения</h2>
                 <p>
                     В тази секция можете да се запознаете в детайли с правата и задълженията на защитник на вота в 
                     изборния ден. 
                 </p>
                 <ImagesContainer cols={1}>
-                    <img src="/images/instructions/VI-1.jpg"/>
+                    <img src="/images/mobile_instructions_2_0/VIII-1.jpg"/>
                 </ImagesContainer>
             </MainContent>
         </Wrapper>
