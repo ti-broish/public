@@ -6,6 +6,8 @@ import Helmet from 'react-helmet';
 
 import { YouTubeVideoEmbed } from '../Videos';
 
+import styled from 'styled-components';
+
 const ImagesContainer = styled.div`
     text-align: center;
     img {
