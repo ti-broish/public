@@ -37,6 +37,7 @@ export default props => {
                 <YouTubeVideoEmbed videoId={"D5aFBroNLuQ"} />
                 <YouTubeVideoEmbed videoId={"xq-RK3j4MMY"} />
                 <YouTubeVideoEmbed videoId={"d-fmYBITnG8"} />
+                <YouTubeVideoEmbed videoId={"Bp0EQ06x0mY"} />    
             </MainContent>
         </Wrapper>
     );
