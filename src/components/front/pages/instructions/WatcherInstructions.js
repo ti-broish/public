@@ -4,6 +4,7 @@ import { Wrapper, MainContent } from '../../Front';
 
 import Helmet from 'react-helmet';
 
+import { MOBILE_WIDTH } from '../../Style';
 import { YouTubeVideoEmbed } from '../Videos';
 
 import styled from 'styled-components';
