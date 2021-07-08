@@ -161,10 +161,9 @@ export default props => {
                     трябва да се разреши достъп на приложението до съответния ресурс. Достъпът е активен само и единствено докато се 
                     използва приложението. Излъчването се стартира и спира с натискане на червения бутон. Надпис "На живо" показва, дали участникът излъчва или не.
                 </p>
-                <ImagesContainer cols={2}>
+                <ImagesContainer cols={3}>
                     <img src="/images/mobile_instructions_2_0/VI-1.jpg"/>
                     <img src="/images/mobile_instructions_2_0/VI-2.jpg"/>
-                    <img src="/images/mobile_instructions_2_0/VI-3.jpg"/>
                     <img src="/images/mobile_instructions_2_0/VI-4.jpg"/>
                 </ImagesContainer>
                 <hr/>
