@@ -19,6 +19,8 @@ import { MOBILE_WIDTH } from './Style';
 import Instructions from './pages/Instructions';
 import SignUpValidator from './pages/SignUpValidator';
 import MobileAppFeedback from './pages/MobileAppFeedback';
+import FeedbackDefenders from './pages/FeedbackDefenders';
+import FeedbackValidators from './pages/FeedbackValidators';
 
 const FrontDiv = styled.div`
     //background-color: #d4d4d4;
@@ -74,6 +76,8 @@ export default props => {
                 <Route path='/instructions' component={Instructions}/>
                 <Route path='/privacy-notice' component={PrivacyNotice}/>
                 <Route path='/mobile-app-feedback' component={MobileAppFeedback}/>
+                <Route path='/feedback-defenders' component={FeedbackDefenders}/>
+                <Route path='/feedback-validators' component={FeedbackValidators}/>
                 <Redirect to='/'/>
             </Switch>
             <Footer/>
