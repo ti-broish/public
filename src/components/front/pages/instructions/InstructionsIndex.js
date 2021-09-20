@@ -49,7 +49,7 @@ export default props => {
                     Инструкция за използване на мобилно приложение “Ти броиш”
                 </InstructionLink>
                 <InstructionLink to='/instructions/watchers'>
-                    Какво правят участниците в “Ти Броиш” на 11 юли 2021
+                    Какво правят участниците в “Ти Броиш” на 14 ноември 2021
                 </InstructionLink>
                 <InstructionLink to='/instructions/what-to-watch-for'>
                     Как протича изборния ден?
