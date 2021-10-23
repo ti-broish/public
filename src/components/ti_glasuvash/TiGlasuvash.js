@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 
-import styled from "styled-components";
-import InsertCard from "./InsertCard";
-import SelectParty from "./SelectParty";
-import PrintReceipt from "./PrintReceipt";
-import RemoveCard from "./RemoveCard";
-import ConfirmChoice from "./ConfirmChoice";
-import RemoveReceipt from "./RemoveReceipt";
-import SelectVote from "./SelectVote";
-import SelectPresident from "./SelectPresident";
+import styled from 'styled-components';
+import InsertCard from './InsertCard';
+import SelectParty from './SelectParty';
+import PrintReceipt from './PrintReceipt';
+import RemoveCard from './RemoveCard';
+import ConfirmChoice from './ConfirmChoice';
+import RemoveReceipt from './RemoveReceipt';
+import SelectVote from './SelectVote';
+import SelectPresident from './SelectPresident';
 
 const TiGlasuvashStyle = styled.div`
   font-family: Arial, sans-serif;
@@ -256,32 +256,32 @@ export default (props) => {
   const insertCard = () => {
     if (!cardStyle) {
       setCardStyle({
-        top: "830px",
-        right: "calc(100vw / 2 - 460px)",
-        transition: "top 1s ease",
+        top: '830px',
+        right: 'calc(100vw / 2 - 460px)',
+        transition: 'top 1s ease',
       });
 
       setTimeout(() => {
         setCardStyle({
-          top: "830px",
-          right: "calc(100vw / 2 - 56px)",
-          transition: "right 1s ease",
+          top: '830px',
+          right: 'calc(100vw / 2 - 56px)',
+          transition: 'right 1s ease',
         });
       }, 1000);
 
       setTimeout(() => {
         setCardStyle({
-          top: "830px",
-          right: "calc(100vw / 2 - 56px)",
-          transition: "top 2s ease",
+          top: '830px',
+          right: 'calc(100vw / 2 - 56px)',
+          transition: 'top 2s ease',
         });
       }, 2000);
 
       setTimeout(() => {
         setCardStyle({
-          top: "700px",
-          right: "calc(100vw / 2 - 56px)",
-          transition: "top 2s ease",
+          top: '700px',
+          right: 'calc(100vw / 2 - 56px)',
+          transition: 'top 2s ease',
         });
 
         setTimeout(() => {
@@ -292,22 +292,22 @@ export default (props) => {
 
     if (receiptRemoved) {
       setCardStyle({
-        top: "830px",
-        right: "calc(100vw / 2 - 56px)",
-        transition: "top 2s ease",
+        top: '830px',
+        right: 'calc(100vw / 2 - 56px)',
+        transition: 'top 2s ease',
       });
 
       setTimeout(() => {
         setCardStyle({
-          top: "830px",
-          right: "calc(100vw / 2 - 460px)",
-          transition: "right 1s ease",
+          top: '830px',
+          right: 'calc(100vw / 2 - 460px)',
+          transition: 'right 1s ease',
         });
       }, 2000);
 
       setTimeout(() => {
         setCardStyle({
-          transition: "top 1s ease",
+          transition: 'top 1s ease',
         });
       }, 3000);
 
@@ -326,22 +326,24 @@ export default (props) => {
 
   const printReceipt = () => {
     setReceiptStyle({
-      top: "58px",
-      transition: "top 2s linear",
+      top: '58px',
+      transition: 'top 2s linear',
     });
   };
 
   const removeReceipt = () => {
     if (receiptPrinted) {
       setReceiptStyle({
-        top: "58px",
+        top: '58px',
         opacity: 0,
-        transition: "opacity 1s ease",
+        transition: 'opacity 1s ease',
       });
 
       setTimeout(() => {
         setReceiptRemoved(true);
         setReceiptStyle(null);
+        setPartySelected(null);
+        setPresidentChoice(null);
       }, 1500);
     }
   };
@@ -370,14 +372,14 @@ export default (props) => {
 
   const renderVote = (vote) => {
     switch (vote) {
-      case "parlament":
+      case 'parlament':
         return (
           <SelectParty
             selectParty={selectParty}
             setChoiceSelected={setChoiceSelected}
           />
         );
-      case "president":
+      case 'president':
         return (
           <SelectPresident
             setVote={setVote}
@@ -386,7 +388,7 @@ export default (props) => {
             setChoiceSelected={setChoiceSelected}
           />
         );
-      case "both":
+      case 'both':
         if (!presidentChoice) {
           return (
             <SelectPresident
@@ -409,11 +411,11 @@ export default (props) => {
     }
   };
 
-  let metaUrl = "https://tibroish.bg/ti-glasuvash";
+  let metaUrl = 'https://tibroish.bg/ti-glasuvash';
   let metaDescription = `
         Симулация на машинно гласуване.
     `;
-  let metaTitle = "Ти гласуваш";
+  let metaTitle = 'Ти гласуваш';
 
   return (
     <TiGlasuvashStyle>
@@ -424,17 +426,17 @@ export default (props) => {
         <meta property="og:url" content={metaUrl} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={"/brand/og_image.png"} />
-        <meta property="og:image:width" content={"1200"} />
-        <meta property="og:image:height" content={"628"} />
+        <meta property="og:image" content={'/brand/og_image.png'} />
+        <meta property="og:image:width" content={'1200'} />
+        <meta property="og:image:height" content={'628'} />
         <meta name="viewport" content="" />
       </Helmet>
       <div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
-          backgroundColor: "black",
-          height: "21px",
+          backgroundColor: 'black',
+          height: '21px',
           left: 0,
           right: 0,
           zIndex: 30,
@@ -483,11 +485,11 @@ export default (props) => {
       <VotingCard id="voting-card" style={cardStyle} onClick={insertCard}>
         <span
           style={{
-            color: "white",
-            position: "absolute",
-            top: "-50px",
-            fontWeight: "bold",
-            visibility: !cardStyle ? "visible" : "hidden",
+            color: 'white',
+            position: 'absolute',
+            top: '-50px',
+            fontWeight: 'bold',
+            visibility: !cardStyle ? 'visible' : 'hidden',
           }}
         >
           Поставете карта
@@ -497,7 +499,7 @@ export default (props) => {
       </VotingCard>
       <Receipt style={receiptStyle} onClick={removeReceipt}>
         <hr />
-        <h1 style={{ width: "72px", marginTop: "-22px" }}>
+        <h1 style={{ width: '72px', marginTop: '-22px' }}>
           ДОКЛАД ЗА ГЛАСУВАНЕТО
         </h1>
         <h3>310000035</h3>
@@ -515,14 +517,14 @@ export default (props) => {
               {!partySelected || !partySelected.party ? null : (
                 <div>
                   {partySelected.party.nikogo
-                    ? ""
-                    : partySelected.party.number + ". "}
+                    ? ''
+                    : partySelected.party.number + '. '}
                   {partySelected.party.name}
                   <br />
                   {!partySelected.preference
                     ? null
                     : partySelected.preference.number +
-                      ". " +
+                      '. ' +
                       partySelected.preference.name}
                 </div>
               )}
