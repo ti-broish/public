@@ -7,9 +7,14 @@ const InsertCardStyle = styled.div`
     text-align: center;
 
     h1 {
-        font-size: 15px;
+        font-size: 20px;
         margin-top: 110px;
+    }
+
+    h2 {
+        font-size: 14px;
         margin-bottom: 60px;
+        font-weight: 300;
     }
 
     p {
@@ -24,10 +29,11 @@ const InsertCardStyle = styled.div`
 
 export default props => {
     return (
-        <InsertCardStyle>
-            <h1>Добре дошли в Избори за народни представители в България 2021</h1>
-            <p>Поставете картата в слота за четене</p>
-            <img src='/ti-glasuvash/machine-vote-card.png'/>
-        </InsertCardStyle>
+      <InsertCardStyle>
+        <h1>ИЗБОРИ 14.11.2021</h1>
+        <h2>Добре дошли</h2>
+        <p>Поставете картата в слота за четене</p>
+        <img src="/ti-glasuvash/machine-vote-card.png" />
+      </InsertCardStyle>
     );
 };
