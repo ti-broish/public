@@ -81,7 +81,6 @@ const PartyTable = styled.table`
   }
 
   td {
-    width: 38px;
     height: 33px;
     font-size: 12px;
     border-bottom: 1px solid #262629;
@@ -326,7 +325,7 @@ export default (props) => {
                     party?.number === selectedParty?.number ? 'selected' : ''
                   }
                 >
-                  <td>
+                  <td style={{ width: '36px' }}>
                     <NumberSquare
                       className={
                         party?.number === selectedParty?.number
