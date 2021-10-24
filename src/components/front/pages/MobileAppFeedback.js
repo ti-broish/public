@@ -7,15 +7,14 @@ import { Wrapper, MainContent } from '../Front';
 import styled from 'styled-components';
 
 const FormWrapper = styled.div`
-    iframe {
-        width: 100%;
-        height: 800px;
-    }
+  iframe {
+    width: 100%;
+    height: 800px;
+  }
 `;
 
 export default () => {
-
-    /*useEffect(() => {
+  /*useEffect(() => {
         window.scrollTo(0, 0);
 
         var eventMethod = window.addEventListener
@@ -46,35 +45,41 @@ export default () => {
         };
     }, []);*/
 
-    let metaTitle = "Остави ни отзив | Ти Броиш";
-    let metaUrl = "https://tibroish.bg/mobile-app-feedback/";
-    let metaDescription = `
+  let metaTitle = 'Остави ни отзив | Ти Броиш';
+  let metaUrl = 'https://tibroish.bg/mobile-app-feedback/';
+  let metaDescription = `
         За да дадем на България шанс за честни и свободни избори, търсим 12 000 защитници на вота, 
         които да следят за коректното преброяване на всички гласове в изборния ден. По един за всяка секция 
         в страната. Ангажимент за няколко часа в края на изборния ден може да реши бъдещето на България 
         за следващите години. Можем да го направим заедно!  
     `;
 
-    return(
-        <Wrapper>
-            <Helmet>
-                <title>{metaTitle}</title>
-                <link rel="canonical" href={metaUrl} />
-                <meta name="description" content={metaDescription}/>
-                <meta property="og:url" content={metaUrl}/>
-                <meta property="og:title" content={metaTitle}/>
-                <meta property="og:description" content={metaDescription}/>
-                <meta property="og:image" content={"/brand/og_image.png"}/>
-                <meta property="og:image:width" content={"1200"}/>
-                <meta property="og:image:height" content={"628"}/>
-            </Helmet>
-            <MainContent>
-                <h1>Отзив за мобилното приложение</h1>
-                <hr/>
-                <FormWrapper>
-                    <iframe id="gform" style={{border: 'none'}} src="https://dabulgaria.bg/tibroish-feedback-embed/">Loading...</iframe>
-                </FormWrapper>
-            </MainContent>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <Helmet>
+        <title>{metaTitle}</title>
+        <link rel="canonical" href={metaUrl} />
+        <meta name="description" content={metaDescription} />
+        <meta property="og:url" content={metaUrl} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={'/brand/ti-broish-cover.png'} />
+        <meta property="og:image:width" content={'1200'} />
+        <meta property="og:image:height" content={'628'} />
+      </Helmet>
+      <MainContent>
+        <h1>Отзив за мобилното приложение</h1>
+        <hr />
+        <FormWrapper>
+          <iframe
+            id="gform"
+            style={{ border: 'none' }}
+            src="https://dabulgaria.bg/tibroish-feedback-embed/"
+          >
+            Loading...
+          </iframe>
+        </FormWrapper>
+      </MainContent>
+    </Wrapper>
+  );
+};

@@ -426,7 +426,7 @@ export default (props) => {
         <meta property="og:url" content={metaUrl} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={'/brand/ti-glasuvash-svg.svg'} />
+        <meta property="og:image" content={'/brand/ti-glasuvash-cover.png'} />
         <meta property="og:image:width" content={'1200'} />
         <meta property="og:image:height" content={'628'} />
         <meta name="viewport" content="" />
