@@ -225,26 +225,6 @@ export default (props) => {
       name: 'ИМА ТАКЪВ НАРОД',
     },
     {
-      number: 20,
-      name: 'ПП ПРАВОТО',
-    },
-    {
-      number: 21,
-      name: 'ВМРО - Българско национално движение',
-    },
-    {
-      number: 22,
-      name: 'БНО',
-    },
-    {
-      number: 23,
-      name: 'ВОЛЯ',
-    },
-    {
-      number: 24,
-      name: 'ИМА ТАКЪВ НАРОД',
-    },
-    {
       number: 25,
       name: 'Продължаваме Промяната',
     },
@@ -294,7 +274,7 @@ export default (props) => {
     },
     {
       number: '',
-      name: 'Не подкрепям никого',
+      name: 'НЕ ПОДКРЕПЯМ НИКОГО',
     },
   ];
 
@@ -380,7 +360,7 @@ export default (props) => {
         </PartyHalf>
         <PreferenceHalf>
           <h2>Предпочитание (преференция) за кандидат</h2>
-          {selectedParty == null || selectedParty == parties.length - 1
+          {selectedParty == null || selectedParty?.number === ''
             ? null
             : [...Array(32).keys()].map((key) => (
                 <PreferenceCircle
