@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import Helmet from 'react-helmet';
+import Helmet from "react-helmet";
 
-import styled from 'styled-components';
-import InsertCard from './InsertCard';
-import SelectParty from './SelectParty';
-import PrintReceipt from './PrintReceipt';
-import RemoveCard from './RemoveCard';
-import ConfirmChoice from './ConfirmChoice';
-import RemoveReceipt from './RemoveReceipt';
-import SelectVote from './SelectVote';
-import SelectPresident from './SelectPresident';
+import styled from "styled-components";
+import InsertCard from "./InsertCard";
+import SelectParty from "./SelectParty";
+import PrintReceipt from "./PrintReceipt";
+import RemoveCard from "./RemoveCard";
+import ConfirmChoice from "./ConfirmChoice";
+import RemoveReceipt from "./RemoveReceipt";
+import SelectVote from "./SelectVote";
+import SelectPresident from "./SelectPresident";
 
 const TiGlasuvashStyle = styled.div`
   font-family: Arial, sans-serif;
@@ -174,7 +174,6 @@ const Receipt = styled.div`
   box-shadow: 0 0 10px #333;
   color: #777;
   cursor: pointer;
-  box-sizing: border-box;
 
   &:hover {
     width: 166px;
@@ -216,6 +215,88 @@ const Receipt = styled.div`
 
   p {
     font-size: 9px;
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+
+    g {
+      stroke: #777;
+    }
+
+    rect {
+      fill: #777;
+    }
+  }
+`;
+
+const DoubleReceipt = styled.div`
+  opacity: 1;
+  top: -660px;
+  background-color: white;
+  z-index: 15;
+  width: 160px;
+  font-size: 12px;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border: 1px solid #aaa;
+  color: #777;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  box-shadow: 0 0 10px #333;
+  &:hover {
+    width: 166px;
+    border: 4px solid yellow;
+  }
+`;
+
+const InsideReceipt = styled.div`
+  width: 160px;
+  padding: 20px 10px;
+  border: 1px solid #aaa;
+  box-sizing: border-box;
+
+  hr {
+    border-top: 4px solid #777;
+  }
+
+  h1 {
+    font-size: 8px;
+    width: 100px;
+    width: 100px;
+    margin: 0 auto;
+    margin-top: -20px;
+    background-color: white;
+    padding: 6px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 11px;
+    margin: 5px 0 0 0;
+  }
+
+  h3 {
+    font-size: 11px;
+    margin: 0;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 11px;
+    margin: 10px 5px 0 5px;
+  }
+
+  p {
+    font-size: 9px;
+    margin: 0;
   }
 
   img {
@@ -256,32 +337,32 @@ export default (props) => {
   const insertCard = () => {
     if (!cardStyle) {
       setCardStyle({
-        top: '830px',
-        right: 'calc(100vw / 2 - 460px)',
-        transition: 'top 1s ease',
+        top: "830px",
+        right: "calc(100vw / 2 - 460px)",
+        transition: "top 1s ease",
       });
 
       setTimeout(() => {
         setCardStyle({
-          top: '830px',
-          right: 'calc(100vw / 2 - 56px)',
-          transition: 'right 1s ease',
+          top: "830px",
+          right: "calc(100vw / 2 - 56px)",
+          transition: "right 1s ease",
         });
       }, 1000);
 
       setTimeout(() => {
         setCardStyle({
-          top: '830px',
-          right: 'calc(100vw / 2 - 56px)',
-          transition: 'top 2s ease',
+          top: "830px",
+          right: "calc(100vw / 2 - 56px)",
+          transition: "top 2s ease",
         });
       }, 2000);
 
       setTimeout(() => {
         setCardStyle({
-          top: '700px',
-          right: 'calc(100vw / 2 - 56px)',
-          transition: 'top 2s ease',
+          top: "700px",
+          right: "calc(100vw / 2 - 56px)",
+          transition: "top 2s ease",
         });
 
         setTimeout(() => {
@@ -292,22 +373,22 @@ export default (props) => {
 
     if (receiptRemoved) {
       setCardStyle({
-        top: '830px',
-        right: 'calc(100vw / 2 - 56px)',
-        transition: 'top 2s ease',
+        top: "830px",
+        right: "calc(100vw / 2 - 56px)",
+        transition: "top 2s ease",
       });
 
       setTimeout(() => {
         setCardStyle({
-          top: '830px',
-          right: 'calc(100vw / 2 - 460px)',
-          transition: 'right 1s ease',
+          top: "830px",
+          right: "calc(100vw / 2 - 460px)",
+          transition: "right 1s ease",
         });
       }, 2000);
 
       setTimeout(() => {
         setCardStyle({
-          transition: 'top 1s ease',
+          transition: "top 1s ease",
         });
       }, 3000);
 
@@ -326,17 +407,17 @@ export default (props) => {
 
   const printReceipt = () => {
     setReceiptStyle({
-      top: '58px',
-      transition: 'top 2s linear',
+      top: "58px",
+      transition: "top 2s linear",
     });
   };
 
   const removeReceipt = () => {
     if (receiptPrinted) {
       setReceiptStyle({
-        top: '58px',
+        top: "58px",
         opacity: 0,
-        transition: 'opacity 1s ease',
+        transition: "opacity 1s ease",
       });
 
       setTimeout(() => {
@@ -372,14 +453,14 @@ export default (props) => {
 
   const renderVote = (vote) => {
     switch (vote) {
-      case 'parlament':
+      case "parlament":
         return (
           <SelectParty
             selectParty={selectParty}
             setChoiceSelected={setChoiceSelected}
           />
         );
-      case 'president':
+      case "president":
         return (
           <SelectPresident
             setVote={setVote}
@@ -388,7 +469,7 @@ export default (props) => {
             setChoiceSelected={setChoiceSelected}
           />
         );
-      case 'both':
+      case "both":
         if (!presidentChoice) {
           return (
             <SelectPresident
@@ -411,11 +492,11 @@ export default (props) => {
     }
   };
 
-  let metaUrl = 'https://tibroish.bg/ti-glasuvash';
+  let metaUrl = "https://tibroish.bg/ti-glasuvash";
   let metaDescription = `
         Симулация на машинно гласуване.
     `;
-  let metaTitle = 'Ти гласуваш';
+  let metaTitle = "Ти гласуваш";
 
   return (
     <TiGlasuvashStyle>
@@ -426,17 +507,17 @@ export default (props) => {
         <meta property="og:url" content={metaUrl} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={'/brand/ti-glasuvash-cover.png'} />
-        <meta property="og:image:width" content={'1200'} />
-        <meta property="og:image:height" content={'628'} />
+        <meta property="og:image" content={"/brand/ti-glasuvash-cover.png"} />
+        <meta property="og:image:width" content={"1200"} />
+        <meta property="og:image:height" content={"628"} />
         <meta name="viewport" content="" />
       </Helmet>
       <div
         style={{
-          position: 'absolute',
+          position: "absolute",
           top: 0,
-          backgroundColor: 'black',
-          height: '21px',
+          backgroundColor: "black",
+          height: "21px",
           left: 0,
           right: 0,
           zIndex: 30,
@@ -485,11 +566,11 @@ export default (props) => {
       <VotingCard id="voting-card" style={cardStyle} onClick={insertCard}>
         <span
           style={{
-            color: 'white',
-            position: 'absolute',
-            top: '-50px',
-            fontWeight: 'bold',
-            visibility: !cardStyle ? 'visible' : 'hidden',
+            color: "white",
+            position: "absolute",
+            top: "-50px",
+            fontWeight: "bold",
+            visibility: !cardStyle ? "visible" : "hidden",
           }}
         >
           Поставете карта
@@ -497,44 +578,102 @@ export default (props) => {
         <CardChip />
         <CardSign>ИЗБИРАТЕЛ</CardSign>
       </VotingCard>
-      <Receipt style={receiptStyle} onClick={removeReceipt}>
-        <hr />
-        <h1 style={{ width: '72px', marginTop: '-22px' }}>
-          ДОКЛАД ЗА ГЛАСУВАНЕТО
-        </h1>
-        <h3>310000035</h3>
-        {presidentChoice ? (
-          <>
+      {presidentChoice && partySelected ? (
+        <DoubleReceipt style={receiptStyle} onClick={removeReceipt}>
+          <InsideReceipt>
+            <hr />
+            <h1 style={{ width: "72px", marginTop: "-22px" }}>
+              ДОКЛАД ЗА ГЛАСУВАНЕТО
+            </h1>
+            <h3>310000035</h3>
             <h4>Избори за президент и вицепрезидент</h4>
-            <p>{presidentChoice.president}</p>
-            <p>{presidentChoice.vice}</p>
-          </>
-        ) : null}
-        {partySelected ? (
-          <>
+            <p style={{ marginTop: "22px" }}>
+              {presidentChoice[1] + 1}.{presidentChoice[0].president}
+            </p>
+            <p>{presidentChoice[0].vice}</p>
+            <p style={{ marginTop: "22px", marginBottom: "22px" }}>
+              {presidentChoice[0].party}
+            </p>
+            <img src="/ti-glasuvash/bilet_code.png" />
+            <hr />
+            <h1>КРАЙ НА ДОКУМЕНТА</h1>
+          </InsideReceipt>
+          <InsideReceipt>
+            <hr />
+            <h1 style={{ width: "72px", marginTop: "-22px" }}>
+              ДОКЛАД ЗА ГЛАСУВАНЕТО
+            </h1>
+            <h3>310000035</h3>
             <h4>Избори за народни представители</h4>
-            <p>
+            <p style={{ marginTop: "22px", marginBottom: "22px" }}>
               {!partySelected || !partySelected.party ? null : (
                 <div>
                   {partySelected.party.nikogo
-                    ? ''
-                    : partySelected.party.number + '. '}
+                    ? ""
+                    : partySelected.party.number + ". "}
                   {partySelected.party.name}
                   <br />
                   {!partySelected.preference
                     ? null
                     : partySelected.preference.number +
-                      '. ' +
+                      ". " +
                       partySelected.preference.name}
                 </div>
               )}
             </p>
-          </>
-        ) : null}
-        <img src="/ti-glasuvash/bilet_code.png" />
-        <hr />
-        <h1>КРАЙ НА ДОКУМЕНТА</h1>
-      </Receipt>
+            <img src="/ti-glasuvash/bilet_code.png" />
+            <hr />
+            <h1>КРАЙ НА ДОКУМЕНТА</h1>
+          </InsideReceipt>
+        </DoubleReceipt>
+      ) : presidentChoice ? (
+        <Receipt style={receiptStyle} onClick={removeReceipt}>
+          <hr />
+          <h1 style={{ width: "72px", marginTop: "-22px" }}>
+            ДОКЛАД ЗА ГЛАСУВАНЕТО
+          </h1>
+          <h3>310000035</h3>
+          <h4>Избори за президент и вицепрезидент</h4>
+          <p style={{ marginTop: "22px" }}>
+            {presidentChoice[1] + 1}.{presidentChoice[0].president}
+          </p>
+          <p>{presidentChoice[0].vice}</p>
+          <p style={{ marginTop: "22px", marginBottom: "22px" }}>
+            {presidentChoice[0].party}
+          </p>
+          <img src="/ti-glasuvash/bilet_code.png" />
+          <hr />
+          <h1>КРАЙ НА ДОКУМЕНТА</h1>
+        </Receipt>
+      ) : (
+        <Receipt style={receiptStyle} onClick={removeReceipt}>
+          <hr />
+          <h1 style={{ width: "72px", marginTop: "-22px" }}>
+            ДОКЛАД ЗА ГЛАСУВАНЕТО
+          </h1>
+          <h3>310000035</h3>
+          <h4>Избори за народни представители</h4>
+          <p style={{ marginTop: "22px", marginBottom: "22px" }}>
+            {!partySelected || !partySelected.party ? null : (
+              <div>
+                {partySelected.party.nikogo
+                  ? ""
+                  : partySelected.party.number + ". "}
+                {partySelected.party.name}
+                <br />
+                {!partySelected.preference
+                  ? null
+                  : partySelected.preference.number +
+                    ". " +
+                    partySelected.preference.name}
+              </div>
+            )}
+          </p>
+          <img src="/ti-glasuvash/bilet_code.png" />
+          <hr />
+          <h1>КРАЙ НА ДОКУМЕНТА</h1>
+        </Receipt>
+      )}
     </TiGlasuvashStyle>
   );
 };

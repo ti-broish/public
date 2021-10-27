@@ -43,6 +43,11 @@ const ChoiceBox = styled.div`
     font-size: 13px;
     margin: 0;
   }
+
+  p {
+    margin: 0px;
+    font-weight: 700;
+  }
 `;
 
 const DarkButton = styled.button`
@@ -80,14 +85,34 @@ export default (props) => {
         <hr />
         {props.presidentChoice ? (
           <>
-            <h2>Избори за президент и вицепрезидент</h2>
-            <p>{props.presidentChoice.president}</p>
-            <p>{props.presidentChoice.vice}</p>
+            <h2
+              style={{
+                fontSize: "11px",
+                marginTop: "30px",
+                marginBottom: "10px",
+              }}
+            >
+              Избори за президент и вицепрезидент
+            </h2>
+            <p style={{ fontSize: "12px" }}>
+              {props.presidentChoice[1] + 1}.{" "}
+              {props.presidentChoice[0].president}
+            </p>
+            <p style={{ fontSize: "12px" }}>{props.presidentChoice[0].vice}</p>
+            <p style={{ fontSize: "10px", marginTop: '10px' }}>{props.presidentChoice[0].party}</p>
           </>
         ) : null}
         {props.partySelected ? (
           <>
-            <h2>Избори за народни представители</h2>
+            <h2
+              style={{
+                fontSize: "11px",
+                marginTop: "30px",
+                marginBottom: "10px",
+              }}
+            >
+              Избори за народни представители
+            </h2>
             {!props.partySelected || !props.partySelected.party ? (
               <p>Не е направен избор</p>
             ) : (
@@ -103,7 +128,7 @@ export default (props) => {
                     }}
                 /> */}
                   <p
-                  /*style={{
+                    /*style={{
                     display: "inline-block",
                     margin: 0,
                     marginLeft: "-8px",
@@ -112,6 +137,9 @@ export default (props) => {
                     borderLeft: "1px solid #262629",
                     fontSize: "12px",
                     }} */
+                    style={{
+                      fontSize: "12px",
+                    }}
                   >
                     {props.partySelected.party.nikogo
                       ? null
@@ -121,7 +149,7 @@ export default (props) => {
                 </div>
 
                 <div>
-                  <div
+                  {/*                   <div
                     style={{
                       width: "12px",
                       height: "20px",
@@ -131,13 +159,17 @@ export default (props) => {
                       display: "inline-block",
                       marginTop: "-1px",
                     }}
-                  />
+                  /> */}
                   <p
-                    style={{
+                    /*                     style={{
                       fontSize: "12px",
                       margin: "0",
                       display: "inline-block",
                       marginLeft: "18px",
+                      marginBottom: "20px",
+                    }} */
+                    style={{
+                      fontSize: "12px",
                       marginBottom: "20px",
                     }}
                   >
