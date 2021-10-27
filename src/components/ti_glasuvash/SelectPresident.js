@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const SelectPresidentScreen = styled.div`
   h5 {
@@ -73,7 +73,7 @@ const Cross = styled.div`
   &:before,
   &:after {
     position: absolute;
-    content: ' ';
+    content: " ";
     height: 24px;
     width: 2px;
     background-color: white;
@@ -123,124 +123,124 @@ const PageButton = styled.button`
 
 const presidents = [
   {
-    party: 'Независим кандидат',
-    president: 'Йоло Димитров Денев',
-    vice: 'Марио Цанков Филев',
+    party: "Независим кандидат",
+    president: "Йоло Димитров Денев",
+    vice: "Марио Цанков Филев",
   },
   {
-    party: 'РУСОФИЛИ ЗА ВЪЗРАЖДАНЕ НА ОТЕЧЕСТВОТО',
-    president: 'Николай Симеонов Малинов',
-    vice: 'Светлана Петрова Косева',
+    party: "РУСОФИЛИ ЗА ВЪЗРАЖДАНЕ НА ОТЕЧЕСТВОТО",
+    president: "Николай Симеонов Малинов",
+    vice: "Светлана Петрова Косева",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Росен Пламенов Миленов',
-    vice: 'Иван Стефанов Иванов',
+    party: "Независим кандидат",
+    president: "Росен Пламенов Миленов",
+    vice: "Иван Стефанов Иванов",
   },
   {
-    party: 'ПАТРИОТИЧЕН ФРОНТ – НФСБ, БДС РАДИКАЛИ И БНДС ЦЕЛОКУПНА БЪЛГАРИЯ',
-    president: 'Валери Симеонов Симеонов',
-    vice: 'Цветан Венциславов Манчев',
+    party: "ПАТРИОТИЧЕН ФРОНТ – НФСБ, БДС РАДИКАЛИ И БНДС ЦЕЛОКУПНА БЪЛГАРИЯ",
+    president: "Валери Симеонов Симеонов",
+    vice: "Цветан Венциславов Манчев",
   },
   {
-    party: 'ВЪЗРАЖДАНЕ',
-    president: 'Костадин Тодоров Костадинов',
-    vice: 'Елена Цонева Гунчева',
+    party: "ВЪЗРАЖДАНЕ",
+    president: "Костадин Тодоров Костадинов",
+    vice: "Елена Цонева Гунчева",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Румен Георгиев Радев',
-    vice: 'Илияна Малинова Йотова',
+    party: "Независим кандидат",
+    president: "Румен Георгиев Радев",
+    vice: "Илияна Малинова Йотова",
   },
   {
-    party: 'НАЦИОНАЛНО ОБЕДИНЕНИЕ НА ДЕСНИЦАТА',
-    president: 'Горан Тасев Благоев',
-    vice: 'Ивелина Колева Георгиева-Стойнова',
+    party: "НАЦИОНАЛНО ОБЕДИНЕНИЕ НА ДЕСНИЦАТА",
+    president: "Горан Тасев Благоев",
+    vice: "Ивелина Колева Георгиева-Стойнова",
   },
   {
-    party: 'БСДД – Български Съюз за Директна Демокрация',
-    president: 'Благой Боянов Петревски',
-    vice: 'Севина Краснодарова Хаджийска',
+    party: "БСДД – Български Съюз за Директна Демокрация",
+    president: "Благой Боянов Петревски",
+    vice: "Севина Краснодарова Хаджийска",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Марина Орфей Малчева',
-    vice: 'Савина Веселинова Луканова',
+    party: "Независим кандидат",
+    president: "Марина Орфей Малчева",
+    vice: "Савина Веселинова Луканова",
   },
   {
-    party: 'БЪЛГАРСКА СОЦИАЛДЕМОКРАЦИЯ – ЕВРОЛЕВИЦА',
-    president: 'Александър Трифонов Томов',
-    vice: 'Лъчезар Аспарухов Аврамов',
+    party: "БЪЛГАРСКА СОЦИАЛДЕМОКРАЦИЯ – ЕВРОЛЕВИЦА",
+    president: "Александър Трифонов Томов",
+    vice: "Лъчезар Аспарухов Аврамов",
   },
   {
-    party: 'АТАКА',
-    president: 'Волен Николов Сидеров',
-    vice: 'Магдалена Ламбова Ташева',
+    party: "АТАКА",
+    president: "Волен Николов Сидеров",
+    vice: "Магдалена Ламбова Ташева",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Боян Боянов Станков-Расате',
-    vice: 'Елена Кирилова Ваташка',
+    party: "Независим кандидат",
+    president: "Боян Боянов Станков-Расате",
+    vice: "Елена Кирилова Ваташка",
   },
   {
-    party: 'ПП ОБЩЕСТВО ЗА НОВА БЪЛГАРИЯ',
-    president: 'Жельо Николов Желев',
-    vice: 'Калин Димитров Крулев',
+    party: "ПП ОБЩЕСТВО ЗА НОВА БЪЛГАРИЯ",
+    president: "Жельо Николов Желев",
+    vice: "Калин Димитров Крулев",
   },
   {
-    party: 'ПП ГЛАС НАРОДЕН',
-    president: 'Светослав Емилов Витков',
-    vice: 'Веселин Асенов Белоконски',
+    party: "ПП ГЛАС НАРОДЕН",
+    president: "Светослав Емилов Витков",
+    vice: "Веселин Асенов Белоконски",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Анастас Георгиев Герджиков',
-    vice: 'Невяна Михайлова Митева-Матеева',
+    party: "Независим кандидат",
+    president: "Анастас Георгиев Герджиков",
+    vice: "Невяна Михайлова Митева-Матеева",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Луна Йорданова Йорданова',
-    vice: 'Иглена Димитрова Илиева',
+    party: "Независим кандидат",
+    president: "Луна Йорданова Йорданова",
+    vice: "Иглена Димитрова Илиева",
   },
   {
-    party: 'Движение за права и свободи – ДПС',
-    president: 'Мустафа Сали Карадайъ',
-    vice: 'Искра Димитрова Михайлова-Копарова',
+    party: "Движение за права и свободи – ДПС",
+    president: "Мустафа Сали Карадайъ",
+    vice: "Искра Димитрова Михайлова-Копарова",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Цвета Кирилова Кирилова',
-    vice: 'Георги Атанасов Тутанов',
+    party: "Независим кандидат",
+    president: "Цвета Кирилова Кирилова",
+    vice: "Георги Атанасов Тутанов",
   },
   {
-    party: 'Независим кандидат',
-    president: 'Лозан Йорданов Панов',
-    vice: 'Мария Хиндова Касимова-Моасе',
+    party: "Независим кандидат",
+    president: "Лозан Йорданов Панов",
+    vice: "Мария Хиндова Касимова-Моасе",
   },
   {
-    party: 'ПП ПРАВОТО',
-    president: 'Мария Петрова Колева',
-    vice: 'Ганчо Иванов Попов',
+    party: "ПП ПРАВОТО",
+    president: "Мария Петрова Колева",
+    vice: "Ганчо Иванов Попов",
   },
   {
-    party: 'ВМРО',
-    president: 'Милен Василев Михов',
-    vice: 'Мария Йорданова Цветкова',
+    party: "ВМРО",
+    president: "Милен Василев Михов",
+    vice: "Мария Йорданова Цветкова",
   },
   {
-    party: 'БНО',
-    president: 'Георги Венелинов Георгиев',
-    vice: 'Стоян Андреев Цветков',
+    party: "БНО",
+    president: "Георги Венелинов Георгиев",
+    vice: "Стоян Андреев Цветков",
   },
   {
-    party: 'ВОЛЯ',
-    president: 'Веселин Найденов Марешки',
-    vice: 'Полина Цветославова Цанкова-Христова',
+    party: "ВОЛЯ",
+    president: "Веселин Найденов Марешки",
+    vice: "Полина Цветославова Цанкова-Христова",
   },
   {
-    party: '',
-    president: 'НЕ ПОДКРЕПЯМ НИКОГО',
-    vice: '',
+    party: "",
+    president: "НЕ ПОДКРЕПЯМ НИКОГО",
+    vice: "",
   },
 ];
 
@@ -250,6 +250,7 @@ const SelectPresident = (props) => {
   const [selectedPresident, setSelectedPresident] = useState(null);
 
   const presidentClicked = (presidentNum) => {
+    console.log(presidentNum);
     if (presidentNum === selectedPresident) {
       setSelectedPresident();
     } else {
@@ -275,16 +276,16 @@ const SelectPresident = (props) => {
                       setDisabled(false);
                     }}
                     className={
-                      page * 13 + index === selectedPresident ? 'selected' : ''
+                      page * 13 + index === selectedPresident ? "selected" : ""
                     }
                   >
-                    <td style={{ paddingLeft: '10px' }}>{party}</td>
+                    <td style={{ paddingLeft: "10px" }}>{party}</td>
                     <td>
                       <NumberSquare
                         className={
                           page * 13 + index === selectedPresident
-                            ? 'selected'
-                            : ''
+                            ? "selected"
+                            : ""
                         }
                       >
                         {page * 13 + index === selectedPresident ? (
@@ -292,7 +293,7 @@ const SelectPresident = (props) => {
                         ) : null}
                         {page * 13 + index + 1 < presidents.length
                           ? page * 13 + index + 1
-                          : ''}
+                          : ""}
                       </NumberSquare>
                     </td>
                     <td>
@@ -304,7 +305,7 @@ const SelectPresident = (props) => {
               })}
           </tbody>
         </PresidentTable>
-        <div style={{ height: '80px' }}>
+        <div style={{ height: "80px" }}>
           {(page + 1) * 13 > presidents.length ? null : (
             <PageButton onClick={() => setPage(page + 1)}>
               Следваща стр.
@@ -312,7 +313,7 @@ const SelectPresident = (props) => {
           )}
           {page == 0 ? null : (
             <PageButton
-              style={{ float: 'left', marginLeft: '10px' }}
+              style={{ float: "left", marginLeft: "10px" }}
               onClick={() => setPage(page - 1)}
             >
               Предишна стр.
@@ -320,10 +321,13 @@ const SelectPresident = (props) => {
           )}
         </div>
       </VoteSelectionScreen>
-      {props.vote === 'president' ? (
+      {props.vote === "president" ? (
         <ReviewButton
           onClick={() => {
-            props.setPresidentChoice(presidents[selectedPresident]);
+            props.setPresidentChoice([
+              presidents[selectedPresident],
+              selectedPresident,
+            ]);
             props.setChoiceSelected(true);
           }}
           disabled={disabled}
@@ -333,7 +337,10 @@ const SelectPresident = (props) => {
       ) : (
         <ReviewButton
           onClick={() => {
-            props.setPresidentChoice(presidents[selectedPresident]);
+            props.setPresidentChoice([
+              presidents[selectedPresident],
+              selectedPresident,
+            ]);
           }}
           disabled={disabled}
         >
