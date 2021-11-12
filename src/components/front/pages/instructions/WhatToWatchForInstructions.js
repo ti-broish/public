@@ -30,13 +30,13 @@ export default (props) => {
       <MainContent>
         <h1>Как протича изборния ден</h1>
         <hr />
+        <YouTubeVideoEmbed videoId={'0i-nonfUCeI'} />
         <YouTubeVideoEmbed videoId={'lGB14D2J8z8'} />
         <YouTubeVideoEmbed videoId={'3O88ZRHs4mQ'} />
         <YouTubeVideoEmbed videoId={'H7FhzNln8tU'} />
         <YouTubeVideoEmbed videoId={'D5aFBroNLuQ'} />
         <YouTubeVideoEmbed videoId={'xq-RK3j4MMY'} />
         <YouTubeVideoEmbed videoId={'d-fmYBITnG8'} />
-        <YouTubeVideoEmbed videoId={'Bp0EQ06x0mY'} />
       </MainContent>
     </Wrapper>
   );
