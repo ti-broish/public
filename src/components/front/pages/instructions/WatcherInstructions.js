@@ -51,15 +51,52 @@ export default (props) => {
         <h2>ЧЛЕН НА СИК</h2>
         <hr />
         <ImagesContainer cols={1}>
-          <img src="/images/cik-organization/cik-organization-slide1.jpg" />
-          <img src="/images/cik-organization/cik-organization-slide2.jpg" />
-          <img src="/images/cik-organization/cik-organization-slide3.jpg" />
-          <img src="/images/cik-organization/cik-organization-slide4.jpg" />
-          <img src="/images/cik-organization/cik-organization-slide5.jpg" />
-          <img src="/images/cik-organization/cik-organization-slide6.jpg" />
-          <img src="/images/cik-organization/cik-organization-slide7.jpg" />
-          <img src="/images/cik-organization/cik-organization-slide8.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide1.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide2.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide3.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide4.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide5.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide6.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide7.jpg" />
+          <img src="/images/cik-organization-3.0/cik-organization-slide8.jpg" />
         </ImagesContainer>
+        <hr />
+        <h2>КАК СЕ ГЛАСУВА</h2>
+        <hr />
+        <ImagesContainer cols={1}>
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide1.jpg" />
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide2.jpg" />
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide3.jpg" />
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide4.jpg" />
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide5.jpg" />
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide6.jpg" />
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide7.jpg" />
+          <img src="/images/how-we-vote-3.0/how-we-vote-slide8.jpg" />
+        </ImagesContainer>
+        <hr />
+        <h2>СЛЕД КРАЯ НА ИЗБОРНИЯ ДЕН</h2>
+        <hr />
+        <ImagesContainer cols={1}>
+          <img src="/images/after-election-day-3.0/after-election-day-slide1.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide2.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide3.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide4.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide5.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide6.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide7.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide8.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide9.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide10.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide11.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide12.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide13.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide14.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide15.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide16.jpg" />
+          <img src="/images/after-election-day-3.0/after-election-day-slide17.jpg" />
+        </ImagesContainer>
+        <hr />
+        <h3><a href="https://www.cik.bg/bg/pvr-ns14.11.2021/edu">ОБУЧИТЕЛНИ ВИДЕО МАТЕРИАЛИ ЗА ЧЛЕНОВЕ НА СИК</a></h3>
         <hr />
         <h2>ЗАЩИТНИК НА ВОТА</h2>
         <hr />
