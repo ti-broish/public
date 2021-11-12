@@ -128,9 +128,9 @@ export default (props) => {
           <Link to="/signup">Запиши се</Link>
           <Link to="/instructions">Инструкции</Link>
           <Link to="/videos">Видео</Link>
-          <Link to="/results/parliament-president-2021-11-14/violations">
+          <a href="/results/parliament-president-2021-11-14/violations">
             Сигнали
-          </Link>
+          </a>
           <Link to="/ti-glasuvash">Ти Гласуваш</Link>
         </Navigation>
         <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
@@ -168,12 +168,12 @@ export default (props) => {
           <Link to="/privacy-notice" onClick={() => setMenuOpen(false)}>
             Декларация за поверителност
           </Link>
-          <Link
-            to="/results/parliament-president-2021-11-14/violations"
+          <a
+            href="/results/parliament-president-2021-11-14/violations"
             onClick={() => setMenuOpen(false)}
           >
             Сигнали
-          </Link>
+          </a>
           <Link to="/ti-glasuvash" onClick={() => setMenuOpen(false)}>
             Ти Гласуваш!
           </Link>
