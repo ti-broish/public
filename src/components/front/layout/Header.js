@@ -125,7 +125,6 @@ export default (props) => {
         </Link>
         <Navigation>
           <Link to="/about">Kампанията</Link>
-          <Link to="/signup">Запиши се</Link>
           <Link to="/instructions">Инструкции</Link>
           <Link to="/videos">Видео</Link>
           <a href="/results/parliament-president-2021-11-14/violations">
