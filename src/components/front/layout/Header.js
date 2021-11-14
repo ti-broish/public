@@ -127,7 +127,7 @@ export default (props) => {
           <Link to="/about">Kампанията</Link>
           <Link to="/instructions">Инструкции</Link>
           <Link to="/videos">Видео</Link>
-          <a href="/results/parliament-president-2021-11-14/violations">
+          <a href="/results/parliament-president-2021-11-14">
             Сигнали
           </a>
           <Link to="/ti-glasuvash">Ти Гласуваш</Link>
@@ -165,7 +165,7 @@ export default (props) => {
             Декларация за поверителност
           </Link>
           <a
-            href="/results/parliament-president-2021-11-14/violations"
+            href="/results/parliament-president-2021-11-14"
             onClick={() => setMenuOpen(false)}
           >
             Сигнали
