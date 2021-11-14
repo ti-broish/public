@@ -153,9 +153,6 @@ export default (props) => {
           <Link to="/about" onClick={() => setMenuOpen(false)}>
             Kампанията
           </Link>
-          <Link to="/signup" onClick={() => setMenuOpen(false)}>
-            Запиши се
-          </Link>
           <Link to="/instructions" onClick={() => setMenuOpen(false)}>
             Инструкции
           </Link>
