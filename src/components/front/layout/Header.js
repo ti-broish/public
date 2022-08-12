@@ -128,7 +128,6 @@ export default (props) => {
           <Link to="/about">Kампанията</Link>
           <Link to="/instructions">Инструкции</Link>
           <Link to="/videos">Видео</Link>
-          <Link to="/ti-glasuvash">Ти Гласуваш</Link>
         </Navigation>
         <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
           <FontAwesomeIcon icon={faBars} />
@@ -164,9 +163,6 @@ export default (props) => {
           </Link>
           <Link to="/privacy-notice" onClick={() => setMenuOpen(false)}>
             Декларация за поверителност
-          </Link>
-          <Link to="/ti-glasuvash" onClick={() => setMenuOpen(false)}>
-            Ти Гласуваш!
           </Link>
         </MobileNavMenu>
       </Menu>
