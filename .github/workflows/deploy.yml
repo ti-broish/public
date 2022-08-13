@@ -41,3 +41,4 @@ jobs:
           bucket: ${{ secrets.MINIO_STAGING_BUCKET }}
           source_dir: 'public'
           target_dir: '/'
+          insecure: 'true'
