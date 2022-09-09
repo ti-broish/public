@@ -313,6 +313,7 @@ const InsideReceipt = styled.div`
 `;
 
 export default (props) => {
+  const defaultScreen = "parliament";
   const [cardInserted, setCardInserted] = useState(false);
 
   const [partySelected, setPartySelected] = useState(null);
@@ -324,8 +325,8 @@ export default (props) => {
 
   const [choiceSelected, setChoiceSelected] = useState(false);
 
-  const [voteSelected, setVoteSelected] = useState(false);
-  const [vote, setVote] = useState(null);
+  const [voteSelected, setVoteSelected] = useState(defaultScreen ? true : false);
+  const [vote, setVote] = useState(defaultScreen ?? null);
 
   const [cardStyle, setCardStyle] = useState(null);
   const [receiptStyle, setReceiptStyle] = useState(null);
@@ -399,7 +400,8 @@ export default (props) => {
         setReceiptPrinted(false);
         setReceiptRemoved(false);
         setCardStyle(null);
-        setVoteSelected(false);
+        setVoteSelected(defaultScreen ? true : false);
+        setVote(defaultScreen)
         setChoiceSelected(false);
       }, 3500);
     }
