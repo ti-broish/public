@@ -453,7 +453,7 @@ export default (props) => {
 
   const renderVote = (vote) => {
     switch (vote) {
-      case "parlament":
+      case "parliament":
         return (
           <SelectParty
             selectParty={selectParty}

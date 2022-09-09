@@ -33,7 +33,7 @@ const VoteBoxes = styled.div`
 
   .both,
   .president,
-  .parlament {
+  .parliament {
     background: black;
     color: white;
   }
@@ -155,7 +155,7 @@ const SelectVote = (props) => {
   const options = {
     both: "ИЗБОРИ ЗА ПРЕЗИДЕНТ И ВИЦЕПРЕЗИДЕНТ И ЗА НАРОДНИ ПРЕДСТАВИТЕЛИ",
     president: "ИЗБОРИ ЗА ПРЕЗИДЕНТ И ВИЦЕПРЕЗИДЕНТ",
-    parlament: "ИЗБОРИ ЗА НАРОДНИ ПРЕДСТАВИТЕЛИ",
+    parliament: "ИЗБОРИ ЗА НАРОДНИ ПРЕДСТАВИТЕЛИ",
   };
 
   return (
@@ -196,17 +196,17 @@ const SelectVote = (props) => {
             </h2>
 
             <h2
-              className={selectedVote === "parlament" ? "parlament" : null}
+              className={selectedVote === "parliament" ? "parliament" : null}
               onClick={() => {
-                choiceHandler("parlament");
+                choiceHandler("parliament");
               }}
             >
               <Check>
-                {selectedVote === "parlament" ? (
+                {selectedVote === "parliament" ? (
                   <FontAwesomeIcon icon={faCheck} />
                 ) : null}
               </Check>
-              <text>{options.parlament}</text>
+              <text>{options.parliament}</text>
             </h2>
           </VoteBoxes>
           <LightButton
@@ -233,7 +233,7 @@ const SelectVote = (props) => {
                 ? options.both
                 : selectedVote === "president"
                 ? options.president
-                : options.parlament}
+                : options.parliament}
             </h3>
             <h4>Потвърдете своя избор или се върнете назад.</h4>
             <DarkButton
