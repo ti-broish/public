@@ -30,7 +30,7 @@ const InsertCardStyle = styled.div`
 export default props => {
     return (
       <InsertCardStyle>
-        <h1>ИЗБОРИ 14.11.2021</h1>
+        <h1>ИЗБОРИ 02.10.22</h1>
         <h2>Добре дошли</h2>
         <p>Поставете картата в слота за четене</p>
         <img src="/ti-glasuvash/machine-vote-card.png" />
