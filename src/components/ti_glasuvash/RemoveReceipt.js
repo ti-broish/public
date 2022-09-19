@@ -5,32 +5,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const RemoveReceiptStyle = styled.div`
-    h1 {
-        font-weight: 400;
-        margin: 367px 70px 0 64px;
+    h1, p {
+        text-align: center;
+    }
+    p {
         font-size: 20px;
+        margin: auto 40px;
     }
 `;
 
 const GreenCircle = styled.div`
     font-size: 88px;
-    margin: 20px auto;
+    margin: 50% auto 0;
     width: 160px;
     height: 160px;
-    border: 3px solid #3ff21a;
     border-radius: 50%;
-    color: #3ff21a;
-    padding: 30px 0 0 30px;
+    color: white;
+    padding: 30px;
     box-sizing: border-box;
+    background-color: green;
 `;
 
 export default props => {
     return (
         <RemoveReceiptStyle>
-            <h1>Моля, вземете разписката от вашето гласуване и я поставете в избирателната кутия.</h1>
             <GreenCircle>
                 <FontAwesomeIcon icon={faCheck}/>
             </GreenCircle>
+            <h1>Разписката е готова</h1>
+            <p>
+                Моля, вземете разписката от Вашето гласуване и я поставете
+                в специална кутия за разписки за машинно гласуване, намираща се на
+                масата пред членовете на СИК.
+            </p>
         </RemoveReceiptStyle>
     );
 };
