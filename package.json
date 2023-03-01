@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config webpack/dev.config.js && node renderStatic.js && node server/server.js",
+    "dev": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/dev.config.js && node --openssl-legacy-provider renderStatic.js && node --openssl-legacy-provider server/server.js",
     "serve": "node server/server.js",
-    "build": "webpack --config webpack/prod.config.js && NODE_ENV=production node renderStatic.js"
+    "build": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/prod.config.js && NODE_ENV=production node --openssl-legacy-provider renderStatic.js"
   },
   "author": "",
   "license": "ISC",
