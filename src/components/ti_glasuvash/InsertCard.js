@@ -32,7 +32,7 @@ export default props => {
       <InsertCardStyle>
         <h1>Избори за Народно събрание 02 април 2023 г.</h1>
         <h2><b>Добре дошли</b></h2>
-        <p>Поставете картата в долния отвор на машината.</p>
+        <p>Натиснете върху картата, за да я поставите.</p>
         <img src="/ti-glasuvash/machine-vote-card.png" />
       </InsertCardStyle>
     );
