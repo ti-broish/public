@@ -10,20 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '15'
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-            path: ~/.npm
-            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-            restore-keys: |
-                ${{ runner.os }}-node-
+          node-version: '18'
+          cache: npm
 
       - name: Clean install of dependencies
         run: npm ci
