@@ -126,6 +126,7 @@ export default (props) => {
         <Navigation>
           <Link to="/signup">Запиши се</Link>
           <Link to="/about">Kампанията</Link>
+          <a href="/results/parliament-2023-04-02">Рискови секции</a>
           <Link to="/instructions">Инструкции</Link>
           <Link to="/videos">Видео</Link>
         </Navigation>
@@ -152,6 +153,9 @@ export default (props) => {
           <Link to="/about" onClick={() => setMenuOpen(false)}>
             Kампанията
           </Link>
+          <a href="/results/parliament-2023-04-02" onClick={() => setMenuOpen(false)}>
+            Рискови секции
+          </a>
           <Link to="/instructions" onClick={() => setMenuOpen(false)}>
             Инструкции
           </Link>
