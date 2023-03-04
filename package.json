@@ -24,7 +24,7 @@
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
     "@loadable/webpack-plugin": "^5.14.0",
-    "axios": "^0.21.0",
+    "axios": "^0.21.2",
     "babel-loader": "^8.2.1",
     "compression-webpack-plugin": "^6.1.1",
     "css-loader": "^5.0.1",
