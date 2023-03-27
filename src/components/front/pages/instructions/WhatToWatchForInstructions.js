@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
 import { YouTubeVideoEmbed } from '../Videos';
 
 export default (props) => {
-  let metaTitle = 'Как протича изборния ден - обучения | Ти Броиш';
+  let metaTitle = 'Как протича изборния ден | Ти Броиш';
   let metaUrl = 'https://tibroish.bg/instructions/what-to-watch-for';
   let metaDescription = `
         „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации 
@@ -28,7 +28,7 @@ export default (props) => {
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
-        <h1>Как протича изборния ден - обучения</h1>
+        <h1>Как протича изборния ден</h1>
         <hr />
         <YouTubeVideoEmbed videoId={'Qz4V6uu7gTM'} />
         <YouTubeVideoEmbed videoId={'MpX0bA_DRtE'} />
