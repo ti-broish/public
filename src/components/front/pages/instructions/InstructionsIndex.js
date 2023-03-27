@@ -44,11 +44,11 @@ export default (props) => {
       </Helmet>
       <MainContent>
         <h1>Инструкции</h1>
+        <InstructionLink to="/instructions/what-to-watch-for">
+          Как протича изборния ден? Обучения.
+        </InstructionLink>
         <InstructionLink to="/instructions/mobile-app">
           Инструкция за използване на мобилно приложение “Ти броиш”
-        </InstructionLink>
-        <InstructionLink to="/instructions/what-to-watch-for">
-          Как протича изборния ден?
         </InstructionLink>
         <InstructionLink to="/instructions/how-to-take-photos">
           Как да снимаме процеса на установяване на резултатите
