@@ -67,10 +67,8 @@ export default () => {
       <MainContent>
         <h1>Видеа от кампанията</h1>
         <hr />
-        <YouTubeVideoEmbed videoId={'ePIlIW_dLfE'} />
         <YouTubeVideoEmbed videoId={'yWQ0umSC2zY'} />
         <YouTubeVideoEmbed videoId={'nc_eZ-xmbA4'} />
-        <YouTubeVideoEmbed videoId={'0m3eBb6M6zs'} />
         <YouTubeVideoEmbed videoId={'JBgplUhCPCQ'} />
         <YouTubeVideoEmbed videoId={'eOEUrun-I3M'} />
         <YouTubeVideoEmbed videoId={'CoAk-Lu74rM'} />
@@ -78,7 +76,6 @@ export default () => {
         <YouTubeVideoEmbed videoId={'yFS9Uv54R34'} />
         <YouTubeVideoEmbed videoId={'nxM0fnUPDx4'} />
         <YouTubeVideoEmbed videoId={'-L0y6Ih8id8'} />
-        <YouTubeVideoEmbed videoId={'apAuVIu53Gg'} />
         <YouTubeVideoEmbed videoId={'xgIZ8uFmmpY'} />
         <YouTubeVideoEmbed videoId={'Q4Ijwoy2WR8'} />
         <YouTubeVideoEmbed videoId={'J_B0525_hcs'} />
