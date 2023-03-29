@@ -50,9 +50,6 @@ export default (props) => {
         <InstructionLink to="/instructions/mobile-app">
           Инструкция за използване на мобилно приложение “Ти броиш”
         </InstructionLink>
-        <InstructionLink to="/instructions/how-to-take-photos">
-          Как да снимаме процеса на установяване на резултатите
-        </InstructionLink>
       </MainContent>
     </Wrapper>
   );
