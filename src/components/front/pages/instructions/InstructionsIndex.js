@@ -48,7 +48,7 @@ export default (props) => {
           Как протича изборния ден? Обучения.
         </InstructionLink>
         <InstructionLink to="/instructions/mobile-app">
-          Инструкция за използване на мобилно приложение “Ти броиш”
+          Инструкция за изпращане на протоколи и сигнали в “Ти броиш”
         </InstructionLink>
       </MainContent>
     </Wrapper>
