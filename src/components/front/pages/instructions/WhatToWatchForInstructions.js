@@ -1,10 +1,23 @@
 import React from 'react';
-
-import { Wrapper, MainContent } from '../../Front';
-
 import Helmet from 'react-helmet';
-
+import styled from 'styled-components';
+import { Wrapper, MainContent } from '../../Front';
 import { YouTubeVideoEmbed } from '../Videos';
+
+const InstructionAnchor = styled.a`
+  font-size: 22px;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #ccc;
+`;
+
 
 export default (props) => {
   let metaTitle = 'Как протича изборния ден | Ти Броиш';
@@ -30,6 +43,9 @@ export default (props) => {
       <MainContent>
         <h1>Как протича изборния ден</h1>
         <hr />
+        <InstructionAnchor href="/files/%D0%9E%D0%B1%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%BD-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB-%D0%98%D0%B7%D0%B1%D0%BE%D1%80%D0%B8-02.04.2023.pdf">
+          Обучение - Избори 02.04.2023
+        </InstructionAnchor>
         <YouTubeVideoEmbed videoId={'Qz4V6uu7gTM'} />
         <YouTubeVideoEmbed videoId={'MpX0bA_DRtE'} />
         <YouTubeVideoEmbed videoId={'8J8r-e4shS8'} />
