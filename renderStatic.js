@@ -83,6 +83,7 @@ const routes = [
     '/instructions/mobile-app',
     '/instructions/watchers',
     '/instructions/what-to-watch-for',
+    '/instructions/how-to-validate',
     '/instructions/how-to-take-photos',
     '/ti-glasuvash',
     '/mobile-app-feedback',
