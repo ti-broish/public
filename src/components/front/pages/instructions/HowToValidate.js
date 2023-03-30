@@ -63,9 +63,12 @@ export default (props) => {
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
+          <h1>Инструкции за валидиране на протокол в “Ти броиш”</h1>
+          <hr />
+          <InstructionAnchor href="files/Инструкция-за-валидиране-Ти-броиш.pdf">
+          Как се валидира протокол
+        </InstructionAnchor>
         <YouTubeVideoEmbed videoId={'j2ChYutSk-c'} />
-        <h1>Инструкции за валидиране на протокол в “Ти броиш”</h1>
-        <hr />
       </MainContent>
     </Wrapper>
   );
