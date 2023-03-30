@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Wrapper, MainContent } from '../../Front';
 import { YouTubeVideoEmbed } from '../Videos';
 
-const InstructionAnchor = styled.a`
+export const InstructionAnchor = styled.a`
   font-size: 22px;
   width: 100%;
   display: block;

@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 import { MOBILE_WIDTH } from '../../Style';
 import { YouTubeVideoEmbed } from '../Videos';
+import { InstructionAnchor } from './WhatToWatchForInstructions.js'
 
 const ImagesContainer = styled.div`
   text-align: center;
