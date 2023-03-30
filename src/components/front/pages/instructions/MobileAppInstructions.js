@@ -63,10 +63,10 @@ export default (props) => {
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
-        <YouTubeVideoEmbed videoId={'vG-evl0Jlp8'} />
-        <YouTubeVideoEmbed videoId={'x4j9s-LliVs'} />
         <h1>Инструкции за изпращане на протоколи и сигнали в “Ти броиш”</h1>
         <hr />
+        <YouTubeVideoEmbed videoId={'vG-evl0Jlp8'} />
+        <YouTubeVideoEmbed videoId={'x4j9s-LliVs'} />
       </MainContent>
     </Wrapper>
   );
