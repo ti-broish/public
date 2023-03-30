@@ -50,6 +50,9 @@ export default (props) => {
         <InstructionLink to="/instructions/mobile-app">
           Инструкции за изпращане на протоколи и сигнали в “Ти броиш”
         </InstructionLink>
+        <InstructionLink to="/instructions/how-to-validate">
+          Инструкции за валидиране на протокол в “Ти броиш”
+        </InstructionLink>
       </MainContent>
     </Wrapper>
   );
