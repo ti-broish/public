@@ -101,14 +101,16 @@ export default props => {
                 <FooterColumn>
                     <h2><FontAwesomeIcon icon={faSitemap}/> Карта на сайта</h2>
                     <ul>
-                        <li><Link to='/'>Начало</Link></li>
-                        <li><Link to='/about'>Kампанията</Link></li>
+                        <li><a href='/results/parliament-2023-04-02/submit'>Начало</a></li>
+                        {/*<li><Link to='/about'>Kампанията</Link></li>*/}
+                        {/*<li><a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a></li>*/}
+                        <li><a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a></li>
                         <li><Link to='/instructions'>Инструкции</Link></li> 
-                        <li><a href="/results/parliament-2023-04-02">Рискови секции</a></li>
-                        <li><Link to='/videos'>Видео</Link></li>
-                        <li><Link to='/news'>Актуална информация</Link></li>
+                        <li><a href="/results/parliament-2023-04-02">Карта</a></li>
+                        {/*<li><Link to='/videos'>Видео</Link></li>*/}
+                        {/*<li><Link to='/news'>Актуална информация</Link></li>*/}
                         <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>   
-                        <li><Link to='/ti-glasuvash'>Ти Гласуваш!</Link></li>          
+                        {/*<li><Link to='/ti-glasuvash'>Ти Гласуваш!</Link></li>*/}
                     </ul>
                 </FooterColumn>
                 <FooterColumn>
