@@ -120,15 +120,17 @@ export default (props) => {
     <HeaderCompensator />,
     <HeaderStyle>
       <Wrapper>
-        <Link to="/">
+        <a href="/results/parliament-2023-04-02/submit">
           <LogoImage src="/brand/logo_horizontal_white.png?v=2" />
-        </Link>
+        </a>
         <Navigation>
-          <Link to="/signup">Запиши се</Link>
-          <Link to="/about">Kампанията</Link>
-          <a href="/results/parliament-2023-04-02">Рискови секции</a>
+          {/*<Link to="/signup">Запиши се</Link>*/}
+          {/*<Link to="/about">Kампанията</Link>*/}
+          <a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>
+          {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>*/}
           <Link to="/instructions">Инструкции</Link>
-          <Link to="/videos">Видео</Link>
+          <a href="/results/parliament-2023-04-02">Карта</a>
+          {/*<Link to="/videos">Видео</Link>*/}
         </Navigation>
         <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
           <FontAwesomeIcon icon={faBars} />
@@ -144,27 +146,29 @@ export default (props) => {
         }}
       >
         <MobileNavMenu>
-          <Link to="/" onClick={() => setMenuOpen(false)}>
+          <a to="/results/parliament-2023-04-02/submit" onClick={() => setMenuOpen(false)}>
             Начало
-          </Link>
-          <Link to="/signup" onClick={() => setMenuOpen(false)}>
-            Запиши се
-          </Link>
-          <Link to="/about" onClick={() => setMenuOpen(false)}>
-            Kампанията
-          </Link>
-          <a href="/results/parliament-2023-04-02" onClick={() => setMenuOpen(false)}>
-            Рискови секции
           </a>
+          {/*<Link to="/signup" onClick={() => setMenuOpen(false)}>
+            Запиши се
+          </Link>*/}
+          {/*<Link to="/about" onClick={() => setMenuOpen(false)}>
+            Kампанията
+          </Link>*/}
+          {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
+          <a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>
           <Link to="/instructions" onClick={() => setMenuOpen(false)}>
             Инструкции
           </Link>
-          <Link to="/videos" onClick={() => setMenuOpen(false)}>
+          <a href="/results/parliament-2023-04-02" onClick={() => setMenuOpen(false)}>
+            Карта
+          </a>
+          {/*<Link to="/videos" onClick={() => setMenuOpen(false)}>
             Видео
-          </Link>
-          <Link to="/news" onClick={() => setMenuOpen(false)}>
+          </Link>*/}
+          {/*<Link to="/news" onClick={() => setMenuOpen(false)}>
             Актуална информация
-          </Link>
+          </Link>*/}
           <Link to="/privacy-notice" onClick={() => setMenuOpen(false)}>
             Декларация за поверителност
           </Link>
