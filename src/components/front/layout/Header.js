@@ -127,7 +127,7 @@ export default (props) => {
           {/*<Link to="/signup">Запиши се</Link>*/}
           {/*<Link to="/about">Kампанията</Link>*/}
           <a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>
-          {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>*/}
+          <a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>
           <Link to="/instructions">Инструкции</Link>
           <a href="/results/parliament-2023-04-02">Карта</a>
           {/*<Link to="/videos">Видео</Link>*/}
@@ -155,7 +155,7 @@ export default (props) => {
           {/*<Link to="/about" onClick={() => setMenuOpen(false)}>
             Kампанията
           </Link>*/}
-          {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
+          <a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>
           <a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>
           <Link to="/instructions" onClick={() => setMenuOpen(false)}>
             Инструкции

@@ -103,7 +103,7 @@ export default props => {
                     <ul>
                         <li><a href='/results/parliament-2023-04-02/submit'>Начало</a></li>
                         {/*<li><Link to='/about'>Kампанията</Link></li>*/}
-                        {/*<li><a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a></li>*/}
+                        <li><a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a></li>
                         <li><a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a></li>
                         <li><Link to='/instructions'>Инструкции</Link></li> 
                         <li><a href="/results/parliament-2023-04-02">Карта</a></li>
