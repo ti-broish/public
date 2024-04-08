@@ -124,10 +124,10 @@ export default (props) => {
           <LogoImage src="/brand/logo_horizontal_white.png?v=2" />
         </a>
         <Navigation>
-          {/*<Link to="/signup">Запиши се</Link>*/}
-          {/*<Link to="/about">Kампанията</Link>*/}
-          <a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>
-          <a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>
+          <Link to="/signup">Запиши се</Link>
+          <Link to="/about">Kампанията</Link>
+          {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
+          {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>*/}
           <Link to="/instructions">Инструкции</Link>
           <a href="/results/parliament-2023-04-02">Карта</a>
           {/*<Link to="/videos">Видео</Link>*/}
@@ -149,20 +149,20 @@ export default (props) => {
           <a to="/results/parliament-2023-04-02/submit" onClick={() => setMenuOpen(false)}>
             Начало
           </a>
-          {/*<Link to="/signup" onClick={() => setMenuOpen(false)}>
+          <Link to="/signup" onClick={() => setMenuOpen(false)}>
             Запиши се
-          </Link>*/}
-          {/*<Link to="/about" onClick={() => setMenuOpen(false)}>
+          </Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>
             Kампанията
-          </Link>*/}
-          <a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>
-          <a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>
+          </Link>
+         {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
+          {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>*/}
           <Link to="/instructions" onClick={() => setMenuOpen(false)}>
             Инструкции
           </Link>
-          <a href="/results/parliament-2023-04-02" onClick={() => setMenuOpen(false)}>
+         {/*<a href="/results/parliament-2023-04-02" onClick={() => setMenuOpen(false)}>
             Карта
-          </a>
+          </a>*/}
           {/*<Link to="/videos" onClick={() => setMenuOpen(false)}>
             Видео
           </Link>*/}
