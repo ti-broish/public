@@ -18,5 +18,5 @@ server.listen(port, () =>
 
 // This is a simple static server used for development purposes only
 var StaticServer = require('static-server');
-var server = new StaticServer({ rootPath: './public', port: 5000 });
+var server = new StaticServer({ rootPath: './public', port: 5001 });
 server.start(() => console.log(`Server listening to ${server.port}`));
