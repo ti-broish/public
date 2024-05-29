@@ -126,6 +126,7 @@ export default (props) => {
         <Navigation>
           <Link to="/signup">Запиши се</Link>
           <Link to="/about">Kампанията</Link>
+          <Link to="/izvan-bulgaria">Извън страната</Link>
           {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
           {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>*/}
           <Link to="/instructions">Инструкции</Link>
@@ -146,7 +147,10 @@ export default (props) => {
         }}
       >
         <MobileNavMenu>
-          <a to="/results/parliament-2023-04-02/submit" onClick={() => setMenuOpen(false)}>
+          <a
+            to="/results/parliament-2023-04-02/submit"
+            onClick={() => setMenuOpen(false)}
+          >
             Начало
           </a>
           <Link to="/signup" onClick={() => setMenuOpen(false)}>
@@ -154,6 +158,9 @@ export default (props) => {
           </Link>
           <Link to="/about" onClick={() => setMenuOpen(false)}>
             Kампанията
+          </Link>
+          <Link to="/izvan-bulgaria" onClick={() => setMenuOpen(false)}>
+            Извън страната
           </Link>
           {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
           {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>

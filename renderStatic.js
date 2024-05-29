@@ -86,6 +86,7 @@ const routes = [
     '/instructions/how-to-validate',
     '/instructions/how-to-take-photos',
     '/ti-glasuvash',
+    '/izvan-bulgaria',
     '/mobile-app-feedback',
     '/feedback-defenders',
     '/feedback-validators',
