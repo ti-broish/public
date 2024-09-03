@@ -124,7 +124,7 @@ export default props => {
                     </FooterAppBadges>
                 </FooterColumn>
             </FooterColumns>
-            <Copyright>„Демократична България - обединение“ &copy; {new Date().getFullYear()}</Copyright>
+            <Copyright>Ти броиш &copy; {new Date().getFullYear()}</Copyright>
         </FooterStyle>
     ])
 };
