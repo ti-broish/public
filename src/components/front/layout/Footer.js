@@ -84,19 +84,11 @@ export default props => {
             <FooterColumns>
                 <FooterColumn>
                     <h2><FontAwesomeIcon icon={faAddressBook}/> Контакти</h2>
-                    <p>
-                        <b>Демократична България – обединение</b>
-                    </p>
-                    <p>
+                                        <p>
                         <b><FontAwesomeIcon icon={faEnvelope}/> Имейл: </b>
                         <a href='mailto:team@tibroish.bg'>team@tibroish.bg</a>
                     </p>
-                    <p>
-                        <b><FontAwesomeIcon icon={faMapMarkerAlt}/> Адрес: </b> <br/>
-                        гр. София, 1164 <br/>
-                        бул. „Драган Цанков“ <br/>
-                        12-16, ет. 2, ап. 7
-                    </p>
+                    
                 </FooterColumn>
                 <FooterColumn>
                     <h2><FontAwesomeIcon icon={faSitemap}/> Карта на сайта</h2>
