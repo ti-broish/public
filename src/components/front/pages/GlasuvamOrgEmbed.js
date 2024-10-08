@@ -46,7 +46,7 @@ export default () => {
     }, []);*/
 
   const metaTitle = "Секции извън България";
-  const metaUrl = "https://glasuvam.org/parl24";
+  const metaUrl = "https://glasuvam.org/parl2410";
   const metaDescription = `
         Вижте къде има открити секции за гласуване извън България. Данните са от проекта Glasuvam.org.  
     `;
