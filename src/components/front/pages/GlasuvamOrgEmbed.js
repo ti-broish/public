@@ -67,7 +67,7 @@ export default () => {
       <MainContent>
         <h1>Секции извън страната</h1>
         <iframe
-          src="https://glasuvam.org/parl24"
+          src="https://glasuvam.org/parl2410"
           width="100%"
           height="500px"
           allow="geolocation"
