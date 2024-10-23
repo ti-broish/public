@@ -5,6 +5,8 @@ import Helmet from 'react-helmet';
 
 import { Wrapper, MainContent } from '../../Front';
 
+import { InstructionAnchor } from './WhatToWatchForInstructions';
+
 import styled from 'styled-components';
 
 const InstructionLink = styled(Link)`
@@ -44,6 +46,9 @@ export default (props) => {
       </Helmet>
       <MainContent>
         <h1>Инструкции</h1>
+        <InstructionAnchor href="/files/Ти%20Броиш%20Обучителен%20материал%20-%20НС%2027.10.2024.pdf" target="_blank">
+          Обучение - Избори 27.10.2024
+        </InstructionAnchor>
         <InstructionLink to="/instructions/what-to-watch-for">
           Как протича изборния ден? Обучения.
         </InstructionLink>

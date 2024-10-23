@@ -43,8 +43,8 @@ export default (props) => {
       <MainContent>
         <h1>Как протича изборния ден</h1>
         <hr />
-        <InstructionAnchor href="/files/%D0%9E%D0%B1%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%BD-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB-%D0%98%D0%B7%D0%B1%D0%BE%D1%80%D0%B8-02.04.2023.pdf">
-          Обучение - Избори 02.04.2023
+        <InstructionAnchor href="/files/Ти%20Броиш%20Обучителен%20материал%20-%20НС%2027.10.2024.pdf" target="_blank">
+          Обучение - Избори 27.10.2024
         </InstructionAnchor>
         <YouTubeVideoEmbed videoId={'Qz4V6uu7gTM'} />
         <YouTubeVideoEmbed videoId={'MpX0bA_DRtE'} />
