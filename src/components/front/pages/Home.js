@@ -235,25 +235,24 @@ export default (props) => {
     </Helmet>,
     <LandingPage>
       <Parallax
-        bgImage="/images/national-assembly-building-sofia-bg.jpg"
-        bgImageAlt="Народно събрание"
+        bgImage="/images/protest_2025.jpg"
+        bgImageAlt="Протест 2025"
         strength={200}
       >
         <LandingPageOverlay>
           <TopSection>
             <p id="text1">
-              Да дадем на <b>България</b> шанс за
+              Да извоюваме 100% машинно гласуване и да гарантираме заедно първите честни избори в България!
             </p>
             <p id="text2">
-              <b>ЧЕСТНИ</b> и <b>СВОБОДНИ</b> избори
+              Всеки един свободен глас оставя прасето гладно!
             </p>
           </TopSection>
           <MiddleSection>
             <p id="text3">
-              Ти броиш, за да не откраднат изборите
+              Ти броиш! Запиши се сега, стани застъпник и защити всеки глас!
             </p>
-            <p id="text4">
-              Стани пазител на вота. Спри хартиените манипулации в изборния ден
+           <p id="text4">
             </p>
             <Link to="/signup">
               <HomeButton>Запиши се тук</HomeButton>
