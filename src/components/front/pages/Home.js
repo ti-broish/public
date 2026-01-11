@@ -16,7 +16,7 @@ const LandingPage = styled.div`
 
   .react-parallax {
     width: 100%;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
 
     img {
       width: auto !important;
@@ -27,14 +27,17 @@ const LandingPage = styled.div`
 const LandingPageOverlay = styled.div`
   background-color: #0005;
   width: 100%;
-  height: 100%;
-  height: calc(100vh - 60px);
-  position: absolute;
+  min-height: calc(100vh - 60px);
+  position: relative;
   box-sizing: border-box;
   text-align: center;
   color: white;
   font-weight: bold;
   text-shadow: 0px 0px 10px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 0;
 
   b {
     font-weight: 900;
@@ -45,56 +48,103 @@ const LandingPageOverlay = styled.div`
 `;
 
 const TopSection = styled.div`
-  position: absolute;
-  bottom: 55vh;
+  position: relative;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 20px;
   box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-shrink: 0;
 
   p {
-    margin: 20px 0;
+    margin: 15px 0;
+    line-height: 1.5;
   }
 
   #text1 {
-    font-size: 24px;
+    font-size: 22px;
+    font-weight: 500;
   }
   #text2 {
-    font-size: 52px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  @media only screen and (max-width: 1440px) {
+    #text2 {
+      font-size: 32px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    #text1 {
+      font-size: 20px;
+    }
+    #text2 {
+      font-size: 30px;
+    }
   }
 
   @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    padding: 0 15px;
     #text1 {
       font-size: 16px;
     }
     #text2 {
-      font-size: 42px;
+      font-size: 28px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    #text1 {
+      font-size: 15px;
+    }
+    #text2 {
+      font-size: 26px;
     }
   }
 
   @media only screen and (max-width: ${MOBILE_WIDTH * 0.6}px) {
+    padding: 0 12px;
     #text1 {
       font-size: 14px;
     }
     #text2 {
-      font-size: 32px;
+      font-size: 24px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 0 10px;
+    #text1 {
+      font-size: 13px;
+    }
+    #text2 {
+      font-size: 20px;
     }
   }
 `;
 
 const MiddleSection = styled.div`
-  position: absolute;
+  position: relative;
   width: 100%;
-  top: calc(45vh - 60px);
   box-sizing: border-box;
-  padding: 0 10px;
-  padding-top: 50px;
+  padding: 40px 20px;
+  flex-shrink: 0;
 
   a {
     color: white;
   }
 
+  p {
+    margin: 20px 0;
+    line-height: 1.4;
+  }
+
   #text3 {
-    font-size: 42px;
+    font-size: 56px;
+    font-weight: 900;
   }
   #text4 {
     font-size: 16px;
@@ -109,11 +159,28 @@ const MiddleSection = styled.div`
     margin-top: 5px;
   }
 
+  @media only screen and (max-width: 1440px) {
+    padding: 35px 20px;
+    #text3 {
+      font-size: 50px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    padding: 30px 20px;
+    #text3 {
+      font-size: 46px;
+    }
+    p {
+      margin: 18px 0;
+    }
+  }
+
   @media only screen and (max-width: ${MOBILE_WIDTH}px) {
-    padding-top: 5vh;
+    padding: 25px 15px;
 
     #text3 {
-      font-size: 36px;
+      font-size: 42px;
     }
     #text4 {
       font-size: 14px;
@@ -126,46 +193,111 @@ const MiddleSection = styled.div`
     }
   }
 
-  @media only screen and (max-width: ${MOBILE_WIDTH * 0.6}px) {
-    padding-top: 10px;
+  @media only screen and (max-width: 768px) {
+    padding: 20px 15px;
+    #text3 {
+      font-size: 38px;
+    }
+    p {
+      margin: 15px 0;
+    }
+  }
 
+  @media only screen and (max-width: ${MOBILE_WIDTH * 0.6}px) {
+    padding: 15px 12px;
+
+    #text3 {
+      font-size: 34px;
+    }
+    #text4 {
+      font-size: 13px;
+    }
+    #text5 {
+      font-size: 16px;
+    }
+    #text6 {
+      font-size: 38px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 15px 10px;
     #text3 {
       font-size: 28px;
     }
     #text4 {
       font-size: 12px;
     }
-    #text5 {
-      font-size: 18px;
-    }
-    #text6 {
-      font-size: 42px;
+    p {
+      margin: 12px 0;
     }
   }
 `;
 
 const BottomSection = styled.div`
-  position: absolute;
+  position: relative;
   width: 100%;
-  bottom: 0;
-  padding: 0 10px 50px 10px;
+  padding: 0 20px 50px 20px;
   box-sizing: border-box;
+  flex-shrink: 0;
+
+  p {
+    margin: 20px 0;
+    line-height: 1.4;
+  }
 
   #text5 {
     font-size: 35px;
   }
 
+  @media only screen and (max-width: 1440px) {
+    padding-bottom: 45px;
+    #text5 {
+      font-size: 32px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    padding-bottom: 40px;
+    #text5 {
+      font-size: 30px;
+    }
+    p {
+      margin: 18px 0;
+    }
+  }
+
   @media only screen and (max-width: ${MOBILE_WIDTH}px) {
-    padding-bottom: 30px;
+    padding: 0 15px 30px 15px;
     #text5 {
       font-size: 28px;
     }
   }
 
-  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
-    padding-bottom: 20px;
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 25px;
+    #text5 {
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+    }
+  }
+
+  @media only screen and (max-width: ${MOBILE_WIDTH * 0.6}px) {
+    padding: 0 12px 25px 12px;
     #text5 {
       font-size: 24px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 0 10px 20px 10px;
+    #text5 {
+      font-size: 20px;
+    }
+    p {
+      margin: 12px 0;
     }
   }
 `;
@@ -216,7 +348,7 @@ export default (props) => {
 
   let metaUrl = 'https://tibroish.bg/';
   let metaDescription = `
-        „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации при 
+        „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации при
         броенето на гласовете на предстоящите парламентарни избори.
     `;
   let metaTitle = 'Начало | Ти Броиш';
