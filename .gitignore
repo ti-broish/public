@@ -105,4 +105,5 @@ coverage
 bundles
 public/data
 public/**/*.html
+!public/index_dev.html
 public/**/*.json

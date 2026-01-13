@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/dev.config.js && node --openssl-legacy-provider renderStatic.js && node --openssl-legacy-provider server/server.js",
+    "dev": "node --openssl-legacy-provider ./node_modules/.bin/webpack serve --config webpack/dev.config.js",
     "serve": "node server/server.js",
     "build": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/prod.config.js && NODE_ENV=production node --openssl-legacy-provider renderStatic.js"
   },
@@ -23,8 +23,8 @@
     "@loadable/babel-plugin": "^5.13.2",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
-    "@loadable/webpack-plugin": "^5.14.0",
-    "axios": "^0.21.0",
+    "@loadable/webpack-plugin": "^5.15.2",
+    "axios": "^0.27.2",
     "babel-loader": "^8.2.1",
     "compression-webpack-plugin": "^6.1.1",
     "css-loader": "^5.0.1",
@@ -34,7 +34,7 @@
     "ignore-styles": "^5.0.1",
     "isomorphic-loader": "^4.2.1",
     "node-hook": "^1.0.0",
-    "node-xlsx": "^0.15.0",
+    "node-xlsx": "^0.4.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-burger-menu": "^3.0.2",
@@ -43,17 +43,20 @@
     "react-parallax": "^3.5.1",
     "react-router-dom": "^5.2.0",
     "react-tooltip": "^4.2.11",
-    "static-server": "^2.2.1",
+    "static-server": "^3.0.0",
     "style-loader": "^2.0.0",
     "styled-components": "^5.2.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.1",
     "utf8": "^3.0.0",
-    "webpack": "^4.44.2",
+    "webpack": "^5.104.1",
     "webpack-bundle-analyzer": "^4.1.0"
   },
   "devDependencies": {
-    "webpack-cli": "^4.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+    "dotenv": "^16.6.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.2",
     "webpack-merge": "^4.2.2"
   }
 }

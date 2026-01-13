@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require('fs');
 const handlebars = require('handlebars');
 const minify = require('html-minifier').minify;
