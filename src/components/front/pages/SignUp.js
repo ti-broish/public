@@ -31,6 +31,16 @@ export default () => {
 
   const location = useLocation();
 
+  // Check for referral code in URL
+  const getReferralFromUrl = () => {
+    if (typeof window === 'undefined') return null;
+    const params = new URLSearchParams(window.location.search);
+    return params.get('ref') || null;
+  };
+
+  const referralCode = getReferralFromUrl();
+  const shareText = 'Аз се записах за пазител на вота! Запиши се и ти!';
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -70,9 +80,18 @@ export default () => {
     };
   }, []);
 
-  let metaTitle = 'Запиши се още сега | Ти Броиш';
-  let metaUrl = 'https://tibroish.bg/signup/';
-  let metaDescription = `
+  // Use different title and description if referral code is present
+  const metaTitle = referralCode 
+    ? `${shareText} | Ти Броиш`
+    : 'Запиши се още сега | Ти Броиш';
+  
+  const metaUrl = referralCode 
+    ? `https://tibroish.bg/signup/?ref=${referralCode}`
+    : 'https://tibroish.bg/signup/';
+  
+  const metaDescription = referralCode
+    ? shareText
+    : `
         За да дадем на България шанс за честни и свободни избори, търсим 12 000 пазители на вота, по един за всяка секция в страната.
 От ангажимент за 1 ден важи бъдещето на страната за следващите 4 години.
 Можем да го направим заедно!
