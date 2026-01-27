@@ -6,6 +6,13 @@ const merge = require('webpack-merge');
 
 module.exports = merge(baseConfig, {
     mode: 'development',
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.VITE_FORM_URL': JSON.stringify(
+                process.env.VITE_FORM_URL || 'http://localhost:8787'
+            )
+        })
+    ]
     //plugins: [
     //    new BundleAnalyzerPlugin()
     // ]

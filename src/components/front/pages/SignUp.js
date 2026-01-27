@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Helmet from 'react-helmet';
@@ -11,53 +11,16 @@ const FormWrapper = styled.div`
 `;
 
 export default () => {
-  // Determine iframe src based on current hostname
-  const getIframeSrc = () => {
-    // SSR fallback - use production URL for static generation
-    if (typeof window === 'undefined' || !window.location || window.ssr) {
-      return 'https://signup.tibroish.bg'; // SSR fallback to production
-    }
+  // Use build-time environment variable for iframe URL
+  // This is injected at build time via webpack DefinePlugin
+  // For staging builds: VITE_FORM_URL=https://signup-staging.tibroish.bg
+  // For production builds: VITE_FORM_URL=https://signup.tibroish.bg
+  // This matches the VITE_FORM_URL from signup/form/wrangler.jsonc
+  const iframeSrc = typeof process !== 'undefined' && process.env.VITE_FORM_URL
+    ? process.env.VITE_FORM_URL
+    : 'https://signup.tibroish.bg'; // Fallback to production if not set
 
-    const hostname = window.location.hostname;
-
-    // Local development
-    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.includes('.local')) {
-      return 'http://localhost:3000';
-    }
-
-    // Staging
-    if (hostname === 'd1t.tibroish.bg') {
-      return 'https://signup-staging.tibroish.bg';
-    }
-
-    // Production (tibroish.bg or www.tibroish.bg)
-    if (hostname === 'tibroish.bg' || hostname === 'www.tibroish.bg') {
-      return 'https://signup.tibroish.bg';
-    }
-
-    // Default fallback to production
-    return 'https://signup.tibroish.bg';
-  };
-
-  // Use location to detect route changes (client-side navigation)
   const location = useLocation();
-  const iframeRef = useRef(null);
-  
-  // Use state to ensure iframe src updates after React hydrates on client-side
-  // Initial value is production (for SSR/static generation)
-  const [iframeSrc, setIframeSrc] = useState('https://signup.tibroish.bg');
-
-  // Update iframe src based on actual hostname after component mounts (client-side)
-  // Also update when location changes (client-side navigation)
-  useEffect(() => {
-    const correctSrc = getIframeSrc();
-    setIframeSrc(correctSrc);
-    
-    // Also update iframe src directly if ref is available (for immediate update)
-    if (iframeRef.current && iframeRef.current.src !== correctSrc) {
-      iframeRef.current.src = correctSrc;
-    }
-  }, [location.pathname]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -125,7 +88,6 @@ export default () => {
         </p>
         <FormWrapper>
           <iframe
-            ref={iframeRef}
             style={{ border: 'none', overflowY: 'auto' }}
             border="0"
             width="600px"

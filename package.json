@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/dev.config.js && node --openssl-legacy-provider renderStatic.js && node --openssl-legacy-provider server/server.js",
     "serve": "node server/server.js",
-    "build": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/prod.config.js && NODE_ENV=production node --openssl-legacy-provider renderStatic.js"
+    "build": "VITE_FORM_URL=https://signup.tibroish.bg node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/prod.config.js && NODE_ENV=production node --openssl-legacy-provider renderStatic.js",
+    "build:staging": "VITE_FORM_URL=https://signup-staging.tibroish.bg node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack/staging.config.js && NODE_ENV=production node --openssl-legacy-provider renderStatic.js",
+    "deploy:staging": "npm run build:staging",
+    "deploy:production": "npm run build"
   },
   "author": "",
   "license": "ISC",

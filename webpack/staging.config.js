@@ -13,7 +13,7 @@ module.exports = merge(baseConfig, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production'),
             'process.env.VITE_FORM_URL': JSON.stringify(
-                process.env.VITE_FORM_URL || 'https://signup.tibroish.bg'
+                process.env.VITE_FORM_URL || 'https://signup-staging.tibroish.bg'
             )
         }),
         //new ExtractTextPlugin('[name].bundle.[chunkhash].css'),
