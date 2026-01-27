@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run-script build
+        run: npm run-script build:staging
 
       - name: Minio Deploy
         uses: hkdobrev/minio-deploy-action@v1
