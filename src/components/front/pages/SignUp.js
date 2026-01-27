@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Helmet from 'react-helmet';
 
@@ -38,7 +38,15 @@ export default () => {
     return 'https://signup.tibroish.bg';
   };
 
-  const iframeSrc = getIframeSrc();
+  // Use state to ensure iframe src updates after React hydrates on client-side
+  // Initial value is production (for SSR/static generation)
+  const [iframeSrc, setIframeSrc] = useState('https://signup.tibroish.bg');
+
+  // Update iframe src based on actual hostname after component mounts (client-side)
+  useEffect(() => {
+    const correctSrc = getIframeSrc();
+    setIframeSrc(correctSrc);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
