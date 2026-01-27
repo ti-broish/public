@@ -12,17 +12,21 @@ const FormWrapper = styled.div`
 
 export default () => {
   // Use build-time environment variable for iframe URL
-  // This is injected at build time via webpack DefinePlugin
+  // This is injected at build time via webpack DefinePlugin for client-side
+  // For SSR (renderStatic.js), process.env.VITE_FORM_URL must be set in Node.js environment
   // For staging builds: VITE_FORM_URL=https://signup-staging.tibroish.bg
   // For production builds: VITE_FORM_URL=https://signup.tibroish.bg
-  // Webpack DefinePlugin replaces process.env.VITE_FORM_URL with the actual string value at build time
-  // Note: The || fallback should never be used if webpack replacement works correctly
+  // Webpack DefinePlugin replaces process.env.VITE_FORM_URL with the actual string value at build time for client bundle
+  // During SSR, we read directly from process.env (set in build script)
   const iframeSrc = process.env.VITE_FORM_URL || 'https://signup.tibroish.bg';
   
   // Debug: Log the iframe URL to verify webpack replacement worked
   if (typeof window !== 'undefined') {
     console.log('[SignUp] iframeSrc:', iframeSrc);
     console.log('[SignUp] process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
+  } else {
+    // SSR logging
+    console.log('[SignUp SSR] iframeSrc:', iframeSrc, 'process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
   }
 
   const location = useLocation();
