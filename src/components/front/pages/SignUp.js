@@ -19,7 +19,7 @@ export default () => {
   // Webpack DefinePlugin replaces process.env.VITE_FORM_URL with the actual string value at build time for client bundle
   // During SSR, we read directly from process.env (set in build script)
   const iframeSrc = process.env.VITE_FORM_URL || 'https://signup.tibroish.bg';
-  
+
   // Debug: Log the iframe URL to verify webpack replacement worked
   if (typeof window !== 'undefined') {
     console.log('[SignUp] iframeSrc:', iframeSrc);
@@ -42,7 +42,16 @@ export default () => {
     var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
 
     const formSubmitHandler = (e) => {
+      // Handle legacy formSubmit message
       if (e.data === 'formSubmit' || e.message === 'formSubmit') {
+        window.gtag &&
+          gtag('event', 'conversion', {
+            send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
+          });
+      }
+
+      // Handle new tibroishSubmitSuccess message
+      if (e.data === 'tibroishSubmitSuccess' || e.message === 'tibroishSubmitSuccess') {
         window.gtag &&
           gtag('event', 'conversion', {
             send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
