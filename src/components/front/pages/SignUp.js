@@ -7,25 +7,6 @@ import { Wrapper, MainContent } from '../Front';
 import styled from 'styled-components';
 
 const FormWrapper = styled.div`
-  iframe {
-    width: 100%;
-    height: 1700px;
-  }
-  @media (min-width: 375px) {
-    iframe {
-        height: 1594px;
-    }
-  }
-  @media (min-width: 425px) {
-    iframe {
-        height: 1504px;
-    }
-  }
-  @media (min-width: 768px) {
-    iframe {
-        height: 1450px;
-    }
-  }
 `;
 
 export default () => {
@@ -62,9 +43,9 @@ export default () => {
   let metaTitle = 'Запиши се още сега | Ти Броиш';
   let metaUrl = 'https://tibroish.bg/signup/';
   let metaDescription = `
-        За да дадем на България шанс за честни и свободни избори, търсим 12 000 пазители на вота, по един за всяка секция в страната. 
-От ангажимент за 1 ден важи бъдещето на страната за следващите 4 години. 
-Можем да го направим заедно!  
+        За да дадем на България шанс за честни и свободни избори, търсим 12 000 пазители на вота, по един за всяка секция в страната.
+От ангажимент за 1 ден важи бъдещето на страната за следващите 4 години.
+Можем да го направим заедно!
     `;
 
   return (
@@ -95,13 +76,15 @@ export default () => {
         </p>
         <FormWrapper>
           <iframe
-            id="gform"
-            style={{ border: 'none' }}
-            src="https://dabulgaria.bg/tibroish-chlen-na-sik-embed/"
+            style={{ border: 'none', overflowY: 'auto' }}
+            border="0"
+            width="600px"
+            height="1930px"
+            src="https://signup.tibroish.bg"
           >
-            Loading...
+            Зареждане на формуляра&hellip;
+            <a href="https://signup.tibroish.bg">Регистрирай се тук.</a>
           </iframe>
-          {/*<iframe id="gform" onLoad={onSignupIframeLoad} src="https://docs.google.com/forms/d/e/1FAIpQLSdXMU-qZsIDLMEymzZl7VMthQyC0gJ0-X0Ew8wZo8P3oLHElg/viewform?embedded=true" frameBorder="0">Loading…</iframe>*/}
         </FormWrapper>
         <hr />
         <h1>Какво предстои след като се запишете за пазител на вота?</h1>
