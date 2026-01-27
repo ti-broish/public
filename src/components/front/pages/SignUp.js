@@ -10,6 +10,36 @@ const FormWrapper = styled.div`
 `;
 
 export default () => {
+  // Determine iframe src based on current hostname
+  const getIframeSrc = () => {
+    // SSR fallback - use production URL for static generation
+    if (typeof window === 'undefined' || !window.location || window.ssr) {
+      return 'https://signup.tibroish.bg'; // SSR fallback to production
+    }
+
+    const hostname = window.location.hostname;
+
+    // Local development
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.includes('.local')) {
+      return 'http://localhost:3000';
+    }
+
+    // Staging
+    if (hostname === 'd1t.tibroish.bg') {
+      return 'https://signup-staging.tibroish.bg';
+    }
+
+    // Production (tibroish.bg or www.tibroish.bg)
+    if (hostname === 'tibroish.bg' || hostname === 'www.tibroish.bg') {
+      return 'https://signup.tibroish.bg';
+    }
+
+    // Default fallback to production
+    return 'https://signup.tibroish.bg';
+  };
+
+  const iframeSrc = getIframeSrc();
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -80,10 +110,10 @@ export default () => {
             border="0"
             width="600px"
             height="2100px"
-            src="https://signup.tibroish.bg"
+            src={iframeSrc}
           >
             Зареждане на формуляра&hellip;
-            <a href="https://signup.tibroish.bg">Регистрирай се тук.</a>
+            <a href={iframeSrc}>Регистрирай се тук.</a>
           </iframe>
         </FormWrapper>
         <hr />
