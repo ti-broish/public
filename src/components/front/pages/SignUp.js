@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Helmet from 'react-helmet';
 
@@ -38,15 +39,25 @@ export default () => {
     return 'https://signup.tibroish.bg';
   };
 
+  // Use location to detect route changes (client-side navigation)
+  const location = useLocation();
+  const iframeRef = useRef(null);
+  
   // Use state to ensure iframe src updates after React hydrates on client-side
   // Initial value is production (for SSR/static generation)
   const [iframeSrc, setIframeSrc] = useState('https://signup.tibroish.bg');
 
   // Update iframe src based on actual hostname after component mounts (client-side)
+  // Also update when location changes (client-side navigation)
   useEffect(() => {
     const correctSrc = getIframeSrc();
     setIframeSrc(correctSrc);
-  }, []);
+    
+    // Also update iframe src directly if ref is available (for immediate update)
+    if (iframeRef.current && iframeRef.current.src !== correctSrc) {
+      iframeRef.current.src = correctSrc;
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -114,11 +125,13 @@ export default () => {
         </p>
         <FormWrapper>
           <iframe
+            ref={iframeRef}
             style={{ border: 'none', overflowY: 'auto' }}
             border="0"
             width="600px"
             height="2100px"
             src={iframeSrc}
+            key={location.pathname}
           >
             Зареждане на формуляра&hellip;
             <a href={iframeSrc}>Регистрирай се тук.</a>
