@@ -79,7 +79,7 @@ export default () => {
             style={{ border: 'none', overflowY: 'auto' }}
             border="0"
             width="600px"
-            height="1930px"
+            height="2100px"
             src="https://signup.tibroish.bg"
           >
             Зареждане на формуляра&hellip;
