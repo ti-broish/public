@@ -33,15 +33,25 @@ export default () => {
 
   // Check for referral code in URL - works for both SSR and client-side
   const getReferralFromUrl = () => {
-    // Use location.search from react-router for SSR compatibility
-    if (location.search) {
-      const params = new URLSearchParams(location.search);
-      return params.get('ref') || null;
+    // During SSR, location might not have search params, so return null safely
+    if (typeof window === 'undefined') {
+      return null;
     }
-    // Fallback for client-side if location.search is not available
-    if (typeof window !== 'undefined' && window.location.search) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('ref') || null;
+    
+    try {
+      // Use location.search from react-router for SSR compatibility
+      if (location && typeof location === 'object' && 'search' in location && location.search) {
+        const params = new URLSearchParams(location.search);
+        return params.get('ref') || null;
+      }
+      // Fallback for client-side if location.search is not available
+      if (window && window.location && typeof window.location === 'object' && 'search' in window.location && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('ref') || null;
+      }
+    } catch (e) {
+      // Silently fail if there's any error
+      console.warn('Could not get referral code from URL:', e);
     }
     return null;
   };
