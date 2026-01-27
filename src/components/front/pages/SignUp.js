@@ -16,10 +16,14 @@ export default () => {
   // For staging builds: VITE_FORM_URL=https://signup-staging.tibroish.bg
   // For production builds: VITE_FORM_URL=https://signup.tibroish.bg
   // Webpack DefinePlugin replaces process.env.VITE_FORM_URL with the actual string value at build time
+  // Note: The || fallback should never be used if webpack replacement works correctly
   const iframeSrc = process.env.VITE_FORM_URL || 'https://signup.tibroish.bg';
   
   // Debug: Log the iframe URL to verify webpack replacement worked
-  console.log('[SignUp] iframeSrc:', iframeSrc, 'process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
+  if (typeof window !== 'undefined') {
+    console.log('[SignUp] iframeSrc:', iframeSrc);
+    console.log('[SignUp] process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
+  }
 
   const location = useLocation();
 

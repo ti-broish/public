@@ -10,11 +10,12 @@ module.exports = merge(baseConfig, {
     mode: 'production',
     plugins: [
         //new BundleAnalyzerPlugin(),
+        const viteFormUrl = process.env.VITE_FORM_URL || 'https://signup.tibroish.bg';
+        console.log('[Production Webpack Config] VITE_FORM_URL:', viteFormUrl);
+        
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production'),
-            'process.env.VITE_FORM_URL': JSON.stringify(
-                process.env.VITE_FORM_URL || 'https://signup.tibroish.bg'
-            )
+            'process.env.VITE_FORM_URL': JSON.stringify(viteFormUrl)
         }),
         //new ExtractTextPlugin('[name].bundle.[chunkhash].css'),
         //new UglifyJsPlugin({sourceMap: false, uglifyOptions: {compress: true}}),
