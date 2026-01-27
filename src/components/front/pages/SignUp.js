@@ -31,15 +31,32 @@ export default () => {
 
   const location = useLocation();
 
-  // Check for referral code in URL
+  // Check for referral code in URL - works for both SSR and client-side
   const getReferralFromUrl = () => {
-    if (typeof window === 'undefined') return null;
-    const params = new URLSearchParams(window.location.search);
-    return params.get('ref') || null;
+    // Use location.search from react-router for SSR compatibility
+    if (location.search) {
+      const params = new URLSearchParams(location.search);
+      return params.get('ref') || null;
+    }
+    // Fallback for client-side if location.search is not available
+    if (typeof window !== 'undefined' && window.location.search) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('ref') || null;
+    }
+    return null;
   };
 
   const referralCode = getReferralFromUrl();
   const shareText = 'Аз се записах за пазител на вота! Запиши се и ти!';
+  
+  // Build full URL with referral code for og:url (important for Facebook crawler)
+  const getFullUrl = () => {
+    const baseUrl = 'https://tibroish.bg/signup/';
+    if (referralCode) {
+      return `${baseUrl}?ref=${referralCode}`;
+    }
+    return baseUrl;
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -85,9 +102,7 @@ export default () => {
     ? `${shareText} | Ти Броиш`
     : 'Запиши се още сега | Ти Броиш';
   
-  const metaUrl = referralCode 
-    ? `https://tibroish.bg/signup/?ref=${referralCode}`
-    : 'https://tibroish.bg/signup/';
+  const metaUrl = getFullUrl();
   
   const metaDescription = referralCode
     ? shareText
@@ -101,7 +116,7 @@ export default () => {
     <Wrapper>
       <Helmet>
         <title>{metaTitle}</title>
-        <link rel="canonical" href={metaUrl} />
+        <link rel="canonical" href="https://tibroish.bg/signup/" />
         <meta name="description" content={metaDescription} />
         <meta property="og:url" content={metaUrl} />
         <meta property="og:title" content={metaTitle} />
@@ -111,7 +126,7 @@ export default () => {
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
-        <h1>Запиши се още сега</h1>
+        <h1>{referralCode ? shareText : 'Запиши се още сега'}</h1>
         <hr />
         <p>
           За да дадем на България шанс за честни и свободни избори, търсим 12
