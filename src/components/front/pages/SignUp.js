@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Helmet from 'react-helmet';
 
@@ -7,28 +8,66 @@ import { Wrapper, MainContent } from '../Front';
 import styled from 'styled-components';
 
 const FormWrapper = styled.div`
-  iframe {
-    width: 100%;
-    height: 1700px;
-  }
-  @media (min-width: 375px) {
-    iframe {
-        height: 1594px;
-    }
-  }
-  @media (min-width: 425px) {
-    iframe {
-        height: 1504px;
-    }
-  }
-  @media (min-width: 768px) {
-    iframe {
-        height: 1450px;
-    }
-  }
 `;
 
 export default () => {
+  // Use build-time environment variable for iframe URL
+  // This is injected at build time via webpack DefinePlugin for client-side
+  // For SSR (renderStatic.js), process.env.VITE_FORM_URL must be set in Node.js environment
+  // For staging builds: VITE_FORM_URL=https://signup-staging.tibroish.bg
+  // For production builds: VITE_FORM_URL=https://signup.tibroish.bg
+  // Webpack DefinePlugin replaces process.env.VITE_FORM_URL with the actual string value at build time for client bundle
+  // During SSR, we read directly from process.env (set in build script)
+  const iframeSrc = process.env.VITE_FORM_URL || 'https://signup.tibroish.bg';
+
+  // Debug: Log the iframe URL to verify webpack replacement worked
+  if (typeof window !== 'undefined') {
+    console.log('[SignUp] iframeSrc:', iframeSrc);
+    console.log('[SignUp] process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
+  } else {
+    // SSR logging
+    console.log('[SignUp SSR] iframeSrc:', iframeSrc, 'process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
+  }
+
+  const location = useLocation();
+
+  // Check for referral code in URL - works for both SSR and client-side
+  const getReferralFromUrl = () => {
+    // During SSR, location might not have search params, so return null safely
+    if (typeof window === 'undefined') {
+      return null;
+    }
+    
+    try {
+      // Use location.search from react-router for SSR compatibility
+      if (location && typeof location === 'object' && 'search' in location && location.search) {
+        const params = new URLSearchParams(location.search);
+        return params.get('ref') || null;
+      }
+      // Fallback for client-side if location.search is not available
+      if (window && window.location && typeof window.location === 'object' && 'search' in window.location && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('ref') || null;
+      }
+    } catch (e) {
+      // Silently fail if there's any error
+      console.warn('Could not get referral code from URL:', e);
+    }
+    return null;
+  };
+
+  const referralCode = getReferralFromUrl();
+  const shareText = 'Аз се записах за пазител на вота! Запиши се и ти!';
+  
+  // Build full URL with referral code for og:url (important for Facebook crawler)
+  const getFullUrl = () => {
+    const baseUrl = 'https://tibroish.bg/signup/';
+    if (referralCode) {
+      return `${baseUrl}?ref=${referralCode}`;
+    }
+    return baseUrl;
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -40,7 +79,16 @@ export default () => {
     var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
 
     const formSubmitHandler = (e) => {
+      // Handle legacy formSubmit message
       if (e.data === 'formSubmit' || e.message === 'formSubmit') {
+        window.gtag &&
+          gtag('event', 'conversion', {
+            send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
+          });
+      }
+
+      // Handle new tibroishSubmitSuccess message
+      if (e.data === 'tibroishSubmitSuccess' || e.message === 'tibroishSubmitSuccess') {
         window.gtag &&
           gtag('event', 'conversion', {
             send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
@@ -59,19 +107,26 @@ export default () => {
     };
   }, []);
 
-  let metaTitle = 'Запиши се още сега | Ти Броиш';
-  let metaUrl = 'https://tibroish.bg/signup/';
-  let metaDescription = `
-        За да дадем на България шанс за честни и свободни избори, търсим 12 000 пазители на вота, по един за всяка секция в страната. 
-От ангажимент за 1 ден важи бъдещето на страната за следващите 4 години. 
-Можем да го направим заедно!  
+  // Use different title and description if referral code is present
+  const metaTitle = referralCode 
+    ? `${shareText} | Ти Броиш`
+    : 'Запиши се още сега | Ти Броиш';
+  
+  const metaUrl = getFullUrl();
+  
+  const metaDescription = referralCode
+    ? shareText
+    : `
+        За да дадем на България шанс за честни и свободни избори, търсим 12 000 пазители на вота, по един за всяка секция в страната.
+От ангажимент за 1 ден важи бъдещето на страната за следващите 4 години.
+Можем да го направим заедно!
     `;
 
   return (
     <Wrapper>
       <Helmet>
         <title>{metaTitle}</title>
-        <link rel="canonical" href={metaUrl} />
+        <link rel="canonical" href="https://tibroish.bg/signup/" />
         <meta name="description" content={metaDescription} />
         <meta property="og:url" content={metaUrl} />
         <meta property="og:title" content={metaTitle} />
@@ -81,7 +136,7 @@ export default () => {
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
-        <h1>Запиши се още сега</h1>
+        <h1>{referralCode ? shareText : 'Запиши се още сега'}</h1>
         <hr />
         <p>
           За да дадем на България шанс за честни и свободни избори, търсим 12
@@ -95,13 +150,16 @@ export default () => {
         </p>
         <FormWrapper>
           <iframe
-            id="gform"
-            style={{ border: 'none' }}
-            src="https://dabulgaria.bg/tibroish-chlen-na-sik-embed/"
+            style={{ border: 'none', overflowY: 'auto' }}
+            border="0"
+            width="600px"
+            height="2100px"
+            src={iframeSrc}
+            key={location.pathname}
           >
-            Loading...
+            Зареждане на формуляра&hellip;
+            <a href={iframeSrc}>Регистрирай се тук.</a>
           </iframe>
-          {/*<iframe id="gform" onLoad={onSignupIframeLoad} src="https://docs.google.com/forms/d/e/1FAIpQLSdXMU-qZsIDLMEymzZl7VMthQyC0gJ0-X0Ew8wZo8P3oLHElg/viewform?embedded=true" frameBorder="0">Loading…</iframe>*/}
         </FormWrapper>
         <hr />
         <h1>Какво предстои след като се запишете за пазител на вота?</h1>
