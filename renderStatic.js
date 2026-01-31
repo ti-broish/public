@@ -44,7 +44,7 @@ const renderHTML = renderData => {
 
 const template = handlebars.compile(fs.readFileSync('./src/index.hbs').toString());
 
-const writeHTML = (rendered, renderData) => {
+const writeHTML = async (rendered, renderData) => {
     const html = template({
         body: rendered.html,
         headTags: rendered.headTags,
@@ -66,9 +66,11 @@ const writeHTML = (rendered, renderData) => {
         fs.mkdirSync(`./public${pathUrl}`)
     }
 
-    fs.writeFileSync(`./public${pathUrl}/index.html`, minify(html, {
+    const minifiedHtml = await minify(html, {
         removeComments: true,
-    }), 'utf8');
+    });
+
+    fs.writeFileSync(`./public${pathUrl}/index.html`, minifiedHtml, 'utf8');
     console.log("Generated HTML", `./public${pathUrl}/index.html`);
 };
 
@@ -95,11 +97,13 @@ const routes = [
 
 console.log('\nGENERATING STATIC HTML\n');
 
-for (const route of routes) {
-    const renderData = { path: route };
-    const rendered = renderHTML(renderData);
-    writeHTML(rendered, renderData);
-}
+(async () => {
+    for (const route of routes) {
+        const renderData = { path: route };
+        const rendered = renderHTML(renderData);
+        await writeHTML(rendered, renderData);
+    }
 
-console.log('\nDONE\n');
-process.exit(0);
+    console.log('\nDONE\n');
+    process.exit(0);
+})();
