@@ -165,7 +165,7 @@ export default () => {
             border="0"
             width="100%"
             height="1200px"
-            src={iframeSrc}
+            src={referralCode ? `${iframeSrc}?ref=${referralCode}` : iframeSrc}
             key={location.pathname}
           >
             Зареждане на формуляра&hellip;
