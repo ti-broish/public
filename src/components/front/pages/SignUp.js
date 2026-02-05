@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Helmet from 'react-helmet';
@@ -75,57 +75,55 @@ export default () => {
     return baseUrl;
   };
 
+  const iframeRef = useRef(null);
+  const iframeOrigin = new URL(iframeSrc).origin;
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    var eventMethod = window.addEventListener
-      ? 'addEventListener'
-      : 'attachEvent';
+    const handleFormSubmit = () => {
+      window.gtag &&
+        gtag('event', 'conversion', {
+          send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
+        });
+    };
 
-    var eventer = window[eventMethod];
-    var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
-
-    const formSubmitHandler = (e) => {
-      // Handle legacy formSubmit message
-      if (e.data === 'formSubmit' || e.message === 'formSubmit') {
-        window.gtag &&
-          gtag('event', 'conversion', {
-            send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
-          });
-      }
-
-      // Handle new tibroishSubmitSuccess message
-      if (e.data === 'tibroishSubmitSuccess' || e.message === 'tibroishSubmitSuccess') {
-        window.gtag &&
-          gtag('event', 'conversion', {
-            send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
-          });
-      }
-
-      // Handle iframe height update
-      if (e.data && e.data.type === 'tibroishIframeHeight') {
-        setIframeHeight(`${e.data.height}px`);
+    const handleIframeHeight = (height) => {
+      if (iframeRef.current && typeof height === 'number' && height > 0) {
+        iframeRef.current.style.height = `${height}px`;
+        iframeRef.current.style.minHeight = 'none';
       }
     };
 
-    eventer(messageEvent, formSubmitHandler);
+    const messageHandler = (e) => {
+      if (e.origin !== iframeOrigin) return;
+
+      if (e.data === 'formSubmit' || e.data === 'tibroishSubmitSuccess') {
+        handleFormSubmit();
+      }
+
+      if (e.data && typeof e.data === 'object' && e.data.type === 'tibroishIframeHeight') {
+        handleIframeHeight(e.data.height);
+      }
+
+      if (e.data && typeof e.data === 'object' && e.data.type === 'tibroishScrollToTop') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('message', messageHandler);
 
     return () => {
-      var cleanupMethod = window.addEventListener
-        ? 'removeEventListener'
-        : 'detachEvent';
-      var cleanup = window[cleanupMethod];
-      cleanup(messageEvent, formSubmitHandler);
+      window.removeEventListener('message', messageHandler);
     };
   }, []);
 
   // Use different title and description if referral code is present
   const metaTitle = referralCode
-    ? `${shareText} | Ти Броиш`
+    ? shareText
     : 'Запиши се още сега | Ти Броиш';
 
   const metaUrl = getFullUrl();
-  const [iframeHeight, setIframeHeight] = useState("800px");
 
   const metaDescription = referralCode
     ? shareText
@@ -143,12 +141,12 @@ export default () => {
         <meta property="og:url" content={metaUrl} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={'/brand/ti-broish-cover.png'} />
+        <meta property="og:image" content={'https://tibroish.bg/brand/ti-broish-cover.png'} />
         <meta property="og:image:width" content={'1200'} />
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
-        <h1>{referralCode ? shareText : 'Запиши се още сега'}</h1>
+        <h1>Запиши се още сега</h1>
         <hr />
         <p>
           За да дадем на България шанс за честни и свободни избори, търсим 12
@@ -162,9 +160,11 @@ export default () => {
         </p>
         <FormWrapper>
           <iframe
-            style={{ border: 'none', height: iframeHeight }}
-            border='0'
-            width='100%'
+            ref={iframeRef}
+            style={{ border: 'none', minHeight: '800px' }}
+            border="0"
+            width="100%"
+            height="1200px"
             src={iframeSrc}
             key={location.pathname}
           >
