@@ -93,6 +93,7 @@ logs
 #results
 node_modules
 .node_history
+.env
 
 
 ############################
@@ -105,4 +106,5 @@ coverage
 bundles
 public/data
 public/**/*.html
+!public/index_dev.html
 public/**/*.json

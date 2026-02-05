@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+require('dotenv').config();
 
 const LoadablePlugin = require('@loadable/webpack-plugin');
 
@@ -37,5 +38,11 @@ module.exports = {
             loader: 'url-loader'
         }]
     },
-    plugins: [new LoadablePlugin()],
+    plugins: [
+        new LoadablePlugin(),
+        new webpack.DefinePlugin({
+            'process.env.DATA_URL': JSON.stringify(process.env.DATA_URL),
+            'process.env.GOOGLE_RECAPTCHA_KEY': JSON.stringify(process.env.GOOGLE_RECAPTCHA_KEY),
+        }),
+    ],
 };

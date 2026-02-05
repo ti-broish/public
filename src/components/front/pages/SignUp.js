@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Helmet from 'react-helmet';
@@ -7,8 +7,7 @@ import { Wrapper, MainContent } from '../Front';
 
 import styled from 'styled-components';
 
-const FormWrapper = styled.div`
-`;
+const FormWrapper = styled.div``;
 
 export default () => {
   // Use build-time environment variable for iframe URL
@@ -23,10 +22,18 @@ export default () => {
   // Debug: Log the iframe URL to verify webpack replacement worked
   if (typeof window !== 'undefined') {
     console.log('[SignUp] iframeSrc:', iframeSrc);
-    console.log('[SignUp] process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
+    console.log(
+      '[SignUp] process.env.VITE_FORM_URL:',
+      process.env.VITE_FORM_URL,
+    );
   } else {
     // SSR logging
-    console.log('[SignUp SSR] iframeSrc:', iframeSrc, 'process.env.VITE_FORM_URL:', process.env.VITE_FORM_URL);
+    console.log(
+      '[SignUp SSR] iframeSrc:',
+      iframeSrc,
+      'process.env.VITE_FORM_URL:',
+      process.env.VITE_FORM_URL,
+    );
   }
 
   const location = useLocation();
@@ -37,15 +44,15 @@ export default () => {
     if (typeof window === 'undefined') {
       return null;
     }
-    
+
     try {
       // Use location.search from react-router for SSR compatibility
-      if (location && typeof location === 'object' && 'search' in location && location.search) {
+      if (location && typeof location === 'object' &&  'search' in location && location.search) {
         const params = new URLSearchParams(location.search);
         return params.get('ref') || null;
       }
       // Fallback for client-side if location.search is not available
-      if (window && window.location && typeof window.location === 'object' && 'search' in window.location && window.location.search) {
+      if ( window && window.location && typeof window.location === 'object' && 'search' in window.location && window.location.search) {
         const params = new URLSearchParams(window.location.search);
         return params.get('ref') || null;
       }
@@ -58,7 +65,7 @@ export default () => {
 
   const referralCode = getReferralFromUrl();
   const shareText = 'Аз се записах за пазител на вота! Запиши се и ти!';
-  
+
   // Build full URL with referral code for og:url (important for Facebook crawler)
   const getFullUrl = () => {
     const baseUrl = 'https://tibroish.bg/signup/';
@@ -94,6 +101,11 @@ export default () => {
             send_to: 'AW-859816919/zYXnCPLNwOgBENeH_5kD',
           });
       }
+
+      // Handle iframe height update
+      if (e.data && e.data.type === 'tibroishIframeHeight') {
+        setIframeHeight(`${e.data.height}px`);
+      }
     };
 
     eventer(messageEvent, formSubmitHandler);
@@ -108,12 +120,13 @@ export default () => {
   }, []);
 
   // Use different title and description if referral code is present
-  const metaTitle = referralCode 
+  const metaTitle = referralCode
     ? `${shareText} | Ти Броиш`
     : 'Запиши се още сега | Ти Броиш';
-  
+
   const metaUrl = getFullUrl();
-  
+  const [iframeHeight, setIframeHeight] = useState("800px");
+
   const metaDescription = referralCode
     ? shareText
     : `
@@ -125,7 +138,6 @@ export default () => {
   return (
     <Wrapper>
       <Helmet>
-        <title>{metaTitle}</title>
         <link rel="canonical" href="https://tibroish.bg/signup/" />
         <meta name="description" content={metaDescription} />
         <meta property="og:url" content={metaUrl} />
@@ -140,9 +152,9 @@ export default () => {
         <hr />
         <p>
           За да дадем на България шанс за честни и свободни избори, търсим 12
-          000 пазители на вота, по един за всяка
-          секция в страната. От ангажимент за 1 ден важи бъдещето на страната за
-          следващите 4 години. Можем да го направим заедно!
+          000 пазители на вота, по един за всяка секция в страната. От
+          ангажимент за 1 ден важи бъдещето на страната за следващите 4 години.
+          Можем да го направим заедно!
         </p>
         <p>
           Запишете се днес, а с наближаването на изборния ден ние ще се свържем
@@ -150,10 +162,9 @@ export default () => {
         </p>
         <FormWrapper>
           <iframe
-            style={{ border: 'none', overflowY: 'auto' }}
-            border="0"
-            width="600px"
-            height="2100px"
+            style={{ border: 'none', height: iframeHeight }}
+            border='0'
+            width='100%'
             src={iframeSrc}
             key={location.pathname}
           >
@@ -170,7 +181,7 @@ export default () => {
           за предстоящите избори, ще изработим и изпратим обучително видео и
           материали за правата и задълженията на застъпниците. Всички тези
           материали ще бъдат на Ваше разположение и на сайта на кампанията -{' '}
-          <a href="https://tibroish.bg">www.tibroish.bg</a>.
+          <a href='https://tibroish.bg'>www.tibroish.bg</a>.
         </p>
         <hr />
         <h2>Ще ви разпределим по секции</h2>
@@ -196,7 +207,7 @@ export default () => {
           Когато мобилното ни приложение е налично за сваляне, ще получите имейл
           с инструкции как да го свалите и как да го ползвате в изборния ден.
           Тази информация ще бъде публикувана и на уебсайта на кампанията{' '}
-          <a href="https://tibroish.bg">www.tibroish.bg</a>.
+          <a href='https://tibroish.bg'>www.tibroish.bg</a>.
         </p>
       </MainContent>
     </Wrapper>
