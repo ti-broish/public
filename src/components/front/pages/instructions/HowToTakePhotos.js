@@ -1,19 +1,18 @@
 import React from 'react';
 
-import { Wrapper, MainContent } from '../../Front';
 import Helmet from 'react-helmet';
 
 export default (props) => {
   let metaTitle =
     'Как да снимаме процеса на установяване на резултатите | Ти Броиш';
-  let metaUrl = 'https://tibroish.bg/instructions/how-to-take-photos';
+  let metaUrl = 'https://tibroish.bg/instructions/capturing-results';
   let metaDescription = `
         „Ти броиш“ е национална кампания, целяща да предотврати опитите за измами и манипулации 
         при броенето на гласовете на предстоящите парламентарни избори.
     `;
 
   return (
-    <Wrapper>
+    <>
       <Helmet>
         <title>{metaTitle}</title>
         <link rel="canonical" href={metaUrl} />
@@ -25,8 +24,8 @@ export default (props) => {
         <meta property="og:image:width" content={'1200'} />
         <meta property="og:image:height" content={'628'} />
       </Helmet>
-      <MainContent>
-        <h1>КАК ДА СНИМАМЕ ПРОЦЕСА НА УСТАНОВЯВАНЕ НА РЕЗУЛТАТИТЕ</h1>
+      <>
+        <h1>Как да снимаме процеса на установяване на резултатите</h1>
         <hr />
         <p>
           Всеки защитник на вота може да видеозаснема и да видеоизлъчва процеса
@@ -59,7 +58,7 @@ export default (props) => {
             въвеждане на данните от протоколите на СИК.
           </li>
         </ul>
-      </MainContent>
-    </Wrapper>
+      </>
+    </>
   );
 };
