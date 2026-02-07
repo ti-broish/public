@@ -68,6 +68,7 @@ export const TableOfContents = styled.nav`
   border-radius: 8px;
   padding: 16px 20px;
   margin-bottom: 30px;
+  align-self: flex-start;
 
   h3 {
     margin: 0 0 12px 0;
@@ -95,7 +96,37 @@ export const TableOfContents = styled.nav`
       color: #38decb;
     }
   }
+
+  @media only screen and (min-width: ${MOBILE_WIDTH + 1}px) {
+    width: 300px;
+    min-width: 300px;
+    position: sticky;
+    top: 80px;
+    margin-bottom: 0;
+  }
+
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    width: 100%;
+    box-sizing: border-box;
+  }
 `;
+
+export const SideBySideLayout = styled.div`
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+`;
+
+export const MainContent = styled.div`
+  flex: 1;
+  min-width: 0;
+`;
+
 
 export const VideoSection = styled.div`
   margin-bottom: 20px;

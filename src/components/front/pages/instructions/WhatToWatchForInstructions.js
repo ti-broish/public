@@ -8,6 +8,8 @@ import {
   TableOfContents,
   VideoSection,
   VideoLabel,
+  SideBySideLayout,
+  MainContent,
 } from './InstructionStyles';
 
 import MobileAppInstructions from './MobileAppInstructions';
@@ -53,73 +55,76 @@ export default (props) => {
         <meta property="og:image:width" content={'1200'} />
         <meta property="og:image:height" content={'628'} />
       </Helmet>
-      <h1>Как протича изборния ден</h1>
-      <hr />
 
-      <PdfDownloadButton
-        href="/files/Ти%20Броиш%20Обучителен%20материал%20-%20НС%2027.10.2024.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faFilePdf} />
-        Обучение - Избори 27.10.2024 (PDF)
-      </PdfDownloadButton>
+      <SideBySideLayout>
+        <TableOfContents>
+          <h3>Обучение</h3>
+          <ol>
+            {videos.map((v) => (
+              <li key={v.anchorId}>
+                <a href={`#${v.anchorId}`}>{v.label}</a>
+              </li>
+            ))}
+          </ol>
 
-      <TableOfContents>
-        <h3>Обучение</h3>
-        <ol>
-          {videos.map((v) => (
-            <li key={v.anchorId}>
-              <a href={`#${v.anchorId}`}>{v.label}</a>
-            </li>
-          ))}
-        </ol>
+          <br />
+          <h3>Гласуване</h3>
+          <ol>
+            {howToVoteVideos.map((v) => (
+              <li key={v.anchorId}>
+                <a href={`#${v.anchorId}`}>{v.label}</a>
+              </li>
+            ))}
+          </ol>
 
-        <br/>
-        <h3>Гласуване</h3>
-        <ol> 
-          {howToVoteVideos.map((v) => (
-            <li key={v.anchorId}>
-              <a href={`#${v.anchorId}`}>{v.label}</a>
-            </li>
-          ))}
-        </ol>
+          <br />
+          <h3>РИК</h3>
+          <ol>
+            {rikVideos.map((v) => (
+              <li key={v.anchorId}>
+                <a href={`#${v.anchorId}`}>{v.label}</a>
+              </li>
+            ))}
+          </ol>
 
-         <br/>
-        <h3>РИК</h3>
-        <ol> 
-          {rikVideos.map((v) => (
-            <li key={v.anchorId}>
-              <a href={`#${v.anchorId}`}>{v.label}</a>
-            </li>
-          ))}
-        </ol>
-
-        <br/>
-        <h3>Протоколи и сигнали</h3>
-        <ol> 
+          <br />
+          <h3>Протоколи и сигнали</h3>
+          <ol>
             <li key={'mobile-app-1'}>
-                  <a href={`#video-protocols`}>Как се изпраща протокол в Ти броиш</a>
-                </li>
+              <a href={`#video-protocols`}>Как се изпраща протокол в Ти броиш</a>
+            </li>
 
-                <li key={'mobile-app-2'}>
-                  <a href={`#video-signals`}>Как се подава сигнал в Ти броишш</a>
-                </li>
-        </ol>
-      </TableOfContents>
+            <li key={'mobile-app-2'}>
+              <a href={`#video-signals`}>Как се подава сигнал в Ти броиш</a>
+            </li>
+          </ol>
+        </TableOfContents>
 
-  < div >
-      {videos.concat(howToVoteVideos, rikVideos).map((v) => (
-        <VideoSection key={v.videoId}>
-          <VideoLabel id={v.anchorId}>{v.label}</VideoLabel>
-          <YouTubeVideoEmbed videoId={v.videoId} />
-        </VideoSection>
-      ))}
+        <MainContent>
+          <h3>Как протича изборния ден</h3>
 
-      <hr/>
+        <PdfDownloadButton
+          href="/files/Ти%20Броиш%20Обучителен%20материал%20-%20НС%2027.10.2024.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faFilePdf} />
+          Обучение - Избори 27.10.2024 (PDF)
+        </PdfDownloadButton>
+          <hr />
+          
+          {videos.concat(howToVoteVideos, rikVideos).map((v) => (
+            <VideoSection key={v.videoId}>
+              <VideoLabel id={v.anchorId}>{v.label}</VideoLabel>
+              <YouTubeVideoEmbed videoId={v.videoId} />
+            </VideoSection>
+          ))}
 
-      <MobileAppInstructions id="mobile-app"/>
-      </div>   
+          <hr />
+
+          <MobileAppInstructions id="mobile-app" />
+        </MainContent>
+      </SideBySideLayout>
     </>
   );
 };

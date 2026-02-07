@@ -58,7 +58,7 @@ export default props => {
                     {/* <Route path='/instructions/watchers' component={WatcherInstructions}/> */}
                     {/* <Route path='/instructions/capturing-results' component={HowToTakePhotos}/> */}
                     {/* <Route exact path='/instructions' component={InstructionsIndex}/> */}
-                    <Redirect to='/instructions'/>
+                    <Redirect to='/instructions/what-to-watch-for'/>
                 </Switch>
             </InstructionsContent>
         </InstructionsLayout>
