@@ -10,17 +10,26 @@ import {
   VideoLabel,
 } from './InstructionStyles';
 
+import MobileAppInstructions from './MobileAppInstructions';
+
+
 const videos = [
   { videoId: 'Qz4V6uu7gTM', label: 'Обучително № 1 (защитник на вота - общи права и задължения)', anchorId: 'video-1' },
   { videoId: 'MpX0bA_DRtE', label: 'Обучително № 2 - член на СИК, как функционира СИК', anchorId: 'video-2' },
+];
+
+const howToVoteVideos = [
   { videoId: '8J8r-e4shS8', label: 'Как откриваме изборния ден', anchorId: 'video-3' },
   { videoId: '3hpv4iwoAmA', label: 'Кой може да гласува', anchorId: 'video-4' },
   { videoId: '-RvdMym5nm8', label: 'Как се гласува - с хартия, с машина', anchorId: 'video-5' },
+  { videoId: 'O-pWXJq_710', label: 'Как се гласува в чужбина', anchorId: 'video-10' },
+];
+
+const rikVideos = [
   { videoId: 'VbyHA1Ksr0Q', label: 'Как приключва изборния ден', anchorId: 'video-6' },
   { videoId: '9WAcSKL-hQg', label: 'Как броим', anchorId: 'video-7' },
   { videoId: 'ZfoL4VLitXI', label: 'Как попълваме протокола', anchorId: 'video-8' },
   { videoId: 'Xm0f61Xv0Pc', label: 'Как предаваме протокола в РИК', anchorId: 'video-9' },
-  { videoId: 'O-pWXJq_710', label: 'Как се гласува в чужбина', anchorId: 'video-10' },
 ];
 
 export default (props) => {
@@ -57,7 +66,7 @@ export default (props) => {
       </PdfDownloadButton>
 
       <TableOfContents>
-        <h3>Съдържание</h3>
+        <h3>Обучение</h3>
         <ol>
           {videos.map((v) => (
             <li key={v.anchorId}>
@@ -65,14 +74,52 @@ export default (props) => {
             </li>
           ))}
         </ol>
+
+        <br/>
+        <h3>Гласуване</h3>
+        <ol> 
+          {howToVoteVideos.map((v) => (
+            <li key={v.anchorId}>
+              <a href={`#${v.anchorId}`}>{v.label}</a>
+            </li>
+          ))}
+        </ol>
+
+         <br/>
+        <h3>РИК</h3>
+        <ol> 
+          {rikVideos.map((v) => (
+            <li key={v.anchorId}>
+              <a href={`#${v.anchorId}`}>{v.label}</a>
+            </li>
+          ))}
+        </ol>
+
+        <br/>
+        <h3>Протоколи и сигнали</h3>
+        <ol> 
+            <li key={'mobile-app-1'}>
+                  <a href={`#video-protocols`}>Как се изпраща протокол в Ти броиш</a>
+                </li>
+
+                <li key={'mobile-app-2'}>
+                  <a href={`#video-signals`}>Как се подава сигнал в Ти броишш</a>
+                </li>
+        </ol>
       </TableOfContents>
 
-      {videos.map((v) => (
+  < div >
+      {videos.concat(howToVoteVideos, rikVideos).map((v) => (
         <VideoSection key={v.videoId}>
           <VideoLabel id={v.anchorId}>{v.label}</VideoLabel>
           <YouTubeVideoEmbed videoId={v.videoId} />
         </VideoSection>
       ))}
+
+      <hr/>
+
+      <MobileAppInstructions id="mobile-app"/>
+      </div>   
     </>
   );
 };

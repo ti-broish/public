@@ -21,8 +21,8 @@ import {
 } from './instructions/InstructionStyles';
 
 const sections = [
-    { to: '/instructions', label: 'Всички инструкции', exact: true },
-    { to: '/instructions/what-to-watch-for', label: 'Как протича изборния ден' },
+    // { to: '/instructions', label: 'Всички инструкции' },
+    { to: '/instructions/what-to-watch-for', label: 'Как протича изборния ден' , exact: true  },
     { to: '/instructions/mobile-app', label: 'Изпращане на протоколи и сигнали' },
     // { to: '/instructions/how-to-validate', label: 'Валидиране на протокол' },
         // { to: '/instructions/guardians', label: 'Какво правят защитниците на вота' },
@@ -39,8 +39,8 @@ export default props => {
 
     return(
         <InstructionsLayout>
-            <MobileMenuToggle style={{width: '48px' }} onClick={() => setMenuOpen(!menuOpen)}>
-                <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
+            {/* <MobileMenuToggle style={{width: '48px' }} onClick={() => setMenuOpen(!menuOpen)} >
+                <FontAwesomeIcon icon={menuOpen ? faTimes : faBars}  hidden={true} />
             </MobileMenuToggle>
             <Sidebar open={menuOpen}>
                 {sections.map((s) => (
@@ -48,16 +48,16 @@ export default props => {
                         {s.label}
                     </SidebarLink>
                 ))}
-            </Sidebar>
+            </Sidebar> */}
             <InstructionsContent>
                 <Switch>
-                    <Route path='/instructions/what-to-watch-for' component={WhatToWatchForInstructions}/>
+                    <Route exact path='/instructions/what-to-watch-for' component={WhatToWatchForInstructions}/>
                     <Route path='/instructions/mobile-app' component={MobileAppInstructions}/>
                     {/* <Route path='/instructions/how-to-validate' component={HowToValidate}/> */}
                     {/* <Route path='/instructions/guardians' component={VoteGuardians}/> */}
                     {/* <Route path='/instructions/watchers' component={WatcherInstructions}/> */}
                     {/* <Route path='/instructions/capturing-results' component={HowToTakePhotos}/> */}
-                    <Route exact path='/instructions' component={InstructionsIndex}/>
+                    {/* <Route exact path='/instructions' component={InstructionsIndex}/> */}
                     <Redirect to='/instructions'/>
                 </Switch>
             </InstructionsContent>
