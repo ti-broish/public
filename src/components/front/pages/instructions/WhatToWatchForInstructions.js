@@ -16,18 +16,18 @@ import MobileAppInstructions from './MobileAppInstructions';
 
 
 const videos = [
-  { videoId: 'Qz4V6uu7gTM', label: 'Обучително № 1 (защитник на вота - общи права и задължения)', anchorId: 'video-1' },
-  { videoId: 'MpX0bA_DRtE', label: 'Обучително № 2 - член на СИК, как функционира СИК', anchorId: 'video-2' },
+  { videoId: 'Qz4V6uu7gTM', label: 'Защитник на вота - права и задължения', anchorId: 'video-1' },
 ];
 
 const howToVoteVideos = [
-  { videoId: '8J8r-e4shS8', label: 'Как откриваме изборния ден', anchorId: 'video-3' },
   { videoId: '3hpv4iwoAmA', label: 'Кой може да гласува', anchorId: 'video-4' },
   { videoId: '-RvdMym5nm8', label: 'Как се гласува - с хартия, с машина', anchorId: 'video-5' },
   { videoId: 'O-pWXJq_710', label: 'Как се гласува в чужбина', anchorId: 'video-10' },
 ];
 
-const rikVideos = [
+const sikVideos = [
+  { videoId: 'MpX0bA_DRtE', label: 'Как функционира СИК', anchorId: 'video-2' },
+  { videoId: '8J8r-e4shS8', label: 'Как откриваме изборния ден', anchorId: 'video-3' },
   { videoId: 'VbyHA1Ksr0Q', label: 'Как приключва изборния ден', anchorId: 'video-6' },
   { videoId: '9WAcSKL-hQg', label: 'Как броим', anchorId: 'video-7' },
   { videoId: 'ZfoL4VLitXI', label: 'Как попълваме протокола', anchorId: 'video-8' },
@@ -78,9 +78,9 @@ export default (props) => {
           </ol>
 
           <br />
-          <h3>РИК</h3>
+          <h3>СИК</h3>
           <ol>
-            {rikVideos.map((v) => (
+            {sikVideos.map((v) => (
               <li key={v.anchorId}>
                 <a href={`#${v.anchorId}`}>{v.label}</a>
               </li>
@@ -112,8 +112,8 @@ export default (props) => {
           Обучение - Избори 27.10.2024 (PDF)
         </PdfDownloadButton>
           <hr />
-          
-          {videos.concat(howToVoteVideos, rikVideos).map((v) => (
+
+          {videos.concat(howToVoteVideos, sikVideos).map((v) => (
             <VideoSection key={v.videoId}>
               <VideoLabel id={v.anchorId}>{v.label}</VideoLabel>
               <YouTubeVideoEmbed videoId={v.videoId} />

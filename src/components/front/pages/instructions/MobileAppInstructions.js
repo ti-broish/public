@@ -10,8 +10,8 @@ import {
 } from './InstructionStyles';
 
 const videos = [
-  { videoId: 'vG-evl0Jlp8', label: 'Как се изпраща протокол в Ти броиш', anchorId: 'video-protocols' },
-  { videoId: 'x4j9s-LliVs', label: 'Как се подава сигнал в Ти броиш', anchorId: 'video-signals' },
+    { videoId: 'vG-evl0Jlp8', label: 'Изпращане на протокол в Ти Броиш', anchorId: 'video-protocols' },
+    { videoId: 'x4j9s-LliVs', label: 'Подаване на сигнал в Ти Броиш', anchorId: 'video-signals' },
 ];
 
 export default (props) => {
