@@ -14,8 +14,8 @@ import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 
 const FooterStyle = styled.footer`
     background-color: #eee;
-    
-    
+
+
 `;
 
 const FooterColumns = styled.div`
@@ -64,7 +64,7 @@ const Copyright = styled.div`
 
 const FooterAppBadges = styled.div`
     text-align: center;
-    
+
     img {
         width: 80%;
     }
@@ -88,7 +88,7 @@ export default props => {
                         <b><FontAwesomeIcon icon={faEnvelope}/> Имейл: </b>
                         <a href='mailto:team@tibroish.bg'>team@tibroish.bg</a>
                     </p>
-                    
+
                 </FooterColumn>
                 <FooterColumn>
                     <h2><FontAwesomeIcon icon={faSitemap}/> Карта на сайта</h2>
@@ -97,11 +97,11 @@ export default props => {
                         {/*<li><Link to='/about'>Kампанията</Link></li>*/}
                         <li><a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a></li>
                         <li><a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a></li>
-                        <li><Link to='/instructions'>Инструкции</Link></li> 
+                        <li><Link to='/instructions'>Инструкции</Link></li>
                         <li><a href="/results/parliament-2023-04-02">Карта</a></li>
                         {/*<li><Link to='/videos'>Видео</Link></li>*/}
                         {/*<li><Link to='/news'>Актуална информация</Link></li>*/}
-                        <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>   
+                        <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>
                         {/*<li><Link to='/ti-glasuvash'>Ти Гласуваш!</Link></li>*/}
                     </ul>
                 </FooterColumn>
@@ -124,7 +124,7 @@ export default props => {
                     </FooterAppBadges>
                 </FooterColumn>
             </FooterColumns>
-            <Copyright>Ти броиш &copy; {new Date().getFullYear()}</Copyright>
+            <Copyright>Ти Броиш &copy; {new Date().getFullYear()}</Copyright>
         </FooterStyle>
     ])
 };

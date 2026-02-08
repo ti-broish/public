@@ -20,7 +20,7 @@ export default () => {
         var eventMethod = window.addEventListener
 			? "addEventListener"
             : "attachEvent";
-        
+
         var eventer = window[eventMethod];
         var messageEvent = eventMethod === "attachEvent"
             ? "onmessage"
@@ -49,7 +49,7 @@ export default () => {
   let metaUrl = 'https://tibroish.bg/feedback-defenders/';
   let metaDescription = `
         Благодарим Ви за участието като член на СИК или застъпник на 11.07.2021 г. в инициативата „Ти Броиш“. Ти Броиш, с Вашата помощ, успя да достигне до почти всички избирателни секции и да допринесе към прозрачността и честността в изборния ден.
-Анкетата е анонимна и конфиденциална. Моля отделете 1 - 2 минути, за да ни дадете вашата обратна връзка.  
+Анкетата е анонимна и конфиденциална. Моля отделете 1 - 2 минути, за да ни дадете вашата обратна връзка.
     `;
 
   return (
@@ -66,7 +66,7 @@ export default () => {
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
-        <h1>Анкета за застъпници на Ти броиш</h1>
+        <h1>Анкета за застъпници на Ти Броиш</h1>
         <hr />
         <FormWrapper>
           <iframe
