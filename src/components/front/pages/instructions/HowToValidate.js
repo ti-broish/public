@@ -19,7 +19,7 @@ export default (props) => {
   let metaTitle = 'Инструкции | Ти Броиш';
   let metaUrl = 'https://tibroish.bg/instructions/how-to-validate';
   let metaDescription = `
-        „Ти броиш" е национална кампания, целяща да предотврати опитите за измами и манипулации
+        „Ти Броиш" е национална кампания, целяща да предотврати опитите за измами и манипулации
         при броенето на гласовете на предстоящите парламентарни избори.
     `;
 
@@ -49,7 +49,7 @@ export default (props) => {
       </PdfDownloadButton>
 
       <VideoSection>
-        <VideoLabel id="video-validation">Как се валидира протокол в Ти броиш</VideoLabel>
+        <VideoLabel id="video-validation">Как се валидира протокол в Ти Броиш</VideoLabel>
         <YouTubeVideoEmbed videoId={'j2ChYutSk-c'} />
       </VideoSection>
     </>

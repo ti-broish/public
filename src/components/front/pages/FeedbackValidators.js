@@ -20,7 +20,7 @@ export default () => {
         var eventMethod = window.addEventListener
 			? "addEventListener"
             : "attachEvent";
-        
+
         var eventer = window[eventMethod];
         var messageEvent = eventMethod === "attachEvent"
             ? "onmessage"
@@ -49,7 +49,7 @@ export default () => {
   let metaUrl = 'https://tibroish.bg/feedback-validators/';
   let metaDescription = `
         Благодарим Ви за участието като валидатор на 11.07.2021 г. в инициативата „Ти Броиш“! Благодарение на Вас „Ти Броиш“ успя да достигне до почти всички избирателни секции и да допринесе към прозрачността и честността в изборния ден.
-Тази анкета е анонимна и конфиденциална. Моля, отделете 1 - 2 минути, за да ни дадете Вашата обратна връзка.  
+Тази анкета е анонимна и конфиденциална. Моля, отделете 1 - 2 минути, за да ни дадете Вашата обратна връзка.
     `;
 
   return (
@@ -66,7 +66,7 @@ export default () => {
         <meta property="og:image:height" content={'628'} />
       </Helmet>
       <MainContent>
-        <h1>Анкета за валидатори на Ти броиш</h1>
+        <h1>Анкета за валидатори на Ти Броиш</h1>
         <hr />
         <FormWrapper>
           <iframe

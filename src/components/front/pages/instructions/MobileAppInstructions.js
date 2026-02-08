@@ -22,7 +22,7 @@ export default (props) => {
   let metaTitle = 'Инструкции | Ти Броиш';
   let metaUrl = 'https://tibroish.bg/instructions/mobile-app';
   let metaDescription = `
-        „Ти броиш" е национална кампания, целяща да предотврати опитите за измами и манипулации
+        „Ти Броиш" е национална кампания, целяща да предотврати опитите за измами и манипулации
         при броенето на гласовете на предстоящите парламентарни избори.
     `;
 
@@ -39,7 +39,7 @@ export default (props) => {
         <meta property="og:image:width" content={'1200'} />
         <meta property="og:image:height" content={'628'} />
       </Helmet>
-      <h1>Инструкции за изпращане на протоколи и сигнали в "Ти броиш"</h1>
+      <h1>Инструкции за изпращане на протоколи и сигнали в "Ти Броиш"</h1>
       <hr />
 
       {videos.map((v) => (

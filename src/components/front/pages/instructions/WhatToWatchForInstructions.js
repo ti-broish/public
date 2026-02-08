@@ -38,7 +38,7 @@ export default (props) => {
   let metaTitle = 'Как протича изборния ден | Ти Броиш';
   let metaUrl = 'https://tibroish.bg/instructions/what-to-watch-for';
   let metaDescription = `
-        „Ти броиш" е национална кампания, целяща да предотврати опитите за измами и манипулации
+        „Ти Броиш" е национална кампания, целяща да предотврати опитите за измами и манипулации
         при броенето на гласовете на предстоящите парламентарни избори.
     `;
 
@@ -91,11 +91,11 @@ export default (props) => {
           <h3>Протоколи и сигнали</h3>
           <ol>
             <li key={'mobile-app-1'}>
-              <a href={`#video-protocols`}>Как се изпраща протокол в Ти броиш</a>
+              <a href={`#video-protocols`}>Как се изпраща протокол в Ти Броиш</a>
             </li>
 
             <li key={'mobile-app-2'}>
-              <a href={`#video-signals`}>Как се подава сигнал в Ти броиш</a>
+              <a href={`#video-signals`}>Как се подава сигнал в Ти Броиш</a>
             </li>
           </ol>
         </TableOfContents>
