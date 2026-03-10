@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Helmet from 'react-helmet';
@@ -65,24 +65,15 @@ export default () => {
 
   const referralCode = getReferralFromUrl();
 
-  const getRoleFromUrl = () => {
-    if (typeof window === 'undefined') return null;
+  // Detect role param client-side after mount (SSR has no window.location)
+  const [role, setRole] = useState(null);
+  useEffect(() => {
     try {
-      if (location && typeof location === 'object' && 'search' in location && location.search) {
-        const params = new URLSearchParams(location.search);
-        return params.get('role') || null;
-      }
-      if (window && window.location && typeof window.location === 'object' && 'search' in window.location && window.location.search) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('role') || null;
-      }
-    } catch (e) {
-      console.warn('Could not get role from URL:', e);
-    }
-    return null;
-  };
-
-  const role = getRoleFromUrl();
+      const params = new URLSearchParams(window.location.search);
+      const r = params.get('role');
+      if (r) setRole(r);
+    } catch (e) {}
+  }, []);
 
   const buildIframeSrc = () => {
     const params = new URLSearchParams();
