@@ -64,6 +64,34 @@ export default () => {
   };
 
   const referralCode = getReferralFromUrl();
+
+  const getRoleFromUrl = () => {
+    if (typeof window === 'undefined') return null;
+    try {
+      if (location && typeof location === 'object' && 'search' in location && location.search) {
+        const params = new URLSearchParams(location.search);
+        return params.get('role') || null;
+      }
+      if (window && window.location && typeof window.location === 'object' && 'search' in window.location && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('role') || null;
+      }
+    } catch (e) {
+      console.warn('Could not get role from URL:', e);
+    }
+    return null;
+  };
+
+  const role = getRoleFromUrl();
+
+  const buildIframeSrc = () => {
+    const params = new URLSearchParams();
+    if (referralCode) params.set('ref', referralCode);
+    if (role) params.set('role', role);
+    const qs = params.toString();
+    return qs ? `${iframeSrc}?${qs}` : iframeSrc;
+  };
+
   const shareText = 'Аз се записах за пазител на вота! Запиши се и ти!';
 
   // Build full URL with referral code for og:url (important for Facebook crawler)
@@ -165,7 +193,7 @@ export default () => {
             border="0"
             width="100%"
             height="1200px"
-            src={referralCode ? `${iframeSrc}?ref=${referralCode}` : iframeSrc}
+            src={buildIframeSrc()}
             key={location.pathname}
           >
             Зареждане на формуляра&hellip;
