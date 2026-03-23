@@ -164,7 +164,7 @@ export default (props) => {
           </Link>
           {/* <a href="/results/parliament-2026-04-19/protocol/new">Изпрати протокол</a> */}
           <a href="/results/parliament-2026-04-19/violation/new">Подай сигнал</a>
-          <Link to="/instructions" onCl ick={() => setMenuOpen(false)}>
+          <Link to="/instructions" onClick={() => setMenuOpen(false)}>
             Инструкции
           </Link>
            {/* <a href="/results/parliament-2026-04-19" onClick={() => setMenuOpen(false)}>
