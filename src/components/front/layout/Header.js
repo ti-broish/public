@@ -120,17 +120,17 @@ export default (props) => {
     <HeaderCompensator />,
     <HeaderStyle>
       <Wrapper>
-        <a href="/results/parliament-2023-04-02/submit">
+        <a href="/results/parliament-2026-04-19/submit">
           <LogoImage src="/brand/logo_horizontal_white.png?v=2" />
         </a>
         <Navigation>
           <Link to="/signup">Запиши се</Link>
           <Link to="/about">Kампанията</Link>
           <Link to="/izvan-bulgaria">Извън страната</Link>
-          {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
-          {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>*/}
+          {/* <a href="/results/parliament-2026-04-19/protocol/new">Изпрати протокол</a> */}
+          <a href="/results/parliament-2026-04-19/violation/new">Подай сигнал</a>
           <Link to="/instructions">Инструкции</Link>
-          {/*<a href="/results/parliament-2023-04-02">Карта</a>*/}
+          {/* <a href="/results/parliament-2026-04-19">Карта</a> */}
           {/*<Link to="/videos">Видео</Link>*/}
         </Navigation>
         <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
@@ -148,7 +148,7 @@ export default (props) => {
       >
         <MobileNavMenu>
           <a
-            to="/results/parliament-2023-04-02/submit"
+            to="/results/parliament-2026-04-19/submit"
             onClick={() => setMenuOpen(false)}
           >
             Начало
@@ -162,12 +162,12 @@ export default (props) => {
           <Link to="/izvan-bulgaria" onClick={() => setMenuOpen(false)}>
             Извън страната
           </Link>
-          {/*<a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a>*/}
-          {/*<a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a>
-          <Link to="/instructions" onClick={() => setMenuOpen(false)}>
+          {/* <a href="/results/parliament-2026-04-19/protocol/new">Изпрати протокол</a> */}
+          <a href="/results/parliament-2026-04-19/violation/new">Подай сигнал</a>
+          <Link to="/instructions" onCl ick={() => setMenuOpen(false)}>
             Инструкции
           </Link>
-           {/*<a href="/results/parliament-2023-04-02" onClick={() => setMenuOpen(false)}>
+           {/* <a href="/results/parliament-2026-04-19" onClick={() => setMenuOpen(false)}>
             Карта
           </a>*/}
           {/*<Link to="/videos" onClick={() => setMenuOpen(false)}>
