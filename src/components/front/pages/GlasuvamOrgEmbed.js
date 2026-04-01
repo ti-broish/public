@@ -46,7 +46,7 @@ export default () => {
     }, []);*/
 
   const metaTitle = "Секции извън България";
-  const metaUrl = "https://glasuvam.org/parl2410";
+  const metaUrl = "https://glasuvam.org/tibroish2604";
   const metaDescription = `
         Вижте къде има открити секции за гласуване извън България. Данните са от проекта Glasuvam.org.  
     `;
@@ -67,7 +67,7 @@ export default () => {
       <MainContent>
         <h1>Секции извън страната</h1>
         <iframe
-          src="https://glasuvam.org/tibroish24"
+          src="https://glasuvam.org/tibroish2604"
           width="100%"
           height="500px"
           allow="geolocation"
