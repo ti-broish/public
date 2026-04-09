@@ -104,13 +104,22 @@ export default (props) => {
           <h3>Как протича изборния ден</h3>
 
         <PdfDownloadButton
+          href="/files/%D0%9D%D0%B0%D1%80%D1%8A%D1%87%D0%BD%D0%B8%D0%BA-%D0%A2%D0%B8-%D0%B1%D1%80%D0%BE%D0%B8%D1%88.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faFilePdf} />
+          Наръчник на пазителя на вота (PDF)
+        </PdfDownloadButton>
+
+        {/* <PdfDownloadButton
           href="/files/Ти%20Броиш%20Обучителен%20материал%20-%20НС%2027.10.2024.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FontAwesomeIcon icon={faFilePdf} />
           Обучение - Избори 27.10.2024 (PDF)
-        </PdfDownloadButton>
+        </PdfDownloadButton> */}
           <hr />
 
           {videos.concat(howToVoteVideos, sikVideos).map((v) => (
