@@ -93,12 +93,12 @@ export default props => {
                 <FooterColumn>
                     <h2><FontAwesomeIcon icon={faSitemap}/> Карта на сайта</h2>
                     <ul>
-                        <li><a href='/results/parliament-2023-04-02/submit'>Начало</a></li>
+                        <li><a href='/results/parliament-2026-04-19/submit'>Начало</a></li>
                         {/*<li><Link to='/about'>Kампанията</Link></li>*/}
-                        <li><a href="/results/parliament-2023-04-02/protocol/new">Изпрати протокол</a></li>
-                        <li><a href="/results/parliament-2023-04-02/violation/new">Подай сигнал</a></li>
+                        {/* <li><a href="/results/parliament-2026-04-19/protocol/new">Изпрати протокол</a></li> */}
+                        <li><a href="/results/parliament-2026-04-19/violation/new">Подай сигнал</a></li>
                         <li><Link to='/instructions'>Инструкции</Link></li>
-                        <li><a href="/results/parliament-2023-04-02">Карта</a></li>
+                        {/* <li><a href="/results/parliament-2026-04-19">Карта</a></li> */}
                         {/*<li><Link to='/videos'>Видео</Link></li>*/}
                         {/*<li><Link to='/news'>Актуална информация</Link></li>*/}
                         <li><Link to='/privacy-notice'>Декларация за поверителност</Link></li>
