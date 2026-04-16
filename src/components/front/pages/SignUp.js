@@ -155,6 +155,7 @@ export default () => {
   return (
     <Wrapper>
       <Helmet>
+        <title>{metaTitle}</title>
         <link rel="canonical" href="https://tibroish.bg/signup/" />
         <meta name="description" content={metaDescription} />
         <meta property="og:url" content={metaUrl} />
